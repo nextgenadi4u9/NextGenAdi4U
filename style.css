@@ -226,27 +226,26 @@ header {
     background: rgba(35, 35, 35, 0.95);
 }
 
-/* LOGO IMAGE STYLING (NEW UPDATE) */
+/* LOGO IMAGE STYLING */
 .card-img {
     width: 80px;
     height: 80px;
-    background: rgba(255, 255, 255, 0.05); /* Light circle bg */
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    overflow: hidden; /* Ensures image stays in circle */
+    overflow: hidden;
 }
 
-/* Image inside the circle */
 .card-img img {
-    width: 65%; /* Adjust logo size inside circle */
+    width: 65%;
     height: auto;
     object-fit: contain;
 }
 
-/* If using icons (fallback) */
+/* Fallback for icons */
 .card-img i {
     font-size: 2rem;
     color: #00d2ff;
@@ -287,7 +286,45 @@ header {
     margin-left: 5px;
 }
 
-/* --- 7. FOOTER --- */
+/* --- 7. LEGAL PAGES STYLING (New Added) --- */
+.policy-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 80px;
+}
+
+.policy-container h2 {
+    color: #00d2ff;
+    font-size: 1.5rem;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.policy-container p {
+    color: #ccc;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.policy-container ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    color: #bbb;
+}
+
+.policy-container li {
+    margin-bottom: 8px;
+}
+
+/* --- 8. FOOTER --- */
 footer {
     background: #080808;
     padding: 40px 5% 20px;
@@ -310,7 +347,7 @@ footer {
     font-size: 0.85rem;
 }
 
-/* --- 8. MOBILE RESPONSIVE --- */
+/* --- 9. MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -343,5 +380,10 @@ footer {
 
     .item-card {
         padding: 20px;
+    }
+
+    .policy-container {
+        padding: 25px;
+        width: 95%;
     }
 }
