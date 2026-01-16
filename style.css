@@ -1,25 +1,38 @@
-/* Basic Reset */
+/* =========================================
+   1. GLOBAL RESET & FONTS
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    /* Cursor Fix: PC var mouse disnyasathi he important aahe */
+    cursor: auto; 
+    text-decoration: none;
 }
 
 body {
     background-color: #000;
     color: white;
-    overflow-x: hidden; /* prevents horizontal scroll */
+    overflow-x: hidden; /* A आडवा स्क्रोल बंद */
 }
 
-/* --- VIDEO BACKGROUND FIX --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* =========================================
+   2. VIDEO BACKGROUND
+   ========================================= */
 #myVideo {
     position: fixed;
     right: 0;
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-    z-index: -2;
+    z-index: -2; /* Sarvat mage */
     object-fit: cover;
 }
 
@@ -29,16 +42,18 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Thoda dark kela text disnyasathi */
+    background: rgba(0, 0, 0, 0.8); /* Text vachnyasathi dark layer */
     z-index: -1;
 }
 
-/* --- HEADER --- */
+/* =========================================
+   3. HEADER STYLES
+   ========================================= */
 header {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Simple transparent black for speed */
+    background: rgba(0, 0, 0, 0.9); /* Plain black for speed */
     padding: 10px 20px;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -53,7 +68,7 @@ header {
 }
 
 .logo img {
-    height: 40px; /* Logo height fix */
+    height: 45px;
     width: auto;
     display: block;
 }
@@ -65,21 +80,26 @@ header {
 }
 
 .social-nav a {
-    color: #fff;
-    font-size: 1.2rem;
-    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #ccc;
+    font-size: 1rem;
+    transition: 0.3s;
 }
 
 .social-nav a:hover {
     color: #00d2ff;
+    transform: translateY(-2px);
 }
 
 /* Search Bar */
 .search-bar {
     display: flex;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 5px 15px;
+    border-radius: 25px;
+    padding: 6px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .search-bar input {
@@ -88,6 +108,7 @@ header {
     color: white;
     outline: none;
     width: 150px;
+    font-size: 0.9rem;
 }
 
 .search-bar button {
@@ -97,19 +118,22 @@ header {
     cursor: pointer;
 }
 
-/* --- HERO SECTION --- */
+/* =========================================
+   4. HERO SECTION (Main Titles)
+   ========================================= */
 .hero {
     text-align: center;
-    padding: 120px 20px 40px; /* Top padding header sathi */
+    padding: 140px 20px 40px;
 }
 
-.hero h1 {
+.main-heading {
     font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-weight: 700;
     text-transform: uppercase;
     background: linear-gradient(90deg, #fff, #00d2ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
 }
 
 .hero p {
@@ -117,7 +141,14 @@ header {
     font-size: 1.1rem;
 }
 
-/* --- CATEGORIES (Responsive) --- */
+/* Page Hero specific spacing */
+.page-hero {
+    padding: 130px 20px 20px;
+}
+
+/* =========================================
+   5. HOME PAGE CATEGORIES (List View)
+   ========================================= */
 .categories-container {
     display: flex;
     flex-direction: column;
@@ -125,27 +156,26 @@ header {
     gap: 15px;
     padding-bottom: 80px;
     max-width: 800px;
-    margin: 0 auto; /* Center align */
-    width: 95%; /* Mobile sathi */
+    margin: 0 auto;
+    width: 95%;
 }
 
 .category-card {
     display: flex;
     align-items: center;
     width: 100%;
-    background: rgba(25, 25, 25, 0.9); /* Blur kadhun takla speed sathi */
+    background: rgba(20, 20, 20, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px 20px;
+    padding: 18px 25px;
     border-radius: 12px;
-    text-decoration: none;
     color: white;
-    transition: transform 0.2s ease, background 0.2s;
+    transition: transform 0.2s ease, border-color 0.2s;
 }
 
 .category-card:hover {
     transform: scale(1.02);
-    background: rgba(40, 40, 40, 0.95);
     border-color: #00d2ff;
+    background: rgba(40, 40, 40, 1);
 }
 
 .cat-icon {
@@ -172,70 +202,27 @@ header {
 
 .arrow {
     color: #555;
+    transition: 0.3s;
 }
 
-/* --- FOOTER --- */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #111;
-    color: #666;
-    font-size: 0.9rem;
-    margin-top: 20px;
+.category-card:hover .arrow {
+    color: #00d2ff;
+    transform: translateX(5px);
 }
 
-/* --- MOBILE RESPONSIVENESS (Auto Adjust) --- */
-@media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .logo img {
-        height: 35px; /* Mobile var logo thoda chota */
-    }
-    
-    .social-nav {
-        gap: 25px; /* Icons madhe thodi space */
-    }
-
-    .search-bar {
-        width: 100%; /* Mobile var full width search */
-    }
-    
-    .search-bar input {
-        width: 100%;
-    }
-
-    .hero h1 {
-        font-size: 1.8rem; /* Font size adjustment for mobile */
-    }
-
-    .category-card {
-        padding: 12px 15px; /* Cards padding adjustment */
-    }
-}
-
-
-/* --- INNER PAGE STYLES (Grid System) --- */
-
-/* Page Hero Adjustments */
-.page-hero {
-    padding: 120px 20px 30px; /* Header khali jaga */
-}
-
-/* Grid Container */
+/* =========================================
+   6. INNER PAGES GRID (Softwares, Games etc.)
+   ========================================= */
 .grid-container {
     display: grid;
-    /* Responsive Grid: PC var 3-4 items, Mobile var 1-2 items */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    /* Auto responsive grid: PC var 3-4, Mobile var 1-2 */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
     gap: 25px;
     padding: 20px 5% 80px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Individual Item Card */
 .item-card {
     background: rgba(25, 25, 25, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -256,28 +243,27 @@ footer {
     background: rgba(35, 35, 35, 0.95);
 }
 
-/* Card Image / Icon Area */
 .card-img {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #00d2ff;
 }
 
 .item-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 5px;
     color: white;
 }
 
 .item-card p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #aaa;
     margin-bottom: 20px;
 }
@@ -286,17 +272,158 @@ footer {
 .download-btn {
     background: linear-gradient(45deg, #00d2ff, #3a7bd5);
     color: white;
-    padding: 10px 25px;
+    padding: 10px 0;
     border-radius: 25px;
     font-size: 0.9rem;
     font-weight: 600;
     transition: 0.3s;
     border: none;
-    width: 100%; /* Button full width */
-    max-width: 200px;
+    width: 100%;
+    display: inline-block;
 }
 
 .download-btn:hover {
-    box-shadow: 0 0 15px #00d2ff;
-    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+    transform: scale(1.03);
+}
+
+.download-btn i {
+    margin-left: 5px;
+}
+
+/* =========================================
+   7. FOOTER STYLES
+   ========================================= */
+footer {
+    background: #080808;
+    padding: 50px 5% 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto; /* Footer always at bottom */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+}
+
+.footer-left h2 {
+    color: #00d2ff;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.footer-left p {
+    color: #777;
+    max-width: 300px;
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #aaa;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: white;
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.3rem;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #00d2ff;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+    color: #444;
+    font-size: 0.8rem;
+}
+
+/* =========================================
+   8. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* Header Stack */
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Hide social text labels on mobile */
+    .social-nav span {
+        display: none;
+    }
+
+    .social-nav a {
+        font-size: 1.3rem;
+    }
+
+    .social-nav {
+        gap: 25px;
+    }
+
+    .logo img {
+        height: 35px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+    
+    .search-bar input {
+        width: 100%;
+    }
+
+    /* Font Sizes */
+    .main-heading {
+        font-size: 1.8rem;
+    }
+
+    /* Card Adjustments */
+    .category-card {
+        padding: 15px;
+    }
+
+    /* Footer Mobile */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-left p, .footer-left, .footer-links {
+        margin: 0 auto;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
 }
