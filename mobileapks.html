@@ -126,6 +126,31 @@
             </div>
         </div>
     </footer>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. सर्च बॉक्स आणि आयटम्स शोधणे
+            const searchInput = document.querySelector('.search-bar input');
+            // item-card (आतले पेजेस) आणि category-card (होम पेज) दोन्ही सिलेक्ट करेल
+            const cards = document.querySelectorAll('.item-card, .category-card');
 
+            // 2. टाईप केल्यावर काय करायचे?
+            searchInput.addEventListener('keyup', function(event) {
+                const query = event.target.value.toLowerCase(); // युजरने काय टाईप केले (Lower Case मध्ये)
+
+                cards.forEach(card => {
+                    // कार्डमधील Title (h3) आणि Description (p) वाचणे
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const desc = card.querySelector('p').textContent.toLowerCase();
+
+                    // 3. जर मॅच झाले तर दाखव, नाहीतर लपव
+                    if (title.includes(query) || desc.includes(query)) {
+                        card.style.display = "flex"; // दाखवा
+                    } else {
+                        card.style.display = "none"; // लपवा
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
