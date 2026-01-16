@@ -50,7 +50,7 @@ header {
     top: 0;
     width: 100%;
     padding: 10px 5%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95); /* थोडा जास्त डार्क केला */
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -63,10 +63,23 @@ header {
     margin: 0 auto;
 }
 
+/* LOGO IMAGE & TEXT */
 .logo img {
     height: 40px;
     width: auto;
     display: block;
+}
+
+/* (Optional) Text Logo Style if needed */
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+}
+.logo .highlight {
+    color: #00d2ff;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
 }
 
 .social-nav {
@@ -347,15 +360,15 @@ footer {
     font-size: 0.85rem;
 }
 
-/* --- 9. WELCOME SCREEN OVERLAY (NEW) --- */
+/* --- 9. WELCOME SCREEN OVERLAY --- */
 #welcomeScreen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #000; /* Full Black */
-    z-index: 9999; /* Top priority */
+    background-color: #000;
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -405,7 +418,6 @@ footer {
     box-shadow: 0 0 20px rgba(0, 210, 255, 0.8);
 }
 
-/* Loading Circle Animation */
 .loader-circle {
     width: 50px;
     height: 50px;
@@ -421,11 +433,12 @@ footer {
     100% { transform: rotate(360deg); }
 }
 
-/* --- 10. MOBILE RESPONSIVE --- */
+/* --- 10. MOBILE RESPONSIVE (UPDATED) --- */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
         gap: 15px;
+        padding-bottom: 15px;
     }
     
     .logo img {
@@ -448,6 +461,14 @@ footer {
         width: 100%;
     }
 
+    /* PUSH CONTENT DOWN SO HEADER DOESN'T COVER IT */
+    .hero {
+        padding-top: 260px !important;
+    }
+    .page-hero {
+        padding-top: 260px !important;
+    }
+
     .main-heading {
         font-size: 2rem;
     }
@@ -462,18 +483,22 @@ footer {
     }
 }
 
-/* --- 11. FORCE FIX FOR BLUE LINKS --- */
-a {
+/* --- 11. FORCE FIX FOR LINKS (UPDATED) --- */
+/* Force all links to behave */
+a, a:visited, a:active {
     color: white !important;
     text-decoration: none !important;
 }
 
+/* Specific Grey for Footer/Social */
 .footer-links a, 
+.footer-links a:visited,
 .social-nav a,
 .social-icons a {
     color: #bbbbbb !important;
 }
 
+/* Hover Effects (Neon Blue) */
 .footer-links a:hover, 
 .social-nav a:hover,
 .social-icons a:hover {
@@ -481,6 +506,7 @@ a {
     transform: translateX(5px);
 }
 
+/* Keep Buttons readable */
 .download-btn {
     color: white !important;
 }
