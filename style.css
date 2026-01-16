@@ -387,3 +387,33 @@ footer {
         width: 95%;
     }
 }
+
+
+
+/* --- FORCE FIX FOR BLUE LINKS --- */
+
+/* 1. सक्तीने सर्व लिंक्सचा रंग पांढरा/ग्रे करणे */
+a {
+    color: white !important;
+    text-decoration: none !important; /* खालची लाईन (Underline) काढण्यासाठी */
+}
+
+/* 2. Footer आणि Header लिंक्ससाठी स्पेशल कलर */
+.footer-links a, 
+.social-nav a,
+.social-icons a {
+    color: #bbbbbb !important; /* थोडासा ग्रे कलर */
+}
+
+/* 3. Hover केल्यावर निऑन ब्लू */
+.footer-links a:hover, 
+.social-nav a:hover,
+.social-icons a:hover {
+    color: #00d2ff !important; /* Neon Blue on Hover */
+    transform: translateX(5px); /* थोडा ॲनिमेशन */
+}
+
+/* 4. बटणांचे कलर निळे राहू दे */
+.download-btn {
+    color: white !important;
+}
