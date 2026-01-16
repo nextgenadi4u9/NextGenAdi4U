@@ -1,0 +1,217 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: white;
+    overflow-x: hidden; /* prevents horizontal scroll */
+}
+
+/* --- VIDEO BACKGROUND FIX --- */
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -2;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Thoda dark kela text disnyasathi */
+    z-index: -1;
+}
+
+/* --- HEADER --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Simple transparent black for speed */
+    padding: 10px 20px;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px; /* Logo height fix */
+    width: auto;
+    display: block;
+}
+
+/* Social Icons */
+.social-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.social-nav a {
+    color: #fff;
+    font-size: 1.2rem;
+    transition: 0.2s;
+}
+
+.social-nav a:hover {
+    color: #00d2ff;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    width: 150px;
+}
+
+.search-bar button {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    text-align: center;
+    padding: 120px 20px 40px; /* Top padding header sathi */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #fff, #00d2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+/* --- CATEGORIES (Responsive) --- */
+.categories-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 80px;
+    max-width: 800px;
+    margin: 0 auto; /* Center align */
+    width: 95%; /* Mobile sathi */
+}
+
+.category-card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: rgba(25, 25, 25, 0.9); /* Blur kadhun takla speed sathi */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s ease, background 0.2s;
+}
+
+.category-card:hover {
+    transform: scale(1.02);
+    background: rgba(40, 40, 40, 0.95);
+    border-color: #00d2ff;
+}
+
+.cat-icon {
+    font-size: 1.8rem;
+    color: #00d2ff;
+    margin-right: 20px;
+    width: 40px;
+    text-align: center;
+}
+
+.cat-info {
+    flex: 1;
+}
+
+.cat-info h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.cat-info p {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.arrow {
+    color: #555;
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+/* --- MOBILE RESPONSIVENESS (Auto Adjust) --- */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .logo img {
+        height: 35px; /* Mobile var logo thoda chota */
+    }
+    
+    .social-nav {
+        gap: 25px; /* Icons madhe thodi space */
+    }
+
+    .search-bar {
+        width: 100%; /* Mobile var full width search */
+    }
+    
+    .search-bar input {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem; /* Font size adjustment for mobile */
+    }
+
+    .category-card {
+        padding: 12px 15px; /* Cards padding adjustment */
+    }
+}
