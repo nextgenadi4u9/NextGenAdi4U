@@ -50,7 +50,7 @@ header {
     top: 0;
     width: 100%;
     padding: 10px 5%;
-    background: rgba(0, 0, 0, 0.95); /* थोडा जास्त डार्क केला */
+    background: rgba(0, 0, 0, 0.95);
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -64,13 +64,18 @@ header {
 }
 
 /* LOGO IMAGE & TEXT */
+.logo {
+    display: flex;       /* Back Button आणि Logo एका रेषेत येण्यासाठी */
+    align-items: center;
+}
+
 .logo img {
     height: 40px;
     width: auto;
     display: block;
 }
 
-/* (Optional) Text Logo Style if needed */
+/* (Optional) Text Logo Style */
 .logo h1 {
     font-size: 1.8rem;
     font-weight: 800;
@@ -433,7 +438,7 @@ footer {
     100% { transform: rotate(360deg); }
 }
 
-/* --- 10. MOBILE RESPONSIVE (UPDATED) --- */
+/* --- 10. MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -483,14 +488,12 @@ footer {
     }
 }
 
-/* --- 11. FORCE FIX FOR LINKS (UPDATED) --- */
-/* Force all links to behave */
+/* --- 11. FORCE FIX FOR LINKS --- */
 a, a:visited, a:active {
     color: white !important;
     text-decoration: none !important;
 }
 
-/* Specific Grey for Footer/Social */
 .footer-links a, 
 .footer-links a:visited,
 .social-nav a,
@@ -498,7 +501,6 @@ a, a:visited, a:active {
     color: #bbbbbb !important;
 }
 
-/* Hover Effects (Neon Blue) */
 .footer-links a:hover, 
 .social-nav a:hover,
 .social-icons a:hover {
@@ -506,7 +508,20 @@ a, a:visited, a:active {
     transform: translateX(5px);
 }
 
-/* Keep Buttons readable */
 .download-btn {
     color: white !important;
+}
+
+/* --- 12. BACK BUTTON STYLING (NEW) --- */
+.back-btn {
+    font-size: 1.4rem;
+    color: #cccccc !important;
+    margin-right: 15px; /* लोगो आणि बाण मधील अंतर */
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.back-btn:hover {
+    color: #00d2ff !important;
+    transform: translateX(-5px); /* Animation */
 }
