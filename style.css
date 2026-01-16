@@ -215,3 +215,88 @@ footer {
         padding: 12px 15px; /* Cards padding adjustment */
     }
 }
+
+
+/* --- INNER PAGE STYLES (Grid System) --- */
+
+/* Page Hero Adjustments */
+.page-hero {
+    padding: 120px 20px 30px; /* Header khali jaga */
+}
+
+/* Grid Container */
+.grid-container {
+    display: grid;
+    /* Responsive Grid: PC var 3-4 items, Mobile var 1-2 items */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px;
+    padding: 20px 5% 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Individual Item Card */
+.item-card {
+    background: rgba(25, 25, 25, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    border-color: #00d2ff;
+    box-shadow: 0 5px 20px rgba(0, 210, 255, 0.15);
+    background: rgba(35, 35, 35, 0.95);
+}
+
+/* Card Image / Icon Area */
+.card-img {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    color: #00d2ff;
+}
+
+.item-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.item-card p {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+/* Download Button */
+.download-btn {
+    background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+    border: none;
+    width: 100%; /* Button full width */
+    max-width: 200px;
+}
+
+.download-btn:hover {
+    box-shadow: 0 0 15px #00d2ff;
+    transform: scale(1.05);
+}
