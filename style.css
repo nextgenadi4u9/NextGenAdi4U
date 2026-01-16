@@ -286,7 +286,7 @@ header {
     margin-left: 5px;
 }
 
-/* --- 7. LEGAL PAGES STYLING (New Added) --- */
+/* --- 7. LEGAL PAGES STYLING --- */
 .policy-container {
     max-width: 900px;
     margin: 0 auto;
@@ -347,7 +347,81 @@ footer {
     font-size: 0.85rem;
 }
 
-/* --- 9. MOBILE RESPONSIVE --- */
+/* --- 9. WELCOME SCREEN OVERLAY (NEW) --- */
+#welcomeScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Full Black */
+    z-index: 9999; /* Top priority */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-out;
+}
+
+.welcome-content {
+    text-align: center;
+    color: white;
+}
+
+.welcome-content h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #fff, #00d2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.welcome-content p {
+    color: #888;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Enter Button */
+.enter-btn {
+    background: transparent;
+    border: 2px solid #00d2ff;
+    color: #00d2ff;
+    padding: 12px 35px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.enter-btn:hover {
+    background: #00d2ff;
+    color: black;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.8);
+}
+
+/* Loading Circle Animation */
+.loader-circle {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 210, 255, 0.3);
+    border-top: 3px solid #00d2ff;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- 10. MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -388,32 +462,25 @@ footer {
     }
 }
 
-
-
-/* --- FORCE FIX FOR BLUE LINKS --- */
-
-/* 1. सक्तीने सर्व लिंक्सचा रंग पांढरा/ग्रे करणे */
+/* --- 11. FORCE FIX FOR BLUE LINKS --- */
 a {
     color: white !important;
-    text-decoration: none !important; /* खालची लाईन (Underline) काढण्यासाठी */
+    text-decoration: none !important;
 }
 
-/* 2. Footer आणि Header लिंक्ससाठी स्पेशल कलर */
 .footer-links a, 
 .social-nav a,
 .social-icons a {
-    color: #bbbbbb !important; /* थोडासा ग्रे कलर */
+    color: #bbbbbb !important;
 }
 
-/* 3. Hover केल्यावर निऑन ब्लू */
 .footer-links a:hover, 
 .social-nav a:hover,
 .social-icons a:hover {
-    color: #00d2ff !important; /* Neon Blue on Hover */
-    transform: translateX(5px); /* थोडा ॲनिमेशन */
+    color: #00d2ff !important;
+    transform: translateX(5px);
 }
 
-/* 4. बटणांचे कलर निळे राहू दे */
 .download-btn {
     color: white !important;
 }
