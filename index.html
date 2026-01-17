@@ -9,17 +9,6 @@
 </head>
 <body>
 
-    <audio id="startupSound" src="RegisterSuccess.wav"></audio>
-
-    <div id="welcomeScreen">
-        <div class="welcome-content">
-            <div class="loader-circle"></div>
-            <h1>NextGenAdi4U</h1>
-            <p>Experience the Premium World</p>
-            <button class="enter-btn" onclick="enterWebsite()">ENTER SITE <i class="fas fa-power-off"></i></button>
-        </div>
-    </div>
-
     <video autoplay muted loop id="myVideo">
         <source src="bg.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
@@ -166,28 +155,40 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 YourBrandName. All Rights Reserved.</p>
+            <p>&copy; 2026 YourBrandName. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        function enterWebsite() {
-            var sound = document.getElementById("startupSound");
-            var screen = document.getElementById("welcomeScreen");
-            
-            // 1. Play Sound
-            sound.play().catch(error => {
-                console.log("Audio play failed: " + error);
-            });
+        document.addEventListener("DOMContentLoaded", function() {
+            // सर्च बॉक्स आणि आयटम्स शोधणे
+            const searchInput = document.querySelector('.search-bar input');
+            const cards = document.querySelectorAll('.category-card'); // फक्त होम पेजसाठी category-card
 
-            // 2. Hide Screen Animation
-            screen.style.opacity = "0";
-            
-            // 3. Remove Screen completely
-            setTimeout(function() {
-                screen.style.display = "none";
-            }, 800);
-        }
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function(event) {
+                    const query = event.target.value.toLowerCase(); // युजरने काय टाईप केले
+
+                    cards.forEach(card => {
+                        // कार्डमधील Title (h3) आणि Description (p) वाचणे
+                        const titleElement = card.querySelector('h3');
+                        const descElement = card.querySelector('p');
+
+                        if (titleElement && descElement) {
+                            const title = titleElement.textContent.toLowerCase();
+                            const desc = descElement.textContent.toLowerCase();
+
+                            // जर मॅच झाले तर दाखव, नाहीतर लपव
+                            if (title.includes(query) || desc.includes(query)) {
+                                card.style.display = "flex"; 
+                            } else {
+                                card.style.display = "none"; 
+                            }
+                        }
+                    });
+                });
+            }
+        });
     </script>
 
 </body>
