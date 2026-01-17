@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ads Policy - NextGenAdi4U</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- BACKGROUND --- */
+        #dustCanvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: #050505;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="dustCanvas"></canvas>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="home.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                
+                <a href="home.html" style="text-decoration: none;">
+                    <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
+                </a>
+            </div>
+
+            <div class="social-nav">
+                <a href="https://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero page-hero">
+            <h1 class="main-heading">Ads Policy & Disclosure</h1>
+            <p class="sub-text">Transparency regarding advertisements on our platform.</p>
+        </section>
+
+        <section class="policy-container">
+            <p>Last Updated: January 2026</p>
+
+            <h2>1. Advertisement Disclosure</h2>
+            <p>NextGenAdi4U is a free-to-use platform. To maintain our servers and provide high-quality content for free, we display advertisements provided by third-party ad networks, including but not limited to <strong>Google AdSense</strong>.</p>
+
+            <h2>2. Google AdSense & DoubleClick Cookie</h2>
+            <p>Google, as a third-party vendor, uses cookies to serve ads on our site. Google's use of the DART cookie enables it to serve ads to our users based on their visit to NextGenAdi4U and other sites on the Internet.</p>
+            <ul>
+                <li>Users may opt-out of the use of the DART cookie by visiting the Google Ad and Content Network Privacy Policy.</li>
+            </ul>
+
+            <h2>3. Third-Party Ad Partners</h2>
+            <p>Some of our advertising partners may use cookies and web beacons on our site. Our advertising partners include:</p>
+            <ul>
+                <li>Google AdSense</li>
+                <li>Other potential ad networks</li>
+            </ul>
+            <p>These third-party ad servers or ad networks use technology in their respective advertisements and links that appear on NextGenAdi4U and are sent directly to your browser. They automatically receive your IP address when this occurs.</p>
+
+            <h2>4. User Consent</h2>
+            <p>By using our website, you hereby consent to our Ads Policy and agree to its terms. If you require any more information or have any questions about our advertising policy, please feel free to contact us.</p>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- PARTICLE SCRIPT ---
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particlesArray;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1; 
+                this.speedX = Math.random() * 1 - 0.5; 
+                this.speedY = Math.random() * 1 - 0.5; 
+                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')'; 
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 15000; 
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        initParticles();
+        animateParticles();
+    </script>
+
+</body>
+</html>
