@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6678625279836086"
+     crossorigin="anonymous"></script>
+
     <title>Background Music - NextGenAdi4U</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -14,8 +18,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2; /* Content sits above this */
-            background: #050505; /* Dark black background */
+            z-index: -2;
+            background: #050505; 
         }
     </style>
 </head>
@@ -25,7 +29,6 @@
 
     <header>
         <div class="header-container">
-            
             <div class="logo">
                 <a href="editing.html" class="back-btn">
                     <i class="fas fa-arrow-left"></i>
@@ -145,16 +148,14 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1; // Particle size
-                this.speedX = Math.random() * 1 - 0.5; // Horizontal speed
-                this.speedY = Math.random() * 1 - 0.5; // Vertical speed
-                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')'; // Neon Blue
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')';
             }
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-
-                // Reset particles if they go off screen
                 if (this.x > canvas.width) this.x = 0;
                 if (this.x < 0) this.x = canvas.width;
                 if (this.y > canvas.height) this.y = 0;
@@ -170,7 +171,7 @@
 
         function initParticles() {
             particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 15000; // Density based on screen size
+            let numberOfParticles = (canvas.height * canvas.width) / 15000;
             for (let i = 0; i < numberOfParticles; i++) {
                 particlesArray.push(new Particle());
             }
