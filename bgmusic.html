@@ -25,13 +25,15 @@
 
     <header>
         <div class="header-container">
+            
             <div class="logo">
                 <a href="editing.html" class="back-btn">
                     <i class="fas fa-arrow-left"></i>
                 </a>
                 
-                <a href="home.html">
-                    <img src="header.png" alt="Brand Logo">
+                <a href="home.html" style="text-decoration: none;">
+                    <i class="fas fa-gamepad brand-icon"></i> 
+                    <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
                 </a>
             </div>
 
@@ -112,18 +114,12 @@
                 searchInput.addEventListener('keyup', function(event) {
                     const query = event.target.value.toLowerCase();
                     cards.forEach(card => {
-                        const titleElement = card.querySelector('h3');
-                        const descElement = card.querySelector('p');
-
-                        if (titleElement && descElement) {
-                            const title = titleElement.textContent.toLowerCase();
-                            const desc = descElement.textContent.toLowerCase();
-
-                            if (title.includes(query) || desc.includes(query)) {
-                                card.style.display = "flex";
-                            } else {
-                                card.style.display = "none";
-                            }
+                        const title = card.querySelector('h3').textContent.toLowerCase();
+                        const desc = card.querySelector('p').textContent.toLowerCase();
+                        if (title.includes(query) || desc.includes(query)) {
+                            card.style.display = "flex";
+                        } else {
+                            card.style.display = "none";
                         }
                     });
                 });
