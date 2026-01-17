@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Magics - NextGenAdi4U</title>
+    <title>Editing Zone - NextGenAdi4U</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -25,13 +25,14 @@
 
     <header>
         <div class="header-container">
+            
             <div class="logo">
                 <a href="home.html" class="back-btn">
                     <i class="fas fa-arrow-left"></i>
                 </a>
                 
-                <a href="home.html">
-                    <img src="header.png" alt="Brand Logo">
+                <a href="home.html" style="text-decoration: none;">
+                    <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
                 </a>
             </div>
 
@@ -43,7 +44,7 @@
             </div>
 
             <div class="search-bar">
-                <input type="text" placeholder="Search Magics...">
+                <input type="text" placeholder="Search Category...">
                 <button><i class="fas fa-search"></i></button>
             </div>
         </div>
@@ -51,65 +52,29 @@
 
     <main>
         <section class="hero page-hero">
-            <h1 class="main-heading">Game Magics & Configs</h1>
-            <p class="sub-text">No Recoil, Headshot & Mod Menus</p>
+            <h1 class="main-heading">Editing Resources</h1>
+            <p class="sub-text">Everything you need for Content Creation</p>
         </section>
 
-        <section class="grid-container">
+        <section class="categories-container">
             
-            <div class="item-card">
-                <div class="card-img"><img src="bgmiconfig.png" alt="BGMI Config"></div>
-                <h3>BGMI No Recoil</h3>
-                <p>Zero Recoil Config File</p>
-                <a href="#" class="download-btn" style="background: #555; cursor: not-allowed; pointer-events: none;">
-                    Coming Soon <i class="fas fa-clock"></i>
-                </a>
-            </div>
+            <a href="bgmusic.html" class="category-card">
+                <div class="cat-icon"><i class="fas fa-music"></i></div>
+                <div class="cat-info">
+                    <h3>Background Music</h3>
+                    <p>NCS, Lo-Fi, Cinematic & Trending Audio</p>
+                </div>
+                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
 
-            <div class="item-card">
-                <div class="card-img"><img src="ffheadshot.png" alt="Free Fire"></div>
-                <h3>FF Auto Headshot</h3>
-                <p>Drag Headshot Injector</p>
-                <a href="#" class="download-btn" style="background: #555; cursor: not-allowed; pointer-events: none;">
-                    Coming Soon <i class="fas fa-clock"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="codmod.png" alt="COD Mobile"></div>
-                <h3>COD Mobile Mod Menu</h3>
-                <p>Wallhack & Aimbot</p>
-                <a href="#" class="download-btn" style="background: #555; cursor: not-allowed; pointer-events: none;">
-                    Coming Soon <i class="fas fa-clock"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="gtamod.png" alt="GTA V"></div>
-                <h3>GTA V Mod Menu</h3>
-                <p>Money Drop & God Mode</p>
-                <a href="#" class="download-btn" style="background: #555; cursor: not-allowed; pointer-events: none;">
-                    Coming Soon <i class="fas fa-clock"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="minecraftxray.png" alt="Minecraft"></div>
-                <h3>Minecraft X-Ray</h3>
-                <p>Find Diamonds Easily</p>
-                <a href="#" class="download-btn" style="background: #555; cursor: not-allowed; pointer-events: none;">
-                    Coming Soon <i class="fas fa-clock"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="amongus.png" alt="Among Us"></div>
-                <h3>Among Us Mod</h3>
-                <p>Always Imposter</p>
-                <a href="#" class="download-btn" style="background: #555; cursor: not-allowed; pointer-events: none;">
-                    Coming Soon <i class="fas fa-clock"></i>
-                </a>
-            </div>
+            <a href="materials.html" class="category-card">
+                <div class="cat-icon"><i class="fas fa-photo-video"></i></div>
+                <div class="cat-info">
+                    <h3>Editing Materials</h3>
+                    <p>Presets, LUTs, Overlays & XMLs</p>
+                </div>
+                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
 
         </section>
     </main>
@@ -126,18 +91,24 @@
         // --- SEARCH LOGIC ---
         document.addEventListener("DOMContentLoaded", function() {
             const searchInput = document.querySelector('.search-bar input');
-            const cards = document.querySelectorAll('.item-card');
+            const cards = document.querySelectorAll('.category-card');
 
             if (searchInput) {
                 searchInput.addEventListener('keyup', function(event) {
                     const query = event.target.value.toLowerCase();
                     cards.forEach(card => {
-                        const title = card.querySelector('h3').textContent.toLowerCase();
-                        const desc = card.querySelector('p').textContent.toLowerCase();
-                        if (title.includes(query) || desc.includes(query)) {
-                            card.style.display = "flex";
-                        } else {
-                            card.style.display = "none";
+                        const titleElement = card.querySelector('h3');
+                        const descElement = card.querySelector('p');
+
+                        if (titleElement && descElement) {
+                            const title = titleElement.textContent.toLowerCase();
+                            const desc = descElement.textContent.toLowerCase();
+
+                            if (title.includes(query) || desc.includes(query)) {
+                                card.style.display = "flex";
+                            } else {
+                                card.style.display = "none";
+                            }
                         }
                     });
                 });
