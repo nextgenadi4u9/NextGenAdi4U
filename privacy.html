@@ -3,29 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Discover Premium</title>
+    <title>Privacy Policy - NextGenAdi4U</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- NEW PARTICLE BACKGROUND CSS --- */
+        #dustCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: #050505; /* गडद काळा बॅकग्राउंड */
+        }
+    </style>
 </head>
 <body>
 
-    <video autoplay muted loop id="myVideo">
-        <source src="bg.mp4" type="video/mp4">
-    </video>
-    <div class="video-overlay"></div>
+    <canvas id="dustCanvas"></canvas>
 
     <header>
         <div class="header-container">
-                     <div class="logo">
-    <a href="home.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-    </a>
-    
-    <a href="index.html">
-        <img src="header.png" alt="Brand Logo">
-    </a>
-</div>
+            <div class="logo">
+                <a href="home.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <a href="home.html"><img src="header.png" alt="Brand Logo"></a>
+            </div>
+
             <div class="social-nav">
+                <a href="https://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
                 <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
@@ -41,25 +47,26 @@
             <p>Last Updated: January 2026</p>
 
             <h2>1. Introduction</h2>
-            <p>Welcome to <strong>Your Brand Name</strong>. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, or our practices with regards to your personal information, please contact us.</p>
+            <p>Welcome to <strong>NextGenAdi4U</strong>. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, please contact us.</p>
 
             <h2>2. Information We Collect</h2>
-            <p>We collect personal information that you voluntarily provide to us when expressing an interest in obtaining information about us or our products and services.</p>
+            <p>We collect personal information that you voluntarily provide to us (such as name or email if you contact us). We also automatically collect certain information when you visit, use, or navigate the Website, such as IP address and browser characteristics.</p>
+
+            <h2>3. Google AdSense & Cookies</h2>
+            <p>We use Google AdSense to display ads. Google uses cookies to serve ads based on your prior visits to our website or other websites.</p>
             <ul>
-                <li>Name and Contact Data (if you email us).</li>
-                <li>Usage Data (IP address, browser type, device type).</li>
+                <li>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our sites and/or other sites on the Internet.</li>
+                <li>Users may opt-out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" style="color: #00d2ff;">Google Ads Settings</a>.</li>
             </ul>
 
-            <h2>3. How We Use Your Information</h2>
-            <p>We use the information we collect or receive:</p>
-            <ul>
-                <li>To facilitate account creation and logon process.</li>
-                <li>To send you marketing and promotional communications.</li>
-                <li>To deliver targeted advertising to you.</li>
-            </ul>
+            <h2>4. Log Files</h2>
+            <p>NextGenAdi4U follows a standard procedure of using log files. These files log visitors when they visit websites. The information collected includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamp, referring/exit pages, and possibly the number of clicks.</p>
 
-            <h2>4. Contact Us</h2>
-            <p>If you have questions or comments about this policy, you may email us at: <strong>contact@yourbrand.com</strong></p>
+            <h2>5. Third-Party Privacy Policies</h2>
+            <p>NextGenAdi4U's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information.</p>
+
+            <h2>6. Contact Us</h2>
+            <p>If you have questions about this policy, you may contact us via our social media handles or email.</p>
         </section>
     </main>
 
@@ -68,5 +75,68 @@
             <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1; 
+                this.speedX = Math.random() * 1 - 0.5; 
+                this.speedY = Math.random() * 1 - 0.5; 
+                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')'; 
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 15000; 
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        initParticles();
+        animateParticles();
+    </script>
+
 </body>
 </html>
