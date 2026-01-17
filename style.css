@@ -313,7 +313,45 @@ header {
     box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
 }
 
-/* --- 7. FOOTER --- */
+/* --- 7. LEGAL PAGES (Privacy, Terms, etc.) --- */
+.policy-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 80px;
+}
+
+.policy-container h2 {
+    color: #00d2ff;
+    font-size: 1.5rem;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.policy-container p {
+    color: #ccc;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.policy-container ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    color: #bbb;
+}
+
+.policy-container li {
+    margin-bottom: 8px;
+}
+
+/* --- 8. FOOTER --- */
 footer {
     background: #080808;
     padding: 50px 5% 20px;
@@ -358,7 +396,7 @@ footer {
     font-size: 0.85rem;
 }
 
-/* --- 8. MOBILE RESPONSIVE --- */
+/* --- 9. MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -400,7 +438,7 @@ footer {
     }
 }
 
-/* --- 9. FORCE FIX FOR LINKS --- */
+/* --- 10. FORCE FIX FOR LINKS --- */
 a {
     text-decoration: none !important;
 }
@@ -416,7 +454,7 @@ a {
     padding-left: 5px;
 }
 
-/* --- 10. BACK BUTTON --- */
+/* --- 11. BACK BUTTON --- */
 .back-btn {
     font-size: 1.4rem;
     color: #cccccc !important;
