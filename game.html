@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6678625279836086"
+     crossorigin="anonymous"></script>
+
     <title>Code Master - Learn HTML</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -64,10 +68,9 @@
             justify-content: center;
         }
 
-        /* Code Snippet Style */
         code {
             background: #111;
-            color: #ff79c6; /* Pink for code */
+            color: #ff79c6;
             padding: 2px 6px;
             border-radius: 4px;
             font-family: 'Fira Code', monospace;
@@ -99,7 +102,6 @@
             transform: translateY(-2px);
         }
 
-        /* Correct/Wrong States */
         .correct { background: rgba(0, 255, 0, 0.2) !important; border-color: #00ff00 !important; color: #fff; }
         .wrong { background: rgba(255, 0, 0, 0.2) !important; border-color: #ff0000 !important; color: #fff; }
 
@@ -118,23 +120,22 @@
             font-weight: bold;
             border-radius: 25px;
             cursor: pointer;
-            display: none; /* Hidden initially */
+            display: none;
             transition: 0.3s;
         }
 
         .next-btn:hover { box-shadow: 0 0 15px #00d2ff; }
 
-        /* --- BACK BUTTON --- */
         .back-home {
             position: absolute;
             top: 20px; left: 20px;
             color: #555;
             font-size: 1.5rem;
             transition: 0.3s;
+            text-decoration: none;
         }
         .back-home:hover { color: #00d2ff; }
 
-        /* --- RESULT SCREEN --- */
         .result-screen { display: none; }
         .trophy { font-size: 3rem; color: gold; margin-bottom: 10px; }
 
@@ -177,48 +178,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
     <script>
-        // --- GAME DATA (QUESTIONS) ---
         const questions = [
-            {
-                q: "Which tag is used to create a hyperlink?",
-                options: ["<link>", "<a>", "<href>", "<url>"],
-                answer: 1 // Index of correct answer
-            },
-            {
-                q: "How do you define the largest heading?",
-                options: ["<head>", "<h6>", "<heading>", "<h1>"],
-                answer: 3
-            },
-            {
-                q: "Which tag creates a line break?",
-                options: ["<break>", "<lb>", "<br>", "<ln>"],
-                answer: 2
-            },
-            {
-                q: "What is the correct tag for an image?",
-                options: ["<img>", "<image>", "<pic>", "<src>"],
-                answer: 0
-            },
-            {
-                q: "Which tag makes text bold?",
-                options: ["<bold>", "<b>", "<big>", "<dark>"],
-                answer: 1
-            },
-            {
-                q: "Which tag creates an unordered list?",
-                options: ["<ol>", "<list>", "<ul>", "<li>"],
-                answer: 2
-            },
-            {
-                q: "What does HTML stand for?",
-                options: ["Hyper Text Pre Processor", "Hyper Text Markup Language", "Hyper Tool Multi Language", "Home Tool Markup Language"],
-                answer: 1
-            },
-            {
-                q: "Which tag defines the main content?",
-                options: ["<content>", "<main>", "<body>", "<section>"],
-                answer: 1
-            }
+            { q: "Which tag is used to create a hyperlink?", options: ["<link>", "<a>", "<href>", "<url>"], answer: 1 },
+            { q: "How do you define the largest heading?", options: ["<head>", "<h6>", "<heading>", "<h1>"], answer: 3 },
+            { q: "Which tag creates a line break?", options: ["<break>", "<lb>", "<br>", "<ln>"], answer: 2 },
+            { q: "What is the correct tag for an image?", options: ["<img>", "<image>", "<pic>", "<src>"], answer: 0 },
+            { q: "Which tag makes text bold?", options: ["<bold>", "<b>", "<big>", "<dark>"], answer: 1 },
+            { q: "Which tag creates an unordered list?", options: ["<ol>", "<list>", "<ul>", "<li>"], answer: 2 },
+            { q: "What does HTML stand for?", options: ["Hyper Text Pre Processor", "Hyper Text Markup Language", "Hyper Tool Multi Language", "Home Tool Markup Language"], answer: 1 },
+            { q: "Which tag defines the main content?", options: ["<content>", "<main>", "<body>", "<section>"], answer: 1 }
         ];
 
         let currentQuestionIndex = 0;
@@ -231,12 +199,11 @@
         const resultArea = document.getElementById("result-area");
         const finalScoreEl = document.getElementById("final-score");
 
-        // --- GAME LOGIC ---
         function loadQuestion() {
             let q = questions[currentQuestionIndex];
             questionEl.innerText = q.q;
-            optionsEl.innerHTML = ""; // Clear old options
-            nextBtn.style.display = "none"; // Hide next button
+            optionsEl.innerHTML = "";
+            nextBtn.style.display = "none";
 
             q.options.forEach((opt, index) => {
                 let btn = document.createElement("div");
@@ -251,7 +218,6 @@
             let correctIndex = questions[currentQuestionIndex].answer;
             let allOptions = optionsEl.children;
 
-            // Disable all clicks
             for(let i=0; i<allOptions.length; i++){
                 allOptions[i].style.pointerEvents = "none";
             }
@@ -262,11 +228,9 @@
                 scoreEl.innerText = score;
             } else {
                 btn.classList.add("wrong");
-                // Highlight the correct one
                 allOptions[correctIndex].classList.add("correct");
             }
-
-            nextBtn.style.display = "block"; // Show Next button
+            nextBtn.style.display = "block";
         }
 
         function nextQuestion() {
@@ -293,7 +257,6 @@
             loadQuestion();
         }
 
-        // --- BACKGROUND PARTICLES (From your Main Theme) ---
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -336,10 +299,7 @@
         }
         window.addEventListener('resize', ()=> { canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
         initParticles(); animateParticles();
-
-        // Start Game
         loadQuestion();
-
     </script>
 </body>
 </html>
