@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Music - NextGenAdi4U</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <video autoplay muted loop id="myVideo">
+        <source src="bg.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="editing.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                
+                <a href="home.html">
+                    <img src="header.png" alt="Brand Logo">
+                </a>
+            </div>
+
+            <div class="social-nav">
+                <a href="https://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://telegram.org/" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://discord.com/" target="_blank"><i class="fab fa-discord"></i></a>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search Music...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero page-hero">
+            <h1 class="main-heading">Background Music</h1>
+            <p class="sub-text">Copyright Free Sounds & Beats</p>
+        </section>
+
+        <section class="grid-container">
+
+            <div class="item-card">
+                <div class="card-img"><img src="ES4.jpg" alt="Sound Effects"></div>
+                <h3>Sound Effects Pack</h3>
+                <p>Trending SFX for Editing</p>
+                <a href="https://drive.google.com/file/d/1daxwYT_YAcrXzslQPBg5G9CgTmqoQOqc/view" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="ES3.jpg" alt="Phonk"></div>
+                <h3>Phonk Music</h3>
+                <p>Aggressive Drift Phonk</p>
+                <a href="#" class="download-btn" style="background: #555; cursor: not-allowed; pointer-events: none;">
+                    Coming Soon <i class="fas fa-clock"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="ES2.jpg" alt="NCS"></div>
+                <h3>NCS (NoCopyrightSounds)</h3>
+                <p>Best Gaming Music</p>
+                <a href="#" class="download-btn" style="background: #555; cursor: not-allowed; pointer-events: none;">
+                    Coming Soon <i class="fas fa-clock"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="ES1.jpg" alt="Hindi Remix"></div>
+                <h3>Hindi Remix (Game BGM)</h3>
+                <p>Bass Boosted Tracks</p>
+                <a href="#" class="download-btn" style="background: #555; cursor: not-allowed; pointer-events: none;">
+                    Coming Soon <i class="fas fa-clock"></i>
+                </a>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-bottom">
+                <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.querySelector('.search-bar input');
+            const cards = document.querySelectorAll('.item-card');
+
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function(event) {
+                    const query = event.target.value.toLowerCase();
+
+                    cards.forEach(card => {
+                        const titleElement = card.querySelector('h3');
+                        const descElement = card.querySelector('p');
+
+                        if (titleElement && descElement) {
+                            const title = titleElement.textContent.toLowerCase();
+                            const desc = descElement.textContent.toLowerCase();
+
+                            if (title.includes(query) || desc.includes(query)) {
+                                card.style.display = "flex";
+                            } else {
+                                card.style.display = "none";
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
