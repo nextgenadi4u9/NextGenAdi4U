@@ -1,5 +1,5 @@
 /* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
 
 /* --- 1. GLOBAL SETTINGS --- */
 * {
@@ -7,12 +7,11 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    cursor: auto; 
     text-decoration: none;
 }
 
 body {
-    background-color: #000;
+    background-color: #050505; /* Deep Black for Neon Pop */
     color: white;
     overflow-x: hidden;
     min-height: 100vh;
@@ -22,26 +21,15 @@ html {
     scroll-behavior: smooth;
 }
 
-/* --- 2. VIDEO BACKGROUND --- */
-#myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -2;
-    object-fit: cover;
-}
-
-.video-overlay {
+/* --- 2. PARTICLE BACKGROUND CANVAS --- */
+#dustCanvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: -1;
-    backdrop-filter: blur(3px);
+    z-index: -2;
+    background: #050505;
 }
 
 /* --- 3. HEADER --- */
@@ -49,10 +37,11 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 10px 5%;
-    background: rgba(0, 0, 0, 0.95);
+    padding: 15px 5%;
+    background: rgba(5, 5, 5, 0.9); /* Darker Header */
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 210, 255, 0.1); /* Subtle Blue Line */
+    backdrop-filter: blur(10px);
 }
 
 .header-container {
@@ -63,30 +52,45 @@ header {
     margin: 0 auto;
 }
 
-/* LOGO IMAGE & TEXT */
+/* --- NEW TEXT LOGO STYLES --- */
 .logo {
-    display: flex;       /* Back Button आणि Logo एका रेषेत येण्यासाठी */
+    display: flex;
     align-items: center;
 }
 
-.logo img {
-    height: 40px;
-    width: auto;
-    display: block;
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none !important;
 }
 
-/* (Optional) Text Logo Style */
-.logo h1 {
+/* Icon Style */
+.brand-icon {
     font-size: 1.8rem;
-    font-weight: 800;
-    color: white;
-    text-transform: uppercase;
-}
-.logo .highlight {
     color: #00d2ff;
-    text-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
+    filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.8));
 }
 
+/* Text Style */
+.brand-text {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    line-height: 1;
+}
+
+/* Neon Highlight (Adi4U) */
+.brand-highlight {
+    color: #00d2ff;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.8),
+                 0 0 20px rgba(0, 210, 255, 0.4);
+}
+
+/* Social & Search */
 .social-nav {
     display: flex;
     gap: 20px;
@@ -94,21 +98,28 @@ header {
 
 .social-nav a {
     color: #ccc;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     transition: 0.3s;
 }
 
 .social-nav a:hover {
     color: #00d2ff;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    text-shadow: 0 0 8px #00d2ff;
 }
 
 .search-bar {
     display: flex;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 6px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 15px;
     border-radius: 25px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.search-bar:hover, .search-bar:focus-within {
+    border-color: #00d2ff;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
 }
 
 .search-bar input {
@@ -123,36 +134,38 @@ header {
 .search-bar button {
     background: transparent;
     border: none;
-    color: white;
+    color: #00d2ff;
     cursor: pointer;
 }
 
 /* --- 4. HERO SECTION --- */
 .hero {
     text-align: center;
-    padding: 140px 20px 40px;
+    padding: 160px 20px 40px; /* Header Space Adjusted */
 }
 
 .page-hero {
-    padding: 130px 20px 30px;
+    padding: 150px 20px 30px;
 }
 
 .main-heading {
-    font-size: 2.8rem;
+    font-size: 3rem;
     font-weight: 700;
     text-transform: uppercase;
     background: linear-gradient(90deg, #fff, #00d2ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
 }
 
 .sub-text {
     color: #ccc;
     font-size: 1.1rem;
+    letter-spacing: 0.5px;
 }
 
-/* --- 5. CATEGORIES LIST (Home Page) --- */
+/* --- 5. CATEGORIES & CARDS --- */
 .categories-container {
     display: flex;
     flex-direction: column;
@@ -168,18 +181,20 @@ header {
     display: flex;
     align-items: center;
     width: 100%;
-    background: rgba(20, 20, 20, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 18px 25px;
+    background: rgba(20, 20, 20, 0.6); /* More Transparent */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 20px 25px;
     border-radius: 12px;
     color: white;
-    transition: transform 0.2s ease, border-color 0.2s;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 .category-card:hover {
-    transform: scale(1.02);
+    transform: translateX(10px);
     border-color: #00d2ff;
-    background: rgba(40, 40, 40, 1);
+    background: rgba(0, 210, 255, 0.05);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.1);
 }
 
 .cat-icon {
@@ -190,13 +205,10 @@ header {
     text-align: center;
 }
 
-.cat-info {
-    flex: 1;
-}
-
 .cat-info h3 {
     font-size: 1.2rem;
     font-weight: 600;
+    color: #fff;
 }
 
 .cat-info p {
@@ -207,27 +219,27 @@ header {
 .arrow {
     color: #555;
     transition: 0.3s;
+    margin-left: auto; /* Pushes arrow to right */
 }
 
 .category-card:hover .arrow {
     color: #00d2ff;
-    transform: translateX(5px);
 }
 
-/* --- 6. INNER PAGES GRID (Softwares/Games) --- */
+/* --- 6. INNER PAGES GRID --- */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 25px;
+    gap: 30px;
     padding: 20px 5% 80px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .item-card {
-    background: rgba(25, 25, 25, 0.85);
+    background: rgba(20, 20, 20, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    border-radius: 16px;
     padding: 15px;
     text-align: center;
     transition: 0.3s;
@@ -235,127 +247,77 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 100%;            /* कार्डची उंची समान ठेवण्यासाठी */
-    min-height: 350px;       /* कमीत कमी उंची */
+    height: 100%;
+    min-height: 350px;
+    backdrop-filter: blur(5px);
 }
 
 .item-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     border-color: #00d2ff;
-    box-shadow: 0 5px 20px rgba(0, 210, 255, 0.15);
-    background: rgba(35, 35, 35, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
 }
 
-/* --- UPDATED CARD IMAGES (FULL VISIBLE POSTER) --- */
 .card-img {
-    width: 100%;             /* कार्डची पूर्ण रुंदी */
-    height: auto;            /* उंची ऑटोमॅटिक (इमेज जेवढी आहे तेवढी) */
-    background: transparent;
+    width: 100%;
+    height: auto;
     border-radius: 12px;
     margin-bottom: 15px;
     overflow: hidden;
-    display: block;          /* Flex काढून टाकले, जेणेकरून इमेज स्ट्रेच होणार नाही */
-    box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 .card-img img {
-    width: 100%;             /* रुंदी 100% */
-    height: auto;            /* उंची ऑटोमॅटिक */
-    object-fit: contain;     /* इमेज अजिबात कापली जाणार नाही (Full Poster दिसेल) */
-    display: block;          /* एक्स्ट्रा गॅप घालवण्यासाठी */
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
     transition: transform 0.5s ease;
 }
 
-/* Hover केल्यावर फक्त थोडे Zoom */
 .item-card:hover .card-img img {
-    transform: scale(1.05);
-}
-
-/* Fallback for icons if images are missing */
-.card-img i {
-    font-size: 4rem;
-    color: #00d2ff;
-    padding: 20px 0;
+    transform: scale(1.08);
 }
 
 .item-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 5px;
     color: white;
+    font-weight: 600;
 }
 
 .item-card p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #aaa;
     margin-bottom: 20px;
 }
 
 /* Download Button */
 .download-btn {
-    background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-    color: white;
+    background: transparent;
+    color: #00d2ff;
     padding: 10px 0;
     border-radius: 25px;
     font-size: 0.9rem;
     font-weight: 600;
     transition: 0.3s;
-    border: none;
+    border: 1px solid #00d2ff;
     width: 100%;
     max-width: 200px;
+    display: inline-block;
 }
 
 .download-btn:hover {
+    background: #00d2ff;
+    color: #000;
     box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
-    transform: scale(1.05);
 }
 
-.download-btn i {
-    margin-left: 5px;
-}
-
-/* --- 7. LEGAL PAGES STYLING --- */
-.policy-container {
-    max-width: 900px;
-    margin: 0 auto;
-    background: rgba(20, 20, 20, 0.85);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 80px;
-}
-
-.policy-container h2 {
-    color: #00d2ff;
-    font-size: 1.5rem;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 10px;
-}
-
-.policy-container p {
-    color: #ccc;
-    line-height: 1.7;
-    margin-bottom: 15px;
-    font-size: 0.95rem;
-}
-
-.policy-container ul {
-    margin-left: 20px;
-    margin-bottom: 20px;
-    color: #bbb;
-}
-
-.policy-container li {
-    margin-bottom: 8px;
-}
-
-/* --- 8. FOOTER --- */
+/* --- 7. FOOTER --- */
 footer {
     background: #080808;
-    padding: 40px 5% 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 50px 5% 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     margin-top: auto;
     text-align: center;
 }
@@ -364,34 +326,56 @@ footer {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 40px;
     max-width: 1200px;
-    margin: 0 auto 30px;
+    margin: 0 auto 40px;
+    text-align: left;
+}
+
+.footer-left h2 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.footer-links h3, .footer-social h3 {
+    color: #00d2ff;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
 }
 
 .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
     color: #555;
     font-size: 0.85rem;
 }
 
-/* --- 9. MOBILE RESPONSIVE --- */
+/* --- 8. MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
         gap: 15px;
-        padding-bottom: 15px;
+        padding-bottom: 10px;
     }
     
-    .logo img {
-        height: 35px;
+    .brand-text {
+        font-size: 1.4rem; /* Smaller text for mobile */
+    }
+    
+    .brand-icon {
+        font-size: 1.4rem;
     }
 
     .social-nav {
-        gap: 25px;
-    }
-    
-    .social-nav a {
-        font-size: 1.3rem;
+        gap: 20px;
     }
 
     .search-bar {
@@ -402,62 +386,46 @@ footer {
         width: 100%;
     }
 
-    /* PUSH CONTENT DOWN SO HEADER DOESN'T COVER IT */
     .hero {
-        padding-top: 260px !important;
+        padding-top: 240px; /* Avoid overlap with header */
     }
-    .page-hero {
-        padding-top: 260px !important;
-    }
-
+    
     .main-heading {
         font-size: 2rem;
     }
 
-    .item-card {
-        padding: 20px;
-    }
-
-    .policy-container {
-        padding: 25px;
-        width: 95%;
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
     }
 }
 
-/* --- 10. FORCE FIX FOR LINKS --- */
-a, a:visited, a:active {
-    color: white !important;
+/* --- 9. FORCE FIX FOR LINKS --- */
+a {
     text-decoration: none !important;
 }
 
 .footer-links a, 
-.footer-links a:visited,
-.social-nav a,
-.social-icons a {
+.footer-links a:visited {
     color: #bbbbbb !important;
+    transition: 0.3s;
 }
 
-.footer-links a:hover, 
-.social-nav a:hover,
-.social-icons a:hover {
+.footer-links a:hover {
     color: #00d2ff !important;
-    transform: translateX(5px);
+    padding-left: 5px;
 }
 
-.download-btn {
-    color: white !important;
-}
-
-/* --- 11. BACK BUTTON STYLING --- */
+/* --- 10. BACK BUTTON --- */
 .back-btn {
     font-size: 1.4rem;
     color: #cccccc !important;
-    margin-right: 15px; /* लोगो आणि बाण मधील अंतर */
+    margin-right: 15px;
     transition: 0.3s;
-    display: inline-block;
+    display: flex;
 }
 
 .back-btn:hover {
     color: #00d2ff !important;
-    transform: translateX(-5px); /* Animation */
+    transform: translateX(-5px);
 }
