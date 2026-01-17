@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editing Materials - Discover Premium</title>
+    <title>Editing Zone - Discover Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,23 +16,25 @@
 
     <header>
         <div class="header-container">
-           <div class="logo">
-    <a href="home.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-    </a>
-    
-    <a href="index.html">
-        <img src="header.png" alt="Brand Logo">
-    </a>
-</div>
+            <div class="logo">
+                <a href="home.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                
+                <a href="home.html">
+                    <img src="header.png" alt="Brand Logo">
+                </a>
+            </div>
+
             <div class="social-nav">
                 <a href="https://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
                 <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://telegram.org/" target="_blank"><i class="fab fa-telegram"></i></a>
                 <a href="https://discord.com/" target="_blank"><i class="fab fa-discord"></i></a>
             </div>
+
             <div class="search-bar">
-                <input type="text" placeholder="Search Materials...">
+                <input type="text" placeholder="Search Category...">
                 <button><i class="fas fa-search"></i></button>
             </div>
         </div>
@@ -40,87 +42,69 @@
 
     <main>
         <section class="hero page-hero">
-            <h1 class="main-heading">Editing Materials</h1>
-            <p class="sub-text">Premium Presets, LUTs, Overlays & XMLs</p>
+            <h1 class="main-heading">Editing Resources</h1>
+            <p class="sub-text">Everything you need for Content Creation</p>
         </section>
 
-        <section class="grid-container">
+        <section class="categories-container">
             
-            <div class="item-card">
-                <div class="card-img"><img src="lightroom.png" alt="Lightroom"></div>
-                <h3>1000+ Lightroom Presets</h3>
-                <p>XMP & DNG Files</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
-            </div>
+            <a href="bgmusic.html" class="category-card">
+                <div class="cat-icon"><i class="fas fa-music"></i></div>
+                <div class="cat-info">
+                    <h3>Background Music</h3>
+                    <p>NCS, Lo-Fi, Cinematic & Trending Audio</p>
+                </div>
+                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
 
-            <div class="item-card">
-                <div class="card-img"><img src="capcut.png" alt="CapCut"></div>
-                <h3>Trending CapCut Templates</h3>
-                <p>One Click Edit Links</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="vn.png" alt="VN Editor"></div>
-                <h3>VN Codes & Filters</h3>
-                <p>Aesthetic Colour Grading</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="alight.png" alt="Alight Motion"></div>
-                <h3>Alight Motion XMLs</h3>
-                <p>Shake Effects & Transitions</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="premierepro.png" alt="Premiere Pro"></div>
-                <h3>Cinematic LUTs Pack</h3>
-                <p>For PC & Mobile</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="sfx.png" alt="Sound Effects"></div>
-                <h3>YouTuber SFX Pack</h3>
-                <p>Funny & Transition Sounds</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
-            </div>
+            <a href="materials.html" class="category-card">
+                <div class="cat-icon"><i class="fas fa-photo-video"></i></div>
+                <div class="cat-info">
+                    <h3>Editing Materials</h3>
+                    <p>Presets, LUTs, Overlays & XMLs</p>
+                </div>
+                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
 
         </section>
     </main>
 
     <footer>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Your Brand Name. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-bottom">
+                <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 1. सर्च बॉक्स आणि आयटम्स शोधणे
             const searchInput = document.querySelector('.search-bar input');
-            // item-card (आतले पेजेस) आणि category-card (होम पेज) दोन्ही सिलेक्ट करेल
-            const cards = document.querySelectorAll('.item-card, .category-card');
+            const cards = document.querySelectorAll('.category-card');
 
-            // 2. टाईप केल्यावर काय करायचे?
-            searchInput.addEventListener('keyup', function(event) {
-                const query = event.target.value.toLowerCase(); // युजरने काय टाईप केले (Lower Case मध्ये)
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function(event) {
+                    const query = event.target.value.toLowerCase();
 
-                cards.forEach(card => {
-                    // कार्डमधील Title (h3) आणि Description (p) वाचणे
-                    const title = card.querySelector('h3').textContent.toLowerCase();
-                    const desc = card.querySelector('p').textContent.toLowerCase();
+                    cards.forEach(card => {
+                        const titleElement = card.querySelector('h3');
+                        const descElement = card.querySelector('p');
 
-                    // 3. जर मॅच झाले तर दाखव, नाहीतर लपव
-                    if (title.includes(query) || desc.includes(query)) {
-                        card.style.display = "flex"; // दाखवा
-                    } else {
-                        card.style.display = "none"; // लपवा
-                    }
+                        if (titleElement && descElement) {
+                            const title = titleElement.textContent.toLowerCase();
+                            const desc = descElement.textContent.toLowerCase();
+
+                            if (title.includes(query) || desc.includes(query)) {
+                                card.style.display = "flex";
+                            } else {
+                                card.style.display = "none";
+                            }
+                        }
+                    });
                 });
-            });
+            }
         });
     </script>
+
 </body>
 </html>
