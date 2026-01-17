@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steam Accounts - Discover Premium</title>
+    <title>Premium Accounts - NextGenAdi4U</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,15 +16,15 @@
 
     <header>
         <div class="header-container">
-                    <div class="logo">
-    <a href="home.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-    </a>
-    
-    <a href="index.html">
-        <img src="header.png" alt="Brand Logo">
-    </a>
-</div>
+            <div class="logo">
+                <a href="home.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                
+                <a href="home.html">
+                    <img src="header.png" alt="Brand Logo">
+                </a>
+            </div>
 
             <div class="social-nav">
                 <a href="https://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
@@ -42,111 +42,62 @@
 
     <main>
         <section class="hero page-hero">
-            <h1 class="main-heading">Premium Steam Accounts</h1>
-            <p class="sub-text">Get Offline & Shared Access to Top Games</p>
+            <h1 class="main-heading">Premium Accounts</h1>
+            <p class="sub-text">Exclusive Access & Lifetime Accounts</p>
         </section>
 
         <section class="grid-container">
-            
-            <div class="item-card">
-                <div class="card-img">
-                    <img src="gtav.png" alt="GTA V">
-                </div>
-                <h3>GTA V Premium</h3>
-                <p>Offline Access | Full Game</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
-                    Get Account <i class="fas fa-key"></i>
-                </a>
-            </div>
 
             <div class="item-card">
                 <div class="card-img">
-                    <img src="rdr2.png" alt="RDR 2">
+                    <img src="STEAM.jpg" alt="Steam Accounts">
                 </div>
-                <h3>Red Dead Redemption 2</h3>
-                <p>Ultimate Edition | Offline</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
-                    Get Account <i class="fas fa-key"></i>
+                <h3>Steam Accounts (Premium)</h3>
+                <p>Market Price ₹15,000 | Full Access 500+Accounts</p>
+                <a href="https://drive.google.com/file/d/1rKYt2KJWkaQsAEhCPKJ47WxMMgbVonUB/view" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img">
-                    <img src="cyberpunk.png" alt="Cyberpunk 2077">
-                </div>
-                <h3>Cyberpunk 2077</h3>
-                <p>Phantom Liberty DLC Included</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
-                    Get Account <i class="fas fa-key"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img">
-                    <img src="eldenring.png" alt="Elden Ring">
-                </div>
-                <h3>Elden Ring</h3>
-                <p>Shadow of the Erdtree Ready</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
-                    Get Account <i class="fas fa-key"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img">
-                    <img src="fc24.png" alt="EA FC 24">
-                </div>
-                <h3>EA Sports FC 24</h3>
-                <p>Career Mode Access</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
-                    Get Account <i class="fas fa-key"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img">
-                    <img src="rust.png" alt="Rust">
-                </div>
-                <h3>Rust (Steam)</h3>
-                <p>Shared Account | Survival</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
-                    Get Account <i class="fas fa-key"></i>
-                </a>
-            </div>
-
-        </section>
+            </section>
     </main>
 
     <footer>
-        <div class="footer-bottom">
-            <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-bottom">
+                <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-<script>
+
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 1. सर्च बॉक्स आणि आयटम्स शोधणे
             const searchInput = document.querySelector('.search-bar input');
-            // item-card (आतले पेजेस) आणि category-card (होम पेज) दोन्ही सिलेक्ट करेल
-            const cards = document.querySelectorAll('.item-card, .category-card');
+            const cards = document.querySelectorAll('.item-card');
 
-            // 2. टाईप केल्यावर काय करायचे?
-            searchInput.addEventListener('keyup', function(event) {
-                const query = event.target.value.toLowerCase(); // युजरने काय टाईप केले (Lower Case मध्ये)
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function(event) {
+                    const query = event.target.value.toLowerCase();
 
-                cards.forEach(card => {
-                    // कार्डमधील Title (h3) आणि Description (p) वाचणे
-                    const title = card.querySelector('h3').textContent.toLowerCase();
-                    const desc = card.querySelector('p').textContent.toLowerCase();
+                    cards.forEach(card => {
+                        const titleElement = card.querySelector('h3');
+                        const descElement = card.querySelector('p');
 
-                    // 3. जर मॅच झाले तर दाखव, नाहीतर लपव
-                    if (title.includes(query) || desc.includes(query)) {
-                        card.style.display = "flex"; // दाखवा
-                    } else {
-                        card.style.display = "none"; // लपवा
-                    }
+                        if (titleElement && descElement) {
+                            const title = titleElement.textContent.toLowerCase();
+                            const desc = descElement.textContent.toLowerCase();
+
+                            if (title.includes(query) || desc.includes(query)) {
+                                card.style.display = "flex";
+                            } else {
+                                card.style.display = "none";
+                            }
+                        }
+                    });
                 });
-            });
+            }
         });
     </script>
+
 </body>
 </html>
