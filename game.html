@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Master - Learn HTML</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- GLOBAL STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body {
+            background-color: #050505;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* --- BACKGROUND PARTICLES (Fixed) --- */
+        #dustCanvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        /* --- GAME CONTAINER --- */
+        .game-container {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #00d2ff;
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* --- HEADER & SCORE --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .brand-text { font-size: 1.2rem; font-weight: bold; color: #fff; }
+        .brand-highlight { color: #00d2ff; }
+        .score-box { font-family: 'Fira Code', monospace; color: #00d2ff; font-weight: bold; }
+
+        /* --- QUESTION SECTION --- */
+        .question-box {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Code Snippet Style */
+        code {
+            background: #111;
+            color: #ff79c6; /* Pink for code */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid #333;
+        }
+
+        /* --- OPTIONS BUTTONS --- */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            color: #ddd;
+            font-family: 'Fira Code', monospace;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .option-btn:hover {
+            border-color: #00d2ff;
+            background: rgba(0, 210, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Correct/Wrong States */
+        .correct { background: rgba(0, 255, 0, 0.2) !important; border-color: #00ff00 !important; color: #fff; }
+        .wrong { background: rgba(255, 0, 0, 0.2) !important; border-color: #ff0000 !important; color: #fff; }
+
+        /* --- FOOTER / NEXT BUTTON --- */
+        .footer-game {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .next-btn {
+            background: #00d2ff;
+            color: #000;
+            border: none;
+            padding: 10px 30px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            display: none; /* Hidden initially */
+            transition: 0.3s;
+        }
+
+        .next-btn:hover { box-shadow: 0 0 15px #00d2ff; }
+
+        /* --- BACK BUTTON --- */
+        .back-home {
+            position: absolute;
+            top: 20px; left: 20px;
+            color: #555;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+        .back-home:hover { color: #00d2ff; }
+
+        /* --- RESULT SCREEN --- */
+        .result-screen { display: none; }
+        .trophy { font-size: 3rem; color: gold; margin-bottom: 10px; }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="dustCanvas"></canvas>
+
+    <a href="home.html" class="back-home"><i class="fas fa-arrow-left"></i> ←</a>
+
+    <div class="game-container">
+        
+        <div class="header">
+            <div class="brand-text">HTML <span class="brand-highlight">Master</span></div>
+            <div class="score-box">Score: <span id="score">0</span></div>
+        </div>
+
+        <div id="game-area">
+            <div class="question-box" id="question">Loading...</div>
+            
+            <div class="options-grid" id="options">
+                </div>
+
+            <div class="footer-game">
+                <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question →</button>
+            </div>
+        </div>
+
+        <div id="result-area" class="result-screen">
+            <div class="trophy">🏆</div>
+            <h2>Quiz Completed!</h2>
+            <p>Your Final Score: <span id="final-score" style="color:#00d2ff; font-weight:bold;"></span></p>
+            <br>
+            <button class="next-btn" style="display:inline-block;" onclick="restartGame()">Play Again ↻</button>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <script>
+        // --- GAME DATA (QUESTIONS) ---
+        const questions = [
+            {
+                q: "Which tag is used to create a hyperlink?",
+                options: ["<link>", "<a>", "<href>", "<url>"],
+                answer: 1 // Index of correct answer
+            },
+            {
+                q: "How do you define the largest heading?",
+                options: ["<head>", "<h6>", "<heading>", "<h1>"],
+                answer: 3
+            },
+            {
+                q: "Which tag creates a line break?",
+                options: ["<break>", "<lb>", "<br>", "<ln>"],
+                answer: 2
+            },
+            {
+                q: "What is the correct tag for an image?",
+                options: ["<img>", "<image>", "<pic>", "<src>"],
+                answer: 0
+            },
+            {
+                q: "Which tag makes text bold?",
+                options: ["<bold>", "<b>", "<big>", "<dark>"],
+                answer: 1
+            },
+            {
+                q: "Which tag creates an unordered list?",
+                options: ["<ol>", "<list>", "<ul>", "<li>"],
+                answer: 2
+            },
+            {
+                q: "What does HTML stand for?",
+                options: ["Hyper Text Pre Processor", "Hyper Text Markup Language", "Hyper Tool Multi Language", "Home Tool Markup Language"],
+                answer: 1
+            },
+            {
+                q: "Which tag defines the main content?",
+                options: ["<content>", "<main>", "<body>", "<section>"],
+                answer: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        const questionEl = document.getElementById("question");
+        const optionsEl = document.getElementById("options");
+        const nextBtn = document.getElementById("next-btn");
+        const scoreEl = document.getElementById("score");
+        const gameArea = document.getElementById("game-area");
+        const resultArea = document.getElementById("result-area");
+        const finalScoreEl = document.getElementById("final-score");
+
+        // --- GAME LOGIC ---
+        function loadQuestion() {
+            let q = questions[currentQuestionIndex];
+            questionEl.innerText = q.q;
+            optionsEl.innerHTML = ""; // Clear old options
+            nextBtn.style.display = "none"; // Hide next button
+
+            q.options.forEach((opt, index) => {
+                let btn = document.createElement("div");
+                btn.classList.add("option-btn");
+                btn.innerText = opt;
+                btn.setAttribute("onclick", `checkAnswer(this, ${index})`);
+                optionsEl.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(btn, index) {
+            let correctIndex = questions[currentQuestionIndex].answer;
+            let allOptions = optionsEl.children;
+
+            // Disable all clicks
+            for(let i=0; i<allOptions.length; i++){
+                allOptions[i].style.pointerEvents = "none";
+            }
+
+            if (index === correctIndex) {
+                btn.classList.add("correct");
+                score += 10;
+                scoreEl.innerText = score;
+            } else {
+                btn.classList.add("wrong");
+                // Highlight the correct one
+                allOptions[correctIndex].classList.add("correct");
+            }
+
+            nextBtn.style.display = "block"; // Show Next button
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            gameArea.style.display = "none";
+            resultArea.style.display = "block";
+            finalScoreEl.innerText = score + " / " + (questions.length * 10);
+        }
+
+        function restartGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreEl.innerText = "0";
+            gameArea.style.display = "block";
+            resultArea.style.display = "none";
+            loadQuestion();
+        }
+
+        // --- BACKGROUND PARTICLES (From your Main Theme) ---
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particlesArray = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = 'rgba(0, 210, 255, 0.3)';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y > canvas.height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for(let i=0; i<50; i++) particlesArray.push(new Particle());
+        }
+        function animateParticles() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            for(let i=0; i<particlesArray.length; i++){
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        window.addEventListener('resize', ()=> { canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
+        initParticles(); animateParticles();
+
+        // Start Game
+        loadQuestion();
+
+    </script>
+</body>
+</html>
