@@ -25,9 +25,15 @@
 
     <header>
         <div class="header-container">
+            
             <div class="logo">
-                <a href="home.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-                <a href="home.html"><img src="header.png" alt="Brand Logo"></a>
+                <a href="home.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                
+                <a href="home.html" style="text-decoration: none;">
+                    <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
+                </a>
             </div>
 
             <div class="social-nav">
@@ -292,6 +298,7 @@
                     cards.forEach(card => {
                         const title = card.querySelector('h3').textContent.toLowerCase();
                         const desc = card.querySelector('p').textContent.toLowerCase();
+
                         if (title.includes(query) || desc.includes(query)) {
                             card.style.display = "flex";
                         } else {
@@ -315,15 +322,16 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1; 
-                this.speedX = Math.random() * 1 - 0.5; 
-                this.speedY = Math.random() * 1 - 0.5; 
-                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')'; 
+                this.size = Math.random() * 3 + 1; // कणांचा आकार
+                this.speedX = Math.random() * 1 - 0.5; // आडवा वेग
+                this.speedY = Math.random() * 1 - 0.5; // उभा वेग
+                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')'; // निळा रंग
             }
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
 
+                // स्क्रीनच्या बाहेर गेले की परत आत आणणे
                 if (this.x > canvas.width) this.x = 0;
                 if (this.x < 0) this.x = canvas.width;
                 if (this.y > canvas.height) this.y = 0;
@@ -339,7 +347,7 @@
 
         function initParticles() {
             particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 15000; 
+            let numberOfParticles = (canvas.height * canvas.width) / 15000; // स्क्रीन साईज प्रमाणे कण
             for (let i = 0; i < numberOfParticles; i++) {
                 particlesArray.push(new Particle());
             }
