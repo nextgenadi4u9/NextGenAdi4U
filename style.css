@@ -228,13 +228,15 @@ header {
     background: rgba(25, 25, 25, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    padding: 15px; /* Padding कमी केले म्हणजे इमेज मोठी दिसेल */
+    padding: 15px;
     text-align: center;
     transition: 0.3s;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    height: 100%;            /* कार्डची उंची समान ठेवण्यासाठी */
+    min-height: 350px;       /* कमीत कमी उंची */
 }
 
 .item-card:hover {
@@ -244,36 +246,36 @@ header {
     background: rgba(35, 35, 35, 0.95);
 }
 
-/* --- UPDATED CARD IMAGES (BIG POSTER STYLE) --- */
+/* --- UPDATED CARD IMAGES (FULL VISIBLE POSTER) --- */
 .card-img {
-    width: 100%;             /* पूर्ण रुंदी */
-    height: 320px;           /* मोठी उंची (Poster Size) */
-    background: transparent; 
-    border-radius: 12px;     /* कोपरे राउंड */
+    width: 100%;             /* कार्डची पूर्ण रुंदी */
+    height: auto;            /* उंची ऑटोमॅटिक (इमेज जेवढी आहे तेवढी) */
+    background: transparent;
+    border-radius: 12px;
     margin-bottom: 15px;
-    overflow: hidden;        /* इमेज बाहेर जाणार नाही */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.5); /* पोस्टरला सावली */
+    overflow: hidden;
+    display: block;          /* Flex काढून टाकले, जेणेकरून इमेज स्ट्रेच होणार नाही */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.5);
 }
 
 .card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;       /* इमेज पूर्ण भरेल, कापली जाणार नाही */
+    width: 100%;             /* रुंदी 100% */
+    height: auto;            /* उंची ऑटोमॅटिक */
+    object-fit: contain;     /* इमेज अजिबात कापली जाणार नाही (Full Poster दिसेल) */
+    display: block;          /* एक्स्ट्रा गॅप घालवण्यासाठी */
     transition: transform 0.5s ease;
 }
 
-/* Hover Effect Zoom */
+/* Hover केल्यावर फक्त थोडे Zoom */
 .item-card:hover .card-img img {
-    transform: scale(1.1);   /* माउस नेल्यावर झूम होईल */
+    transform: scale(1.05);
 }
 
 /* Fallback for icons if images are missing */
 .card-img i {
     font-size: 4rem;
     color: #00d2ff;
+    padding: 20px 0;
 }
 
 .item-card h3 {
@@ -419,11 +421,6 @@ footer {
     .policy-container {
         padding: 25px;
         width: 95%;
-    }
-
-    /* Mobile Poster Adjustment */
-    .card-img {
-        height: 280px; /* मोबाईलवर थोडे छोटे ठेवले */
     }
 }
 
