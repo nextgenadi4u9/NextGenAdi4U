@@ -6,7 +6,6 @@
     <title>Welcome - NextGenAdi4U</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS सेम आहे, फक्त पुन्हा पेस्ट करत आहे */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #000; overflow: hidden; height: 100vh; display: flex; justify-content: center; align-items: center; color: white; }
         #particleCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
@@ -23,6 +22,10 @@
 
     <canvas id="particleCanvas"></canvas>
 
+    <audio id="welcomeSound" loop>
+        <source src="broadcast.mp3" type="audio/mp3">
+    </audio>
+
     <div class="intro-content">
         <h1>NextGenAdi4U</h1>
         <p>EXPLORE THE PREMIUM WORLD</p>
@@ -33,7 +36,30 @@
     </div>
 
     <script>
-        /* सेम Script जी तू मगाशी वापरली होती */
+        // --- AUDIO AUTOPLAY FIX ---
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById("welcomeSound");
+            
+            // 1. Try to play immediately
+            var promise = audio.play();
+
+            if (promise !== undefined) {
+                promise.catch(error => {
+                    console.log("Autoplay prevented by browser. Waiting for interaction.");
+                    
+                    // 2. If blocked, play on first click or mouse move
+                    document.body.addEventListener('click', function() {
+                        audio.play();
+                    }, { once: true });
+                    
+                    document.body.addEventListener('mousemove', function() {
+                        audio.play();
+                    }, { once: true });
+                });
+            }
+        });
+
+        // --- PARTICLE SCRIPT ---
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
