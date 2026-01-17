@@ -3,48 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - Discover Premium</title>
+    <title>Terms of Service - NextGenAdi4U</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- PARTICLE BACKGROUND CSS --- */
+        #dustCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: #050505; /* गडद काळा बॅकग्राउंड */
+        }
+    </style>
 </head>
 <body>
 
-    <video autoplay muted loop id="myVideo">
-        <source src="bg.mp4" type="video/mp4">
-    </video>
-    <div class="video-overlay"></div>
+    <canvas id="dustCanvas"></canvas>
 
     <header>
         <div class="header-container">
-                    <div class="logo">
-    <a href="home.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-    </a>
-    
-    <a href="index.html">
-        <img src="header.png" alt="Brand Logo">
-    </a>
-</div>
+            <div class="logo">
+                <a href="home.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <a href="home.html"><img src="header.png" alt="Brand Logo"></a>
+            </div>
         </div>
     </header>
 
     <main>
         <section class="hero page-hero">
             <h1 class="main-heading">Terms of Service</h1>
-            <p class="sub-text">Rules and Regulations.</p>
+            <p class="sub-text">Rules, Regulations & AdSense Policy.</p>
         </section>
 
         <section class="policy-container">
             <h2>1. Agreement to Terms</h2>
-            <p>These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”) and <strong>Your Brand Name</strong> regarding your access to and use of the website.</p>
+            <p>These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”) and <strong>NextGenAdi4U</strong> regarding your access to and use of the website.</p>
 
             <h2>2. User Representations</h2>
             <p>By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information.</p>
 
-            <h2>3. Disclaimer</h2>
+            <h2>3. Google AdSense & Advertising</h2>
+            <p>We use third-party advertising companies (such as Google AdSense) to serve ads when you visit our website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you.</p>
+            <p>Google, as a third-party vendor, uses cookies to serve ads on our site. Google's use of the advertising cookie enables it and its partners to serve ads to our users based on their visit to our site and/or other sites on the Internet.</p>
+
+            <h2>4. Cookie Policy</h2>
+            <p>Users may opt-out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" style="color: #00d2ff;">Google Ads Settings</a>. Alternatively, you can opt-out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="http://www.aboutads.info/choices/" target="_blank" style="color: #00d2ff;">www.aboutads.info</a>.</p>
+
+            <h2>5. Disclaimer</h2>
             <p>The site is provided on an as-is and as-available basis. You agree that your use of the site and our services will be at your sole risk. We make no warranties or representations about the accuracy or completeness of the site’s content.</p>
 
-            <h2>4. Modifications</h2>
+            <h2>6. Modifications</h2>
             <p>We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice.</p>
         </section>
     </main>
@@ -54,5 +65,68 @@
             <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1; 
+                this.speedX = Math.random() * 1 - 0.5; 
+                this.speedY = Math.random() * 1 - 0.5; 
+                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')'; 
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 15000; 
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+
+        initParticles();
+        animateParticles();
+    </script>
+
 </body>
 </html>
