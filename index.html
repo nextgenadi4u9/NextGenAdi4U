@@ -16,7 +16,7 @@
         .intro-content { position: relative; z-index: 10; text-align: center; background: rgba(0, 0, 0, 0.6); padding: 40px 60px; border-radius: 20px; border: 1px solid rgba(0, 210, 255, 0.3); backdrop-filter: blur(10px); box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); animation: fadeIn 1.5s ease-in-out; }
         .intro-content h1 { font-size: 3.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; background: linear-gradient(90deg, #fff, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .intro-content p { font-size: 1.2rem; color: #aaa; margin-bottom: 40px; letter-spacing: 2px; }
-        .enter-btn { position: relative; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; color: #00d2ff; background: transparent; border: 2px solid #00d2ff; border-radius: 50px; cursor: pointer; overflow: hidden; transition: 0.4s; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; display: inline-block; z-index: 20; }
+        .enter-btn { position: relative; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; color: #00d2ff; background: transparent; border: 2px solid #00d2ff; border-radius: 50px; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.4s; text-transform: uppercase; letter-spacing: 2px; z-index: 20; }
         .enter-btn:hover { background: #00d2ff; color: #000; box-shadow: 0 0 20px #00d2ff, 0 0 40px #00d2ff; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @media (max-width: 768px) { .intro-content h1 { font-size: 2.5rem; } .intro-content { padding: 30px 20px; width: 90%; } }
@@ -41,25 +41,27 @@
     </div>
 
     <script>
-        // --- 🔊 AUDIO AUTOPLAY FIX (User Interaction) ---
-        document.addEventListener('DOMContentLoaded', function() {
+        // --- 🔊 AUTO AUDIO START LOGIC ---
+        function autoPlayBroadcast() {
             var audio = document.getElementById("welcomeSound");
-            
-            function startAudio() {
-                audio.play().then(() => {
-                    console.log("Broadcast audio started!");
-                    // एकदा सुरू झाले की इव्हेंट लिसनर्स काढून टाकणे
-                    window.removeEventListener('click', startAudio);
-                    window.removeEventListener('mousemove', startAudio);
-                    window.removeEventListener('touchstart', startAudio);
-                }).catch(err => console.log("Waiting for user interaction..."));
-            }
+            audio.play().then(function() {
+                console.log("Broadcast automatically started!");
+                // एकदा सुरू झाले की सर्व इव्हेंट लिसनर्स काढून टाकणे
+                window.removeEventListener('click', autoPlayBroadcast);
+                window.removeEventListener('mousemove', autoPlayBroadcast);
+                window.removeEventListener('scroll', autoPlayBroadcast);
+                window.removeEventListener('touchstart', autoPlayBroadcast);
+            }).catch(function(error) {
+                // ब्राउझरने अडवल्यास लॉगमध्ये दिसेल
+                console.log("Waiting for user interaction to play broadcast...");
+            });
+        }
 
-            // युजरने स्क्रीनवर कुठेही क्लिक किंवा माऊस हलवताच आवाज सुरू होईल
-            window.addEventListener('click', startAudio);
-            window.addEventListener('mousemove', startAudio);
-            window.addEventListener('touchstart', startAudio);
-        });
+        // पेज लोड झाल्यावर युजरने फक्त माऊस हलवला किंवा टच केला तरी आवाज सुरू होईल
+        window.addEventListener('click', autoPlayBroadcast);
+        window.addEventListener('mousemove', autoPlayBroadcast);
+        window.addEventListener('scroll', autoPlayBroadcast);
+        window.addEventListener('touchstart', autoPlayBroadcast);
 
         // --- ✨ PARTICLE SCRIPT ---
         const canvas = document.getElementById('particleCanvas');
