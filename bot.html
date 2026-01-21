@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685"
+     crossorigin="anonymous"></script>
+
+    <title>Home - NextGenAdi4U</title>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- 1. GLOBAL & PARTICLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { background-color: #050505; color: white; overflow-x: hidden; }
+        #dustCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: #050505; }
+
+        /* --- 2. HEADER & SEARCH --- */
+        header { position: fixed; top: 0; width: 100%; padding: 15px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); z-index: 1000; border-bottom: 1px solid rgba(0, 210, 255, 0.2); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo a { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .brand-icon { font-size: 1.8rem; color: #00d2ff; animation: pulse 2s infinite; }
+        .brand-text { font-size: 1.5rem; font-weight: 800; color: #fff; }
+        .brand-highlight { color: #00d2ff; text-shadow: 0 0 10px #00d2ff; }
+
+        .search-container { position: relative; width: 250px; }
+        .search-bar { display: flex; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 25px; border: 1px solid rgba(0,210,255,0.2); }
+        .search-bar input { background: transparent; border: none; color: white; outline: none; width: 100%; }
+        .search-bar button { background: transparent; border: none; color: #00d2ff; cursor: pointer; }
+        .search-results { position: absolute; top: 110%; left: 0; width: 100%; background: rgba(10, 10, 10, 0.95); border: 1px solid #00d2ff; border-radius: 10px; display: none; z-index: 999; max-height: 300px; overflow-y: auto; }
+        .search-item { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer; display: flex; justify-content: space-between; transition: 0.2s; }
+        .search-item:hover { background: rgba(0, 210, 255, 0.2); padding-left: 15px; }
+        .search-item a { color: white; text-decoration: none; width: 100%; display: block; }
+
+        .social-nav a { color: #aaa; margin-left: 15px; font-size: 1.2rem; transition: 0.3s; }
+        .social-nav a:hover { color: #00d2ff; transform: scale(1.2); }
+
+        /* --- 3. HERO & CARDS --- */
+        .hero { text-align: center; padding: 150px 20px 50px; }
+        .main-heading { font-size: 3rem; font-weight: 800; background: linear-gradient(90deg, #fff, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .sub-text { color: #888; letter-spacing: 2px; }
+        
+        .categories-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .special-card { background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0, 40, 60, 0.9)); border: 2px solid #00d2ff; border-radius: 15px; padding: 25px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; text-decoration: none; box-shadow: 0 0 20px rgba(0, 210, 255, 0.3); animation: borderPulse 3s infinite; }
+        .play-btn { background: #00d2ff; color: #000; padding: 10px 25px; border-radius: 20px; font-weight: bold; }
+
+        .category-card { display: flex; align-items: center; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 210, 255, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 15px; text-decoration: none; backdrop-filter: blur(10px); transition: 0.4s; border-left: 4px solid transparent; }
+        .category-card:hover { transform: translateX(10px); background: rgba(0, 210, 255, 0.05); border-left-color: #00d2ff; box-shadow: 0 5px 15px rgba(0,210,255,0.1); }
+        .cat-icon { font-size: 2rem; color: #555; margin-right: 20px; transition: 0.4s; }
+        .category-card:hover .cat-icon { color: #00d2ff; transform: scale(1.2) rotate(10deg); }
+        .cat-info h3 { color: #fff; font-size: 1.2rem; }
+        .arrow { margin-left: auto; color: #555; transition: 0.4s; }
+        .category-card:hover .arrow { color: #00d2ff; transform: rotate(-45deg); }
+
+        /* --- 4. HIRE ME SECTION --- */
+        .hire-section { max-width: 900px; margin: 60px auto 20px; padding: 0 20px; }
+        .hire-card { background: linear-gradient(180deg, rgba(0, 10, 20, 0.95), rgba(0, 40, 60, 0.9)); border: 2px solid #00d2ff; border-radius: 20px; padding: 40px; text-align: center; position: relative; box-shadow: 0 0 40px rgba(0, 210, 255, 0.15); }
+        .hire-badge { position: absolute; top: 15px; right: 15px; background: #ff0055; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; box-shadow: 0 0 10px #ff0055; animation: pulseRed 2s infinite; }
+        .hire-btn { background: transparent; color: #00d2ff; border: 2px solid #00d2ff; padding: 15px 40px; font-size: 1.1rem; font-weight: bold; border-radius: 50px; cursor: pointer; transition: 0.4s; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-top: 20px; }
+        .hire-btn:hover { background: #00d2ff; color: #000; box-shadow: 0 0 20px #00d2ff; transform: scale(1.05); }
+
+        /* --- 5. CHATBOT STYLES --- */
+        #chat-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #00d2ff, #0055ff); color: white; border: none; font-size: 1.5rem; cursor: pointer; z-index: 10000; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); transition: 0.3s; animation: floatBot 3s infinite ease-in-out; }
+        #chatbot-container { position: fixed; bottom: 100px; right: 30px; width: 320px; height: 450px; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); border: 1px solid #00d2ff; border-radius: 20px; display: none; flex-direction: column; z-index: 10001; box-shadow: 0 10px 40px rgba(0,0,0,0.8); overflow: hidden; }
+        #chatParticles { position: absolute; top:0; left:0; width:100%; height:100%; z-index:-1; opacity:0.3; }
+        #chat-header { background: rgba(0, 210, 255, 0.1); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        #chat-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .bot-msg { align-self: flex-start; background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 10px; font-size: 0.9rem; max-width: 85%; }
+        .user-msg { align-self: flex-end; background: #00d2ff; color: #000; padding: 8px 12px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; max-width: 85%; }
+        #chat-footer { padding: 10px; display: flex; gap: 5px; border-top: 1px solid rgba(255,255,255,0.1); }
+        #chat-footer input { flex: 1; background: rgba(255,255,255,0.1); border: none; padding: 8px; border-radius: 20px; color: white; outline: none; }
+        .bot-link { color: #00d2ff; text-decoration: underline; cursor: pointer; }
+
+        @keyframes floatBot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulseRed { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        @media (max-width: 768px) { .header-container { flex-direction: column; gap: 15px; } .search-container { width: 100%; } #chatbot-container { width: 90%; right: 5%; left: 5%; } }
+    </style>
+</head>
+<body>
+
+    <canvas id="dustCanvas"></canvas>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="home.html">
+                    <i class="fas fa-gamepad brand-icon"></i> 
+                    <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
+                </a>
+            </div>
+            <div class="social-nav">
+                <a href="https://t.me/nextgenadi4u" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://discord.gg/jG2fpvjwnk" target="_blank"><i class="fab fa-discord"></i></a>
+            </div>
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" id="globalSearch" placeholder="Search Resources..." autocomplete="off">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div id="searchResults" class="search-results"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" data-aos="zoom-in">
+            <h1 class="main-heading">Discover Your Premium World</h1>
+            <p class="sub-text">NEXT-GEN RESOURCES & TOOLS</p>
+        </section>
+
+        <section class="categories-container">
+            <a href="game.html" class="special-card" data-aos="fade-up" data-tilt>
+                <div class="new-badge">NEW</div>
+                <div class="special-content">
+                    <div class="special-icon"><i class="fas fa-brain"></i></div>
+                    <div class="special-text"><h3>Code Master Quiz</h3><p>Play & Learn!</p></div>
+                </div>
+                <div class="play-btn">PLAY <i class="fas fa-play"></i></div>
+            </a>
+
+            <div id="category-list">
+                <a href="softwares.html" class="category-card" data-aos="fade-right"><div class="cat-icon"><i class="fas fa-desktop"></i></div><div class="cat-info"><h3>Softwares</h3><p>Premium PC Tools</p></div><div class="arrow"><i class="fas fa-arrow-right"></i></div></a>
+                <a href="mobileapks.html" class="category-card" data-aos="fade-left"><div class="cat-icon"><i class="fab fa-android"></i></div><div class="cat-info"><h3>Mobile APKs</h3><p>Modded Apps</p></div><div class="arrow"><i class="fas fa-arrow-right"></i></div></a>
+                <a href="reels.html" class="category-card" data-aos="fade-right"><div class="cat-icon"><i class="fab fa-instagram"></i></div><div class="cat-info"><h3>Reels Bundle</h3><p>Viral Content</p></div><div class="arrow"><i class="fas fa-arrow-right"></i></div></a>
+                <a href="courses.html" class="category-card" data-aos="fade-left"><div class="cat-icon"><i class="fas fa-graduation-cap"></i></div><div class="cat-info"><h3>Courses</h3><p>Learn & Grow</p></div><div class="arrow"><i class="fas fa-arrow-right"></i></div></a>
+                <a href="pcgames.html" class="category-card" data-aos="fade-right"><div class="cat-icon"><i class="fas fa-gamepad"></i></div><div class="cat-info"><h3>PC Games</h3><p>High Graphics</p></div><div class="arrow"><i class="fas fa-arrow-right"></i></div></a>
+                <a href="steam.html" class="category-card" data-aos="fade-left"><div class="cat-icon"><i class="fab fa-steam"></i></div><div class="cat-info"><h3>Steam Accounts</h3><p>Premium Access</p></div><div class="arrow"><i class="fas fa-arrow-right"></i></div></a>
+                <a href="editing.html" class="category-card" data-aos="fade-right"><div class="cat-icon"><i class="fas fa-photo-video"></i></div><div class="cat-info"><h3>Editing Materials</h3><p>LUTs & Effects</p></div><div class="arrow"><i class="fas fa-arrow-right"></i></div></a>
+                <a href="gamemagics.html" class="category-card" data-aos="fade-left"><div class="cat-icon"><i class="fas fa-magic"></i></div><div class="cat-info"><h3>Game Magics</h3><p>Cheats & Tricks</p></div><div class="arrow"><i class="fas fa-arrow-right"></i></div></a>
+            </div>
+        </section>
+
+        <section class="hire-section" data-aos="flip-up">
+            <div class="hire-card" data-tilt>
+                <div class="hire-badge">First Demo FREE</div>
+                <h2 style="color:white; margin-bottom:10px;">Want a Website Like This?</h2>
+                <p style="color:#ccc; margin-bottom:20px;">I will build a futuristic, responsive website for you.</p>
+                <a href="https://t.me/nextgenadi4u" class="hire-btn">ORDER NOW <i class="fab fa-telegram"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 50px 20px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; margin-top: 50px;">
+        <p style="color:#444;">&copy; 2026 NextGenAdi4U. All Rights Reserved.</p>
+    </footer>
+
+    <button id="chat-btn" onclick="toggleChat()"><i class="fas fa-comment-dots"></i></button>
+    <div id="chatbot-container">
+        <canvas id="chatParticles"></canvas>
+        <div id="chat-header">
+            <div style="display:flex;align-items:center;gap:10px;"><i class="fas fa-robot" style="color:#00d2ff;"></i><span>NextGen AI</span></div>
+            <i class="fas fa-times" onclick="toggleChat()" style="color:white;cursor:pointer;"></i>
+        </div>
+        <div id="chat-body">
+            <div class="bot-msg">Hello Boss! Ask for <b>Softwares</b>, <b>Reels</b>, <b>Courses</b> or <b>Coding Help</b>! 🤖</div>
+        </div>
+        <div id="chat-footer">
+            <input type="text" id="chatInput" placeholder="Type here..." onkeypress="handleKeyPress(event)" autocomplete="off">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        VanillaTilt.init(document.querySelectorAll(".special-card, .category-card, .hire-card"), { max: 10, speed: 400, glare: true, "max-glare": 0.1 });
+
+        // --- 1. MASTER DATABASE (ADD YOUR NEW ITEMS HERE) ---
+        // भावा, नवीन सॉफ्टवेअर किंवा रील आले की फक्त खालील लिस्ट मध्ये ॲड कर!
+        const masterDB = [
+            { name: "Adobe Premiere Pro", link: "softwares.html", category: "software" },
+            { name: "Adobe Photoshop", link: "softwares.html", category: "software" },
+            { name: "Stickman Reels", link: "reels.html", category: "reels" },
+            { name: "Free Fire Reels", link: "reels.html", category: "reels" },
+            { name: "WordPress Course", link: "courses.html", category: "course" },
+            { name: "Mini AI Worker", link: "reels.html", category: "reels" },
+            { name: "Bundlebaaz", link: "reels.html", category: "reels" },
+            { name: "Trading Tips", link: "reels.html", category: "reels" },
+            { name: "Stock Market", link: "reels.html", category: "reels" },
+            { name: "GTA 5", link: "pcgames.html", category: "game" },
+            { name: "Minecraft", link: "pcgames.html", category: "game" }
+        ];
+
+        // --- 2. SEARCH LOGIC (AUTO PICK) ---
+        const sInput = document.getElementById('globalSearch');
+        const sBox = document.getElementById('searchResults');
+        
+        sInput.addEventListener('keyup', (e) => {
+            let val = e.target.value.toLowerCase();
+            sBox.innerHTML = '';
+            if(val.length > 0) {
+                let matches = masterDB.filter(d => d.name.toLowerCase().includes(val));
+                if(matches.length > 0) {
+                    sBox.style.display = 'block';
+                    matches.forEach(m => {
+                        sBox.innerHTML += `<div class="search-item"><a href="${m.link}">${m.name} <span style="font-size:0.7rem;color:#00d2ff;float:right">${m.category.toUpperCase()}</span></a></div>`;
+                    });
+                } else { sBox.style.display = 'none'; }
+            } else { sBox.style.display = 'none'; }
+        });
+
+        // --- 3. CHATBOT BRAIN (AUTO PICK) ---
+        function sendMessage() {
+            let input = document.getElementById("chatInput");
+            let txt = input.value.trim().toLowerCase();
+            let body = document.getElementById("chat-body");
+            if(txt === "") return;
+
+            body.innerHTML += `<div class="user-msg">${input.value}</div>`;
+            input.value = "";
+            body.scrollTop = body.scrollHeight;
+
+            setTimeout(() => {
+                let reply = "";
+                
+                // Smart Search in DB
+                let found = masterDB.find(item => txt.includes(item.name.toLowerCase()) || (item.category && txt.includes(item.category)));
+                
+                if (found) {
+                    reply = `Found it! You can get <b>${found.name}</b> here: <a href="${found.link}" class="bot-link">Click to Open</a>`;
+                } 
+                // Greetings & Basics
+                else if (txt.includes("hi") || txt.includes("hello")) reply = "Hello Boss! What do you need today?";
+                else if (txt.includes("how are you")) reply = "I am Super Fast & Active! 🚀";
+                else if (txt.includes("good morning")) reply = "Good Morning! ☀️ Let's work hard!";
+                else if (txt.includes("good night")) reply = "Good Night! 🌙 Sleep well.";
+                else if (txt.includes("html code")) reply = "HTML Basic: <code>&lt;h1&gt;Hello&lt;/h1&gt;</code>";
+                else if (txt.includes("hire") || txt.includes("website")) reply = "I can build a website for you! <a href='https://t.me/nextgenadi4u' class='bot-link'>Message Me</a>.";
+                else reply = "I couldn't find that in my database. Try asking for 'Software', 'Reels', or specific names like 'Premiere'.";
+
+                body.innerHTML += `<div class="bot-msg">${reply}</div>`;
+                body.scrollTop = body.scrollHeight;
+            }, 600);
+        }
+
+        // --- 4. PARTICLES ---
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let particles = [];
+        class P { constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.vx=Math.random()-0.5;this.vy=Math.random()-0.5;this.s=Math.random()*2;} update(){this.x+=this.vx;this.y+=this.vy;if(this.x>canvas.width)this.x=0;if(this.y>canvas.height)this.y=0;} draw(){ctx.fillStyle='rgba(0,210,255,0.3)';ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill();}}
+        for(let i=0;i<80;i++)particles.push(new P());
+        function anim(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.update();p.draw();});requestAnimationFrame(anim);}
+        anim();
+
+        // Chat Toggle
+        function toggleChat() {
+            let c = document.getElementById("chatbot-container");
+            c.style.display = c.style.display === "flex" ? "none" : "flex";
+        }
+        function handleKeyPress(e) { if(e.key==="Enter") sendMessage(); }
+    </script>
+</body>
+</html>
