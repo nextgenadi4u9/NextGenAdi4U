@@ -1,0 +1,165 @@
+<div id="chatbot-container">
+    <div id="chat-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <i class="fas fa-robot" style="color:#00d2ff; font-size:1.5rem;"></i>
+            <div>
+                <h4 style="margin:0; font-size:1rem;">NextGen AI</h4>
+                <span style="font-size:0.7rem; color:#0f0;">● Online</span>
+            </div>
+        </div>
+        <i class="fas fa-times" onclick="toggleChat()" style="cursor:pointer;"></i>
+    </div>
+    
+    <div id="chat-body">
+        <div class="bot-msg">Hello! I am NextGen AI. Ask me for <b>Softwares, Reels, Courses</b> or <b>Coding basics</b>! 🤖</div>
+    </div>
+
+    <div id="chat-footer">
+        <input type="text" id="chatInput" placeholder="Type here..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+
+<button id="chat-btn" onclick="toggleChat()">
+    <i class="fas fa-comment-dots"></i>
+</button>
+
+<style>
+    /* Floating Button */
+    #chat-btn {
+        position: fixed; bottom: 30px; right: 30px;
+        width: 60px; height: 60px; border-radius: 50%;
+        background: linear-gradient(135deg, #00d2ff, #0055ff);
+        color: white; border: none; font-size: 1.5rem;
+        cursor: pointer; z-index: 10000;
+        box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
+        transition: 0.3s; animation: floatBot 3s infinite ease-in-out;
+    }
+    #chat-btn:hover { transform: scale(1.1); }
+
+    /* Chat Container (Hidden by default) */
+    #chatbot-container {
+        position: fixed; bottom: 100px; right: 30px;
+        width: 350px; height: 500px;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 210, 255, 0.3);
+        border-radius: 20px;
+        display: none; flex-direction: column;
+        z-index: 10001; overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        animation: slideUp 0.4s ease;
+    }
+
+    /* Header */
+    #chat-header {
+        background: rgba(0, 210, 255, 0.1);
+        padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.1);
+        display: flex; justify-content: space-between; align-items: center;
+        color: white;
+    }
+
+    /* Body */
+    #chat-body {
+        flex: 1; padding: 15px; overflow-y: auto;
+        display: flex; flex-direction: column; gap: 10px;
+        scrollbar-width: thin;
+    }
+
+    /* Footer */
+    #chat-footer {
+        padding: 10px; border-top: 1px solid rgba(255,255,255,0.1);
+        display: flex; gap: 10px;
+    }
+    #chatInput {
+        flex: 1; background: rgba(255,255,255,0.05); border: none;
+        padding: 10px; border-radius: 50px; color: white; outline: none;
+    }
+    #chat-footer button {
+        background: #00d2ff; border: none; width: 40px; height: 40px;
+        border-radius: 50%; cursor: pointer; color: black;
+    }
+
+    /* Messages */
+    .user-msg {
+        align-self: flex-end; background: #00d2ff; color: #000;
+        padding: 8px 15px; border-radius: 15px 15px 0 15px;
+        max-width: 80%; font-size: 0.9rem; font-weight: 600;
+    }
+    .bot-msg {
+        align-self: flex-start; background: rgba(255,255,255,0.1); color: #fff;
+        padding: 8px 15px; border-radius: 15px 15px 15px 0;
+        max-width: 80%; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.1);
+    }
+    .bot-link {
+        color: #00d2ff; text-decoration: underline; cursor: pointer;
+    }
+
+    @keyframes floatBot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+
+<script>
+    // --- 1. DATA CENTER (इथे तू डेटा ॲड करू शकतोस) ---
+    const knowledgeBase = [
+        { keywords: ["hello", "hi", "hey"], response: "Hello Boss! Welcome to NextGenAdi4U. How can I help you?" },
+        { keywords: ["who are you", "bot"], response: "I am NextGen AI, designed by Adi to help you find premium resources." },
+        { keywords: ["price", "cost", "money"], response: "Everything here is mostly FREE or Premium! Check specific sections." },
+        
+        // Software Links
+        { keywords: ["premiere", "video edit"], response: "Best Video Editor: <a href='softwares.html' class='bot-link'>Adobe Premiere Pro 2024</a>" },
+        { keywords: ["photoshop", "photo edit"], response: "Best Photo Editor: <a href='softwares.html' class='bot-link'>Adobe Photoshop 2024</a>" },
+        { keywords: ["office", "word", "excel"], response: "Productivity: <a href='softwares.html' class='bot-link'>MS Office 2021</a>" },
+        
+        // Reels Links
+        { keywords: ["reel", "bundle", "insta"], response: "Viral Content: <a href='reels.html' class='bot-link'>Click here for 1000+ Reels Bundles</a>" },
+        { keywords: ["ai reel", "worker"], response: "Trending: <a href='reels.html' class='bot-link'>Mini AI Worker Bundle</a>" },
+        
+        // Coding Help
+        { keywords: ["html code", "html basic"], response: "HTML is the skeleton of a page.<br><code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>" },
+        { keywords: ["css code", "style"], response: "CSS designs the page.<br><code>body { background: black; color: white; }</code>" },
+        { keywords: ["js", "javascript"], response: "JS adds logic.<br><code>alert('Welcome to NextGen!');</code>" },
+        
+        // Hire Me
+        { keywords: ["website", "hire", "design"], response: "Want a website? I can build one for you! <a href='https://t.me/nextgenadi4u' class='bot-link'>Message Me on Telegram</a>" }
+    ];
+
+    // --- 2. FUNCTIONS ---
+    function toggleChat() {
+        const chat = document.getElementById("chatbot-container");
+        chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+    }
+
+    function handleKeyPress(e) {
+        if (e.key === "Enter") sendMessage();
+    }
+
+    function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const msg = input.value.trim().toLowerCase();
+        const chatBody = document.getElementById("chat-body");
+
+        if (msg === "") return;
+
+        // User Message Add
+        chatBody.innerHTML += `<div class="user-msg">${input.value}</div>`;
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // Bot Thinking Effect
+        setTimeout(() => {
+            let reply = "Sorry, I didn't understand. Try searching for 'Softwares', 'Reels' or 'HTML Code'.";
+            
+            // Search Logic
+            for (let item of knowledgeBase) {
+                if (item.keywords.some(k => msg.includes(k))) {
+                    reply = item.response;
+                    break;
+                }
+            }
+
+            chatBody.innerHTML += `<div class="bot-msg">${reply}</div>`;
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 500);
+    }
+</script>
