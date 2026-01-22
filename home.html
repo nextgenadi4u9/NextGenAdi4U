@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685"
-     crossorigin="anonymous"></script>
+      crossorigin="anonymous"></script>
 
     <title>Home - NextGenAdi4U</title>
     
@@ -146,7 +146,7 @@
             border-color: #00d2ff;
         }
 
-        /* --- ✅ NEW HIRE ME SECTION CSS (फक्त हे ॲड केले) --- */
+        /* --- HIRE ME SECTION CSS --- */
         .hire-section {
             max-width: 900px;
             margin: 60px auto 20px;
@@ -229,6 +229,139 @@
             .category-card:hover { transform: translateY(-5px); }
             .hire-title { font-size: 1.5rem; }
         }
+
+        /* --- 🤖 CHATBOT CSS START --- */
+        .chat-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #00d2ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
+            z-index: 10000;
+            transition: transform 0.3s;
+            animation: bounce 2s infinite;
+        }
+        .chat-toggle-btn:hover { transform: scale(1.1); }
+        .chat-toggle-btn i { font-size: 30px; color: #000; }
+        
+        .chat-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            max-width: 90vw;
+            height: 500px;
+            background: rgba(0, 15, 30, 0.95);
+            border: 2px solid #00d2ff;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 9999;
+            transform: scale(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-in-out;
+            backdrop-filter: blur(10px);
+        }
+        
+        .chat-container.active { transform: scale(1); }
+        
+        .chat-header {
+            background: linear-gradient(90deg, #00d2ff, #007bb5);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000;
+            font-weight: bold;
+        }
+        .close-chat { cursor: pointer; font-size: 1.2rem; }
+        
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: #00d2ff #000;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+        .bot-msg {
+            background: rgba(0, 210, 255, 0.2);
+            color: #fff;
+            align-self: flex-start;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            border-bottom-left-radius: 0;
+        }
+        .user-msg {
+            background: #00d2ff;
+            color: #000;
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+            font-weight: 500;
+        }
+        
+        .chat-input-area {
+            padding: 10px;
+            border-top: 1px solid rgba(0, 210, 255, 0.3);
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .chat-input-area input {
+            flex: 1;
+            background: transparent;
+            border: 1px solid #00d2ff;
+            padding: 10px;
+            border-radius: 20px;
+            color: #fff;
+            outline: none;
+        }
+        
+        .chat-input-area button {
+            background: #00d2ff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .chat-input-area button:hover { background: #fff; }
+        
+        .bot-link {
+            color: #00d2ff;
+            text-decoration: underline;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+        /* --- 🤖 CHATBOT CSS END --- */
     </style>
 </head>
 <body>
@@ -406,6 +539,25 @@
         </div>
     </footer>
 
+    <div class="chat-toggle-btn" onclick="toggleChat()">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <div class="chat-container" id="chatBox">
+        <div class="chat-header">
+            <span>NextGen Assistant 🤖</span>
+            <span class="close-chat" onclick="toggleChat()"><i class="fas fa-times"></i></span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="message bot-msg">
+                Hello! I am Nextgenadi4u's Assistant. How can I help you? Ask me for Games, Softwares, or Social Links!
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <script>
@@ -472,6 +624,119 @@
 
         initParticles();
         animateParticles();
+
+        // --- 🤖 CHATBOT LOGIC START 🤖 ---
+        function toggleChat() {
+            const chatBox = document.getElementById("chatBox");
+            chatBox.classList.toggle("active");
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === "Enter") {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const inputField = document.getElementById("userInput");
+            const chatBody = document.getElementById("chatBody");
+            const userText = inputField.value.trim();
+
+            if (userText === "") return;
+
+            // User Message
+            const userDiv = document.createElement("div");
+            userDiv.className = "message user-msg";
+            userDiv.innerText = userText;
+            chatBody.appendChild(userDiv);
+
+            inputField.value = "";
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Bot Response (Simulated Delay)
+            setTimeout(() => {
+                const botDiv = document.createElement("div");
+                botDiv.className = "message bot-msg";
+                botDiv.innerHTML = getBotResponse(userText.toLowerCase());
+                chatBody.appendChild(botDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 500);
+        }
+
+        function getBotResponse(input) {
+            // Greetings
+            if (input.includes("hello") || input.includes("hi") || input.includes("hey")) {
+                return "Hello! Welcome to NextGenAdi4U. How can I help you today?";
+            } 
+            else if (input.includes("how are you")) {
+                return "I'm just a bot, but I'm functioning perfectly! How can I assist you?";
+            }
+            else if (input.includes("good morning")) {
+                return "Good Morning! Ready to explore some games and tools?";
+            }
+            else if (input.includes("good evening")) {
+                return "Good Evening! How can I help you tonight?";
+            }
+            else if (input.includes("good night")) {
+                return "Good Night! Sleep well and come back for more gaming resources tomorrow.";
+            }
+            
+            // Identity & Owner
+            else if (input.includes("who are you") || input.includes("your name")) {
+                return "Hello, I am Nextgenadi4u's Assistant, how can I assist you? Tell me what you need.";
+            }
+            else if (input.includes("owner") || input.includes("creator") || input.includes("made this")) {
+                return "This website is owned and developed by NextGenAdi. He is a passionate developer and gamer.";
+            }
+
+            // Website Categories (Logic for links)
+            else if (input.includes("pc game") || input.includes("computer game")) {
+                return "You can find high-graphics PC Games here: <a href='pcgames.html' class='bot-link'>Open PC Games</a>";
+            }
+            else if (input.includes("mobile game") || input.includes("android game")) {
+                return "Check out trending Mobile Games here: <a href='mobilegames.html' class='bot-link'>Open Mobile Games</a>";
+            }
+            else if (input.includes("software") || input.includes("pc app") || input.includes("windows")) {
+                return "Get premium PC Softwares here: <a href='softwares.html' class='bot-link'>Open Softwares</a>";
+            }
+            else if (input.includes("apk") || input.includes("mod") || input.includes("app")) {
+                return "Download Modded & Pro Mobile APKs here: <a href='mobileapks.html' class='bot-link'>Open APKs</a>";
+            }
+            else if (input.includes("reels") || input.includes("shorts") || input.includes("instagram")) {
+                return "Get viral Reels Bundles for creators here: <a href='reels.html' class='bot-link'>Open Reels Bundle</a>";
+            }
+            else if (input.includes("editing") || input.includes("lut") || input.includes("overlay")) {
+                return "Download Editing Materials (LUTs, Effects) here: <a href='editing.html' class='bot-link'>Open Editing Materials</a>";
+            }
+            else if (input.includes("steam") || input.includes("account")) {
+                return "Get Premium Steam Accounts here: <a href='steam.html' class='bot-link'>Open Steam Section</a>";
+            }
+            else if (input.includes("course") || input.includes("learning") || input.includes("study")) {
+                return "Learn and Grow with our Courses here: <a href='courses.html' class='bot-link'>Open Courses</a>";
+            }
+            else if (input.includes("magic") || input.includes("cheat") || input.includes("trick")) {
+                return "Explore Game Magics, Cheats & Tricks here: <a href='gamemagics.html' class='bot-link'>Open Game Magics</a>";
+            }
+            else if (input.includes("quiz") || input.includes("test")) {
+                return "Test your skills with our Code Master Quiz: <a href='game.html' class='bot-link'>Play Quiz</a>";
+            }
+
+            // Social Links
+            else if (input.includes("social") || input.includes("contact") || input.includes("youtube") || input.includes("telegram") || input.includes("discord")) {
+                return "Connect with us on Social Media:<br>" +
+                       "<a href='https://t.me/nextgenadi4u' target='_blank' class='bot-link'>Telegram</a>" +
+                       "<a href='https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA' target='_blank' class='bot-link'>YouTube</a>" +
+                       "<a href='https://discord.gg/jG2fpvjwnk' target='_blank' class='bot-link'>Discord</a>" +
+                       "<a href='https://www.instagram.com/nextgen.adi4u' target='_blank' class='bot-link'>Instagram</a>";
+            }
+
+            // Default Fallback
+            else {
+                return "I'm not sure I understand. Try asking for 'PC Games', 'Softwares', 'Mobile APKs', or 'Social Links'.";
+            }
+        }
+        // --- 🤖 CHATBOT LOGIC END 🤖 ---
+
     </script>
 </body>
 </html>
