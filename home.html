@@ -146,6 +146,93 @@
             border-color: #00d2ff;
         }
 
+        /* --- 💎 PREMIUM TEMPLATES SECTION CSS (UNIQUE) 💎 --- */
+        .premium-container {
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .premium-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(50, 40, 0, 0.9));
+            border: 2px solid #FFD700; /* Gold Border */
+            border-radius: 15px;
+            padding: 30px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+            transition: all 0.4s ease;
+            animation: goldPulse 3s infinite;
+        }
+
+        .premium-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, #000, #3a2e00);
+        }
+
+        .prem-content { display: flex; align-items: center; gap: 20px; position: relative; z-index: 2; }
+        
+        .prem-icon {
+            font-size: 3rem;
+            color: #FFD700;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .prem-text h3 {
+            color: #FFD700;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .prem-text p { color: #fff; font-size: 1rem; }
+
+        .buy-btn {
+            background: #FFD700;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            display: flex; align-items: center; gap: 10px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px #FFD700;
+        }
+
+        .premium-card:hover .buy-btn {
+            background: #fff;
+            color: #d4af37;
+            transform: scale(1.1);
+        }
+
+        .pro-badge {
+            position: absolute;
+            top: 0; left: 0;
+            background: #FFD700;
+            color: #000;
+            font-weight: bold;
+            font-size: 0.8rem;
+            padding: 5px 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        @keyframes goldPulse { 0%, 100% { border-color: #FFD700; } 50% { border-color: #fff; } }
+
+        @media (max-width: 768px) {
+            .premium-card { flex-direction: column; text-align: center; gap: 20px; }
+            .prem-content { flex-direction: column; }
+        }
+
         /* --- HIRE ME SECTION CSS --- */
         .hire-section {
             max-width: 900px;
@@ -492,6 +579,22 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
+        </section>
+
+        <section class="premium-container" data-aos="zoom-in">
+            <a href="webtemplates.html" class="premium-card">
+                <div class="pro-badge">BEST SELLER</div>
+                <div class="prem-content">
+                    <div class="prem-icon"><i class="fas fa-code"></i></div>
+                    <div class="prem-text">
+                        <h3>Premium Web Templates</h3>
+                        <p>Get Responsive, Professional & Ready-to-use HTML Websites.</p>
+                    </div>
+                </div>
+                <div class="buy-btn">
+                    View Now <i class="fas fa-angle-double-right"></i>
+                </div>
+            </a>
         </section>
 
         <section class="hire-section" data-aos="flip-up">
