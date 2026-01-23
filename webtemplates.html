@@ -11,11 +11,12 @@
 
     <style>
         /* --- PAGE SPECIFIC STYLES --- */
-        body { background-color: #050505; color: white; overflow-x: hidden; }
+        body { background-color: #050505; color: white; overflow-x: hidden; font-family: 'Poppins', sans-serif; }
         
-        /* --- TAB NAVIGATION --- */
+        /* --- TAB NAVIGATION (Bouttons) --- */
         .tab-container {
             display: flex; justify-content: center; gap: 20px; margin: 30px 0;
+            flex-wrap: wrap;
         }
         .tab-btn {
             background: transparent;
@@ -29,7 +30,8 @@
             font-weight: bold;
             display: flex; align-items: center; gap: 10px;
         }
-        .tab-btn.active {
+        /* Active Button Style */
+        .tab-btn.active-btn {
             border-color: #00d2ff;
             background: rgba(0, 210, 255, 0.1);
             color: #fff;
@@ -37,13 +39,26 @@
         }
         .tab-btn:hover { color: white; border-color: #fff; }
 
-        /* --- SECTIONS --- */
-        .template-section { display: none; padding: 20px 5%; }
-        .template-section.active { display: grid; }
+        /* --- SECTIONS (IMPORTANT LOGIC) --- */
+        /* By default, hide ALL sections */
+        .template-section { 
+            display: none; 
+            padding: 20px 5%; 
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        /* Only show the section that has the 'active-sec' class */
+        .template-section.active-sec { 
+            display: grid; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         /* --- 🛒 SHOPIFY CARD STYLES --- */
         .shopify-grid {
-            display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
@@ -104,7 +119,6 @@
 
         /* --- 💻 GITHUB CARD STYLES --- */
         .github-grid {
-            display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 25px;
         }
@@ -171,29 +185,27 @@
         </section>
 
         <div class="tab-container">
-            <button class="tab-btn active" onclick="showTab('shopify')">
+            <button class="tab-btn active-btn" onclick="openTab(event, 'shopifySection')">
                 <i class="fab fa-shopify"></i> Shopify Themes (1000+)
             </button>
-            <button class="tab-btn" onclick="showTab('github')">
+            <button class="tab-btn" onclick="openTab(event, 'githubSection')">
                 <i class="fab fa-github"></i> GitHub Projects
             </button>
         </div>
 
-        <section id="shopify" class="template-section shopify-grid active">
+        <section id="shopifySection" class="template-section shopify-grid active-sec">
             
             <div class="shopify-card" data-aos="fade-up">
                 <div class="image-slider">
                     <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe Imgs</div>
-                    <img src="shop1_1.jpg" class="slider-img" alt="Theme 1">
-                    <img src="shop1_2.jpg" class="slider-img" alt="Theme 2">
-                    <img src="shop1_3.jpg" class="slider-img" alt="Theme 3">
-                    <img src="https://via.placeholder.com/300x200/000000/FFFFFF?text=Image+4" class="slider-img">
-                    <img src="https://via.placeholder.com/300x200/000000/FFFFFF?text=Image+5" class="slider-img">
+                    <img src="S1.jpg" class="slider-img">
+                    <img src="S2.png" class="slider-img">
+                    <img src="S3.jpg" class="slider-img">
                 </div>
                 <div class="card-details">
                     <div class="card-title">Kalles - Versatile Shopify Theme</div>
                     <span class="card-price">₹499 / Lifetime</span>
-                    <p class="card-desc">The best-selling multipurpose Shopify theme. Includes 20+ demos, fast loading, and mobile optimized.</p>
+                    <p class="card-desc">Best-selling multipurpose theme. 20+ demos, fast loading.</p>
                     <div class="btn-group">
                         <a href="#" class="card-btn preview-btn"><i class="fas fa-eye"></i> Preview</a>
                         <a href="#" class="card-btn buy-btn"><i class="fas fa-download"></i> Buy Now</a>
@@ -201,17 +213,16 @@
                 </div>
             </div>
 
-            <div class="shopify-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="shopify-card" data-aos="fade-up">
                 <div class="image-slider">
                     <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe Imgs</div>
-                    <img src="shop2_1.jpg" class="slider-img" alt="Theme">
-                    <img src="shop2_2.jpg" class="slider-img" alt="Theme">
-                    <img src="https://via.placeholder.com/300x200/111/fff?text=More+Images" class="slider-img">
+                    <img src="S5.png" class="slider-img">
+                    <img src="S6.png" class="slider-img">
                 </div>
                 <div class="card-details">
-                    <div class="card-title">Ella - Multipurpose Theme</div>
+                    <div class="card-title">Ella - Fashion Theme</div>
                     <span class="card-price">₹599 / Lifetime</span>
-                    <p class="card-desc">All-in-one Shopify Template with multiple layouts and styles. Perfect for fashion & electronics.</p>
+                    <p class="card-desc">Perfect for fashion & electronics stores.</p>
                     <div class="btn-group">
                         <a href="#" class="card-btn preview-btn"><i class="fas fa-eye"></i> Preview</a>
                         <a href="#" class="card-btn buy-btn"><i class="fas fa-download"></i> Buy Now</a>
@@ -219,9 +230,9 @@
                 </div>
             </div>
 
-            </section>
+        </section>
 
-        <section id="github" class="template-section github-grid">
+        <section id="githubSection" class="template-section github-grid">
             
             <div class="github-card" data-aos="zoom-in">
                 <div class="git-header">
@@ -231,16 +242,15 @@
                         <span>v1.0.2</span>
                     </div>
                 </div>
-                <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">A clean, dark-themed portfolio website template for developers. Fully responsive.</p>
+                <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">Dark-themed portfolio website template.</p>
                 <div class="tech-stack">
                     <span class="tech-badge">HTML5</span>
                     <span class="tech-badge">CSS3</span>
-                    <span class="tech-badge">JS</span>
                 </div>
                 <a href="#" class="git-download"><i class="fas fa-file-archive"></i> Download ZIP</a>
             </div>
 
-            <div class="github-card" data-aos="zoom-in" data-aos-delay="100">
+            <div class="github-card" data-aos="zoom-in">
                 <div class="git-header">
                     <i class="fab fa-react git-icon" style="color: #61dafb;"></i>
                     <div class="git-title">
@@ -248,27 +258,10 @@
                         <span>v2.1</span>
                     </div>
                 </div>
-                <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">Full stack e-commerce app template using React JS and Firebase.</p>
+                <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">Full stack e-commerce app template.</p>
                 <div class="tech-stack">
                     <span class="tech-badge">React</span>
                     <span class="tech-badge">NodeJS</span>
-                    <span class="tech-badge">Redux</span>
-                </div>
-                <a href="#" class="git-download"><i class="fas fa-file-archive"></i> Download ZIP</a>
-            </div>
-
-             <div class="github-card" data-aos="zoom-in" data-aos-delay="200">
-                <div class="git-header">
-                    <i class="fab fa-python git-icon" style="color: #ffe873;"></i>
-                    <div class="git-title">
-                        <h3>Python AI Chatbot</h3>
-                        <span>v1.0</span>
-                    </div>
-                </div>
-                <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">Simple AI chatbot source code using Python and TensorFlow.</p>
-                <div class="tech-stack">
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">AI/ML</span>
                 </div>
                 <a href="#" class="git-download"><i class="fas fa-file-archive"></i> Download ZIP</a>
             </div>
@@ -287,17 +280,23 @@
     <script>
         AOS.init({ duration: 800, once: true });
 
-        // --- TAB SWITCHING LOGIC ---
-        function showTab(tabName) {
-            // Hide all sections
-            document.querySelectorAll('.template-section').forEach(sec => sec.classList.remove('active'));
-            // Remove active class from buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        // --- 🛠️ FIXED TAB LOGIC ---
+        function openTab(evt, sectionId) {
+            // 1. Hide all elements with class="template-section"
+            var sections = document.getElementsByClassName("template-section");
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove("active-sec");
+            }
 
-            // Show selected section
-            document.getElementById(tabName).classList.add('active');
-            // Add active class to clicked button (This logic finds the button by text/onclick - simplified approach)
-            event.currentTarget.classList.add('active');
+            // 2. Remove "active-btn" class from all buttons
+            var tablinks = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active-btn");
+            }
+
+            // 3. Show the current section, and add an "active-btn" class to the button that opened the tab
+            document.getElementById(sectionId).classList.add("active-sec");
+            evt.currentTarget.classList.add("active-btn");
         }
 
         // --- PARTICLE BACKGROUND ---
