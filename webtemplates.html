@@ -11,11 +11,49 @@
 
     <style>
         /* --- PAGE SPECIFIC STYLES --- */
-        body { background-color: #050505; color: white; overflow-x: hidden; font-family: 'Poppins', sans-serif; }
+        body { 
+            background-color: #050505; 
+            color: white; 
+            overflow-x: hidden; 
+            font-family: 'Poppins', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; /* Footer will stay at bottom */
+        }
         
-        /* --- TAB NAVIGATION (Bouttons) --- */
+        /* --- HEADER FIX --- */
+        header {
+            position: fixed; /* Ensures it stays top */
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.9); /* Dark background so content doesn't show behind */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header-container {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%;
+        }
+
+        /* --- HERO SECTION FIX (TITLE) --- */
+        .hero {
+            text-align: center;
+            /* ⚠️ IMPORTANT: Increased top padding so title doesn't hide behind header */
+            padding-top: 140px; 
+            padding-bottom: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            flex: 1; /* Pushes footer down */
+        }
+
+        /* --- TAB NAVIGATION --- */
         .tab-container {
-            display: flex; justify-content: center; gap: 20px; margin: 30px 0;
+            display: flex; justify-content: center; gap: 20px; margin-bottom: 40px;
             flex-wrap: wrap;
         }
         .tab-btn {
@@ -30,7 +68,6 @@
             font-weight: bold;
             display: flex; align-items: center; gap: 10px;
         }
-        /* Active Button Style */
         .tab-btn.active-btn {
             border-color: #00d2ff;
             background: rgba(0, 210, 255, 0.1);
@@ -39,25 +76,20 @@
         }
         .tab-btn:hover { color: white; border-color: #fff; }
 
-        /* --- SECTIONS (IMPORTANT LOGIC) --- */
-        /* By default, hide ALL sections */
+        /* --- SECTIONS --- */
         .template-section { 
             display: none; 
-            padding: 20px 5%; 
+            padding: 0 5%; 
             animation: fadeIn 0.5s ease-in-out;
         }
-        
-        /* Only show the section that has the 'active-sec' class */
-        .template-section.active-sec { 
-            display: grid; 
-        }
+        .template-section.active-sec { display: grid; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- 🛒 SHOPIFY CARD STYLES --- */
+        /* --- SHOPIFY GRID --- */
         .shopify-grid {
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
@@ -77,28 +109,20 @@
             box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
         }
 
-        /* Image Slider inside Card */
         .image-slider {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Firefox */
-            height: 200px;
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            scrollbar-width: none; height: 220px;
         }
-        .image-slider::-webkit-scrollbar { display: none; } /* Chrome */
+        .image-slider::-webkit-scrollbar { display: none; }
         
         .slider-img {
-            min-width: 100%;
-            height: 100%;
-            object-fit: cover;
-            scroll-snap-align: start;
+            min-width: 100%; height: 100%; object-fit: cover; scroll-snap-align: start;
         }
         
         .swipe-hint {
             position: absolute; top: 10px; right: 10px;
             background: rgba(0,0,0,0.7); padding: 5px 10px;
-            border-radius: 20px; font-size: 0.7rem; color: #fff;
-            pointer-events: none;
+            border-radius: 20px; font-size: 0.7rem; color: #fff; pointer-events: none;
         }
 
         .card-details { padding: 20px; }
@@ -109,28 +133,22 @@
         .btn-group { display: flex; gap: 10px; }
         .card-btn {
             flex: 1; padding: 10px; border-radius: 5px; text-align: center;
-            text-decoration: none; font-weight: bold; font-size: 0.9rem;
-            transition: 0.3s;
+            text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: 0.3s;
         }
         .preview-btn { background: #333; color: white; }
         .preview-btn:hover { background: #555; }
         .buy-btn { background: #00d2ff; color: black; }
         .buy-btn:hover { background: white; }
 
-        /* --- 💻 GITHUB CARD STYLES --- */
+        /* --- GITHUB GRID --- */
         .github-grid {
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 25px;
         }
 
         .github-card {
-            background: #0d1117; /* GitHub Dark BG */
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            padding: 25px;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
+            background: #0d1117; border: 1px solid #30363d;
+            border-radius: 10px; padding: 25px; transition: 0.3s;
         }
         .github-card:hover { border-color: #2ea44f; box-shadow: 0 5px 20px rgba(46, 164, 79, 0.2); }
 
@@ -145,15 +163,24 @@
         .git-download {
             display: block; width: 100%; padding: 12px;
             background: #238636; color: white; text-align: center;
-            border-radius: 6px; text-decoration: none; font-weight: bold;
-            transition: 0.3s;
+            border-radius: 6px; text-decoration: none; font-weight: bold; transition: 0.3s;
         }
         .git-download:hover { background: #2ea44f; }
+
+        /* --- FOOTER FIX --- */
+        footer {
+            /* ⚠️ IMPORTANT: Separates footer from content */
+            margin-top: 100px; 
+            padding: 30px 0;
+            background: #020202;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
             .tab-container { flex-direction: column; padding: 0 20px; }
             .tab-btn { justify-content: center; }
+            .hero { padding-top: 120px; } /* Adjust for mobile header */
         }
     </style>
 </head>
@@ -179,7 +206,7 @@
     </header>
 
     <main>
-        <section class="hero page-hero" style="text-align: center; padding: 40px 20px;">
+        <section class="hero">
             <h1 class="main-heading">Web Templates Market</h1>
             <p class="sub-text">Premium Shopify Themes & Open Source GitHub Projects</p>
         </section>
@@ -197,15 +224,15 @@
             
             <div class="shopify-card" data-aos="fade-up">
                 <div class="image-slider">
-                    <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe Imgs</div>
-                    <img src="S1.jpg" class="slider-img">
-                    <img src="S2.png" class="slider-img">
-                    <img src="S3.jpg" class="slider-img">
+                    <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
+                    <img src="S1.jpg" class="slider-img" alt="Theme 1">
+                    <img src="S2.png" class="slider-img" alt="Theme 2">
+                    <img src="S3.jpg" class="slider-img" alt="Theme 3">
                 </div>
                 <div class="card-details">
-                    <div class="card-title">Kalles - Versatile Shopify Theme</div>
+                    <div class="card-title">Kalles - Premium Shopify Theme</div>
                     <span class="card-price">₹499 / Lifetime</span>
-                    <p class="card-desc">Best-selling multipurpose theme. 20+ demos, fast loading.</p>
+                    <p class="card-desc">Best-selling multipurpose theme with 20+ demos.</p>
                     <div class="btn-group">
                         <a href="#" class="card-btn preview-btn"><i class="fas fa-eye"></i> Preview</a>
                         <a href="#" class="card-btn buy-btn"><i class="fas fa-download"></i> Buy Now</a>
@@ -215,7 +242,7 @@
 
             <div class="shopify-card" data-aos="fade-up">
                 <div class="image-slider">
-                    <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe Imgs</div>
+                    <div class="swipe-hint"><i class="fas fa-arrows-alt-h"></i> Swipe</div>
                     <img src="S5.png" class="slider-img">
                     <img src="S6.png" class="slider-img">
                 </div>
@@ -271,7 +298,7 @@
     </main>
 
     <footer>
-        <div class="footer-bottom" style="text-align: center; padding: 20px; border-top: 1px solid #333; margin-top: 40px;">
+        <div class="footer-bottom" style="text-align: center;">
             <p>&copy; 2026 NextGenAdi4U. All Rights Reserved.</p>
         </div>
     </footer>
@@ -280,26 +307,20 @@
     <script>
         AOS.init({ duration: 800, once: true });
 
-        // --- 🛠️ FIXED TAB LOGIC ---
         function openTab(evt, sectionId) {
-            // 1. Hide all elements with class="template-section"
             var sections = document.getElementsByClassName("template-section");
             for (var i = 0; i < sections.length; i++) {
                 sections[i].classList.remove("active-sec");
             }
-
-            // 2. Remove "active-btn" class from all buttons
             var tablinks = document.getElementsByClassName("tab-btn");
             for (var i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove("active-btn");
             }
-
-            // 3. Show the current section, and add an "active-btn" class to the button that opened the tab
             document.getElementById(sectionId).classList.add("active-sec");
             evt.currentTarget.classList.add("active-btn");
         }
 
-        // --- PARTICLE BACKGROUND ---
+        // Particle Background
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
