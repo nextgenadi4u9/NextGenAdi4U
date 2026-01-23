@@ -7,18 +7,142 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685"
      crossorigin="anonymous"></script>
     <title>Softwares - NextGenAdi4U</title>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    
     <style>
-        /* --- NEW PARTICLE BACKGROUND CSS --- */
+        /* --- BACKGROUND --- */
+        body {
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
         #dustCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2; /* कंटेंटच्या मागे */
-            background: #050505; /* गडद काळा बॅकग्राउंड */
+            z-index: -2;
+            background: #050505;
+        }
+
+        /* --- GRID CONTAINER FIX --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- ✨ ANIMATED CARD STYLES ✨ --- */
+        .item-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Hover Zoom & Glow Effect */
+        .item-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #00d2ff;
+            box-shadow: 0 10px 40px -10px rgba(0, 210, 255, 0.3);
+            background: rgba(30, 30, 30, 0.8);
+        }
+
+        /* Image Zoom Animation */
+        .card-img {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            aspect-ratio: 16/9; /* Consistent Size */
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .item-card:hover .card-img img {
+            transform: scale(1.15);
+        }
+
+        /* Typography */
+        .item-card h3 {
+            font-size: 1.2rem;
+            margin: 5px 0;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .item-card p {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        /* Button Animation */
+        .download-btn {
+            margin-top: auto;
+            background: transparent;
+            color: #00d2ff;
+            border: 2px solid #00d2ff;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            background: #00d2ff;
+            color: #000;
+            box-shadow: 0 0 20px #00d2ff;
+            transform: scale(1.05);
+        }
+
+        /* --- Header & Search Fixes --- */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .brand-text { color: white; margin: 0; }
+        .brand-highlight { color: #00d2ff; }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .search-bar { width: 100%; display: flex; }
+            .search-bar input { flex: 1; }
         }
     </style>
 </head>
@@ -29,7 +153,7 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="home.html" class="back-btn">
+                <a href="home.html" class="back-btn" style="color: #00d2ff; font-size: 1.2rem; margin-right: 15px;">
                     <i class="fas fa-arrow-left"></i>
                 </a>
                 
@@ -38,27 +162,26 @@
                 </a>
             </div>
 
-            <div class="social-nav">
-                <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/nextgen.adi4u?igsh=bGN5N3pkbWdkZjhl&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/nextgenadi4u" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="https://discord.gg/jG2fpvjwnk" target="_blank"><i class="fab fa-discord"></i></a>
+            <div class="social-nav" style="display: flex; gap: 15px;">
+                <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank" style="color:#fff"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/nextgen.adi4u?igsh=bGN5N3pkbWdkZjhl&utm_source=qr" target="_blank" style="color:#fff"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/nextgenadi4u" target="_blank" style="color:#fff"><i class="fab fa-telegram"></i></a>
             </div>
 
-            <div class="search-bar">
-                <input type="text" placeholder="Search Softwares...">
-                <button><i class="fas fa-search"></i></button>
+            <div class="search-bar" style="background:rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #333;">
+                <input type="text" placeholder="Search Softwares..." style="background:transparent; border:none; color:white; outline:none;">
+                <button style="background:transparent; border:none; color:#00d2ff;"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero page-hero">
-            <h1 class="main-heading">Premium PC Softwares</h1>
-            <p class="sub-text">Download Full Version & Pre-Activated Softwares</p>
+        <section class="hero page-hero" style="text-align: center; padding: 40px 20px;">
+            <h1 class="main-heading" style="font-size: 2.5rem; color: #fff; text-shadow: 0 0 10px #00d2ff;">Premium PC Softwares</h1>
+            <p class="sub-text" style="color: #ccc;">Download Full Version & Pre-Activated Softwares</p>
         </section>
 
-        <section class="grid-container">
+        <section class="grid-container" id="softwareGrid">
             
             <div class="item-card">
                 <div class="card-img"><img src="S27.png" alt="Premiere Pro"></div>
@@ -298,14 +421,33 @@
     </main>
 
     <footer>
-        <div class="footer-content">
+        <div class="footer-content" style="text-align: center; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px;">
             <div class="footer-bottom">
                 <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
+        // --- INITIALIZE ANIMATIONS ---
+        document.addEventListener("DOMContentLoaded", function() {
+            // Apply Fade Up Animation to all cards
+            const cards = document.querySelectorAll('.item-card');
+            cards.forEach((card, index) => {
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', (index % 4) * 100); // Stagger effect
+            });
+
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+        });
+
         // --- SEARCH LOGIC ---
         document.addEventListener("DOMContentLoaded", function() {
             const searchInput = document.querySelector('.search-bar input');
