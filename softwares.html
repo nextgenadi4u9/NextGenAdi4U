@@ -10,16 +10,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* --- NEW PARTICLE BACKGROUND CSS --- */
+        /* --- GLOBAL PARTICLE BACKGROUND CSS --- */
         #dustCanvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2; /* कंटेंटच्या मागे */
-            background: #050505; /* गडद काळा बॅकग्राउंड */
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: #050505;
         }
+
+        /* --- ADSENSE FRIENDLY EXTRA CSS --- */
+        .info-btn {
+            background: rgba(0, 210, 255, 0.1);
+            color: #00d2ff;
+            border: 1px solid #00d2ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .info-btn:hover { background: #00d2ff; color: #000; }
+
+        .seo-content {
+            display: none;
+            text-align: left;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #ccc;
+            line-height: 1.6;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .seo-content h4 { color: #00d2ff; margin-bottom: 5px; }
+        .seo-content ul { padding-left: 15px; margin-bottom: 10px; }
+        
+        .item-card { height: auto !important; min-height: 400px; display: flex; flex-direction: column; justify-content: space-between; }
     </style>
 </head>
 <body>
@@ -32,7 +60,6 @@
                 <a href="home.html" class="back-btn">
                     <i class="fas fa-arrow-left"></i>
                 </a>
-                
                 <a href="home.html" style="text-decoration: none;">
                     <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
                 </a>
@@ -55,7 +82,7 @@
     <main>
         <section class="hero page-hero">
             <h1 class="main-heading">Premium PC Softwares</h1>
-            <p class="sub-text">Download Full Version & Pre-Activated Softwares</p>
+            <p class="sub-text">Explore the best collection of tools and resources for creators.</p>
         </section>
 
         <section class="grid-container">
@@ -63,7 +90,23 @@
             <div class="item-card">
                 <div class="card-img"><img src="S27.png" alt="Premiere Pro"></div>
                 <h3>Adobe Premiere Pro</h3>
-                <p>v2024 | Pre-Activated</p>
+                <p>Professional Video Editing Tool</p>
+                <button class="info-btn" onclick="toggleInfo(this)">Software Info</button>
+                
+                <div class="seo-content">
+                    <h4>About Adobe Premiere Pro</h4>
+                    <p>Adobe Premiere Pro is the industry-leading video editing software used by filmmakers, YouTubers, and professionals worldwide. It offers an advanced timeline-based editing environment and seamless integration with other Adobe apps like After Effects and Photoshop.</p>
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li>AI-powered tools for faster editing and audio cleanup.</li>
+                        <li>Support for 4K, 8K, and VR video formats.</li>
+                        <li>Advanced Lumetri Color tools for cinematic grading.</li>
+                        <li>Seamless motion graphics integration.</li>
+                    </ul>
+                    <h4>System Requirements:</h4>
+                    <p>OS: Windows 10/11 (64-bit). RAM: 8GB (16GB recommended). Storage: High-speed SSD.</p>
+                </div>
+
                 <a href="https://www.mediafire.com/file/prj7cvzu4lqtvym/Adobe_Premiere_Pro_2024_%2528v24.4.1.002%2529_Multilingual.rar/file" target="_blank" class="download-btn">
                     Download <i class="fas fa-download"></i>
                 </a>
@@ -72,7 +115,23 @@
             <div class="item-card">
                 <div class="card-img"><img src="S11.png" alt="Photoshop"></div>
                 <h3>Adobe Photoshop</h3>
-                <p>v2024 | Full Version</p>
+                <p>v2024 | Image Design</p>
+                <button class="info-btn" onclick="toggleInfo(this)">Software Info</button>
+                
+                <div class="seo-content">
+                    <h4>About Adobe Photoshop</h4>
+                    <p>Photoshop is the world's most advanced digital imaging software, used by photographers and designers to create and enhance everything from social media graphics to professional portraits. The 2024 version brings powerful AI tools like Generative Fill.</p>
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li>Generative AI powered by Adobe Firefly.</li>
+                        <li>Advanced layer masks and retouching tools.</li>
+                        <li>Extensive support for typography and vector graphics.</li>
+                        <li>Cloud-based editing for cross-device access.</li>
+                    </ul>
+                    <h4>Hardware Needs:</h4>
+                    <p>Intel/AMD Multi-core processor with 64-bit support. 8GB RAM minimum. 4GB GPU Memory recommended.</p>
+                </div>
+
                 <a href="https://www.mediafire.com/file/iht1wfeg9tokjms/Adobe_Photoshop_2024_%2528v25.9.0.573%2529_Multilingual.rar/file" target="_blank" class="download-btn">
                     Download <i class="fas fa-download"></i>
                 </a>
@@ -81,219 +140,54 @@
             <div class="item-card">
                 <div class="card-img"><img src="S30.png" alt="MS Office"></div>
                 <h3>MS Office 2021</h3>
-                <p>LifeTime License</p>
+                <p>Full Productivity Suite</p>
+                <button class="info-btn" onclick="toggleInfo(this)">Software Info</button>
+                
+                <div class="seo-content">
+                    <h4>Microsoft Office Suite</h4>
+                    <p>Microsoft Office 2021 is the essential suite for students, businesses, and professionals. It includes Word for documents, Excel for spreadsheets, and PowerPoint for presentations. This perpetual version requires no subscription.</p>
+                    <h4>What's Included:</h4>
+                    <ul>
+                        <li>Word 2021: New dark mode and focus tools.</li>
+                        <li>Excel 2021: XLOOKUP and dynamic arrays support.</li>
+                        <li>PowerPoint 2021: Improved Slide Show Recording.</li>
+                        <li>Outlook: Optimized search and translation.</li>
+                    </ul>
+                </div>
+
                 <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S1.jpg" alt="Acrobat"></div>
-                <h3>Adobe Acrobat Pro</h3>
-                <p>v2024 | PDF Editor</p>
-                <a href="https://www.mediafire.com/file/h8y8rfepb8w7f8p/Adobe_Acrobat_Pro_2024_%2528v24.2.20895%2529_x64_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S26.png" alt="After Effects"></div>
-                <h3>Adobe After Effects</h3>
-                <p>v2024 | Full Version</p>
-                <a href="https://www.mediafire.com/file/frwxif8l97e7djs/Adobe_After_Effects_2024_%2528v24.4.1.002%2529_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S2.png" alt="Animate"></div>
-                <h3>Adobe Animate</h3>
-                <p>v2024 | Full Version</p>
-                <a href="https://www.mediafire.com/file/gl88lz264opkekm/Adobe_Animate_2024_%2528v24.0.3.19%2529_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S3.jpg" alt="Audition"></div>
-                <h3>Adobe Audition</h3>
-                <p>v2024 | Audio Editor</p>
-                <a href="https://www.mediafire.com/file/tzmjf9j207wdacg/Adobe_Audition_2024_%2528v24.4.0.045%2529_Multilingua.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S16.png" alt="Bridge"></div>
-                <h3>Adobe Bridge</h3>
-                <p>v2024 | Asset Manager</p>
-                <a href="https://www.mediafire.com/file/64s4dc0ycvxbh09/Adobe_Bridge_2024_%2528v14.1.0.257%2529_Multil.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S23.png" alt="Illustrator"></div>
-                <h3>Adobe Illustrator</h3>
-                <p>v2024 | Vector Design</p>
-                <a href="https://www.mediafire.com/file/1ou9zu3771hatyv/Adobe_Illustrator_2024_%2528v28.4.1.86%2529_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S17.png" alt="Character Animator"></div>
-                <h3>Character Animator</h3>
-                <p>v2024 | Full Version</p>
-                <a href="https://www.mediafire.com/file/pgjvj6a0s5bvoxa/Adobe_Character_Animator_2024_%2528v24.0%2529_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S18.png" alt="Dimension"></div>
-                <h3>Adobe Dimension</h3>
-                <p>v2024 | 3D Design</p>
-                <a href="https://www.mediafire.com/file/cdw00eu4gvc36a0/Adobe_Dimension_3.4.10_%2528x64%2529_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S19.png" alt="Dreamweaver"></div>
-                <h3>Adobe Dreamweaver</h3>
-                <p>v2021 | Web Design</p>
-                <a href="https://www.mediafire.com/file/swuq4f2pmft8j69/Adobe_Dreamweaver_2021_v21.3_%2528x64%2529_Multilingual_%2528Pre-Activated%2529.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S20.png" alt="Fresco"></div>
-                <h3>Adobe Fresco</h3>
-                <p>v5.0.1 | Digital Art</p>
-                <a href="https://www.mediafire.com/file/it3uin8yk7s02gh/Adobe_Fresco_v5.0.1_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S21.png" alt="InCopy"></div>
-                <h3>Adobe InCopy</h3>
-                <p>v2024 | Full Version</p>
-                <a href="https://www.mediafire.com/file/tbd2q99h54itsvc/Adobe_InCopy_2024_%2528v19.4.0.063%2529_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S22.png" alt="InDesign"></div>
-                <h3>Adobe InDesign</h3>
-                <p>v2024 | Layout Design</p>
-                <a href="https://www.mediafire.com/file/yr74jgixh22r1cp/Adobe_InDesign_2024_%2528v19.4.0.063%2529_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S24.png" alt="Lightroom"></div>
-                <h3>Adobe Lightroom Classic</h3>
-                <p>v13.3.1 | Photo Edit</p>
-                <a href="https://www.mediafire.com/file/4r5as0vd9hwifbo/Adobe_Lightroom_Classic_v13.3.1_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S25.png" alt="Media Encoder"></div>
-                <h3>Adobe Media Encoder</h3>
-                <p>v2024 | Video Render</p>
-                <a href="https://www.mediafire.com/file/eeoed3mi39g8mp6/Adobe_Media_Encoder_2024_%2528v24.4.1.002%2529_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S28.png" alt="Premiere Rush"></div>
-                <h3>Adobe Premiere Rush</h3>
-                <p>v2.9 | Easy Edit</p>
-                <a href="https://www.mediafire.com/file/szg7pqpjgzs6i0a/Adobe_Premiere_Rush_2.9.0.14_%2528x64%2529_Multilingual_%2528Pre-Activated%2529.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S29.png" alt="XD"></div>
-                <h3>Adobe XD</h3>
-                <p>v56.1 | UI/UX Design</p>
-                <a href="https://www.mediafire.com/file/lk9d466vpbz0bwn/Adobe_XD_56.1.12_%2528x64%2529_Multilingual.rar/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S5.png" alt="CapCut"></div>
-                <h3>CapCut PC</h3>
-                <p>v2024 | Pro Version</p>
-                <a href="https://www.mediafire.com/file/7t3354u95aasyll/CapCut_7_0_0_2843_beta6_capcutpc_beta_creatortool.exe/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S12.png" alt="Photoshop Express"></div>
-                <h3>Photoshop Express</h3>
-                <p>v2024 | Quick Edit</p>
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S9.png" alt="Topaz"></div>
-                <h3>Topaz Video AI</h3>
-                <p>v7.1.4 | Enhancer</p>
-                <a href="https://www.mediafire.com/file/qjtgoad9rxov4uz/Topaz+Video+AI+Pro+7.1.4+(x64)+%5BFileCR%5D.zip/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S6.png" alt="Canva"></div>
-                <h3>Canva Desktop</h3>
-                <p>v1.111 | Design Tool</p>
-                <a href="https://www.mediafire.com/file/vhdg6rd11hy7j1t/Canva+Setup+1.111.0.zip/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S10.png" alt="Aiseesoft"></div>
-                <h3>Aiseesoft Screen Recorder</h3>
-                <p>v2024 | Full Version</p>
-                <a href="https://www.mediafire.com/file/0y91bdlqnonu4qm/Aiseesoft+Screen+Recorder+3.1.22+(x64)+Multilingual+[FileCR].zip/file" target="_blank" class="download-btn">
-                    Download <i class="fas fa-download"></i>
-                </a>
-            </div>
-
-            <div class="item-card">
-                <div class="card-img"><img src="S14.png" alt="IObit"></div>
-                <h3>IObit Uninstaller Pro</h3>
-                <p>v15.0 | Full Version</p>
-                <a href="https://www.mediafire.com/file/gqsaioavy9zkzo8/IObit+Uninstaller+Pro+15.0.0.8+Multilingual+%5BFileCR%5D.zip/file" target="_blank" class="download-btn">
                     Download <i class="fas fa-download"></i>
                 </a>
             </div>
 
             <div class="item-card">
                 <div class="card-img"><img src="S15.png" alt="WinRAR"></div>
-                <h3>WinRAR</h3>
-                <p>v2024 | Lifetime</p>
+                <h3>WinRAR 2024</h3>
+                <p>Powerful File Compression</p>
+                <button class="info-btn" onclick="toggleInfo(this)">Software Info</button>
+                
+                <div class="seo-content">
+                    <h4>WinRAR Compression Tool</h4>
+                    <p>WinRAR is a powerful archive manager that can backup your data and reduce the size of email attachments, decompress RAR, ZIP, and other files. It is known for its high compression ratio and security features like password encryption.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Supports RAR5 format for superior compression.</li>
+                        <li>Archive encryption with 256-bit AES.</li>
+                        <li>Self-extracting archive (SFX) creation.</li>
+                        <li>Recovers physically damaged archives.</li>
+                    </ul>
+                </div>
+
                 <a href="https://www.win-rar.com/start.html?&L=0" target="_blank" class="download-btn">
                     Download <i class="fas fa-download"></i>
                 </a>
             </div>
 
+        </section>
+
+        <section style="max-width: 1000px; margin: 40px auto; padding: 20px; color: #888; border-top: 1px solid #222;">
+            <h2 style="color: #00d2ff;">Why Use Premium PC Softwares?</h2>
+            <p>Choosing the right productivity and creativity tools is essential for modern professionals. From video editing with Adobe Premiere Pro to document management with MS Office, having stable software ensures a smooth workflow. At NextGenAdi4U, we provide information about the latest technical specifications and system requirements to help you choose the right version for your computer hardware. Always ensure your PC meets the recommended RAM and CPU standards for a lag-free experience.</p>
         </section>
     </main>
 
@@ -306,22 +200,28 @@
     </footer>
 
     <script>
+        // Toggle Info Script
+        function toggleInfo(btn) {
+            const content = btn.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                btn.innerText = "Software Info";
+            } else {
+                content.style.display = "block";
+                btn.innerText = "Hide Info";
+            }
+        }
+
         // --- SEARCH LOGIC ---
         document.addEventListener("DOMContentLoaded", function() {
             const searchInput = document.querySelector('.search-bar input');
             const cards = document.querySelectorAll('.item-card');
-
             if (searchInput) {
                 searchInput.addEventListener('keyup', function(event) {
                     const query = event.target.value.toLowerCase();
                     cards.forEach(card => {
                         const title = card.querySelector('h3').textContent.toLowerCase();
-                        const desc = card.querySelector('p').textContent.toLowerCase();
-                        if (title.includes(query) || desc.includes(query)) {
-                            card.style.display = "flex";
-                        } else {
-                            card.style.display = "none";
-                        }
+                        card.style.display = title.includes(query) ? "flex" : "none";
                     });
                 });
             }
@@ -330,12 +230,9 @@
         // --- FLOATING NEON DUST ANIMATION ---
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
-        
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        let particlesArray;
-
+        let particlesArray = [];
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -346,47 +243,27 @@
                 this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')'; 
             }
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
             }
             draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.fillStyle = this.color; ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
             }
         }
-
         function initParticles() {
             particlesArray = [];
             let numberOfParticles = (canvas.height * canvas.width) / 15000; 
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
+            for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); }
         }
-
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
+            for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); }
             requestAnimationFrame(animateParticles);
         }
-
-        window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initParticles();
-        });
-
-        initParticles();
-        animateParticles();
+        window.addEventListener('resize', function() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles(); });
+        initParticles(); animateParticles();
     </script>
 
 </body>
