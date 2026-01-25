@@ -7,47 +7,182 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685"
      crossorigin="anonymous"></script>
     <title>Softwares - NextGenAdi4U</title>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    
     <style>
-        /* --- GLOBAL PARTICLE BACKGROUND CSS --- */
+        /* --- BACKGROUND --- */
+        body {
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         #dustCanvas {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -2;
             background: #050505;
         }
 
-        /* --- ADSENSE FRIENDLY EXTRA CSS --- */
+        /* --- GRID CONTAINER --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 30px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- ✨ ANIMATED CARD STYLES ✨ --- */
+        .item-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: auto; /* Changed to auto for expanding content */
+        }
+
+        .item-card:hover {
+            transform: translateY(-10px);
+            border-color: #00d2ff;
+            box-shadow: 0 10px 40px -10px rgba(0, 210, 255, 0.25);
+            background: rgba(30, 30, 30, 0.9);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+            transition: transform 0.5s ease;
+        }
+
+        .item-card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .item-card h3 {
+            font-size: 1.3rem;
+            margin: 0 0 5px 0;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .item-card p {
+            font-size: 0.95rem;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        /* --- ADSENSE FRIENDLY INFO BUTTON & CONTENT --- */
         .info-btn {
-            background: rgba(0, 210, 255, 0.1);
-            color: #00d2ff;
+            background: transparent;
             border: 1px solid #00d2ff;
+            color: #00d2ff;
             padding: 5px 15px;
-            border-radius: 20px;
             font-size: 0.8rem;
+            border-radius: 20px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-bottom: 15px;
             transition: 0.3s;
         }
-        .info-btn:hover { background: #00d2ff; color: #000; }
+        .info-btn:hover {
+            background: #00d2ff;
+            color: #000;
+        }
 
         .seo-content {
-            display: none;
+            display: none; /* Hidden by default */
             text-align: left;
+            background: rgba(0,0,0,0.3);
             padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            margin-top: 15px;
+            margin-bottom: 15px;
             font-size: 0.85rem;
-            color: #ccc;
-            line-height: 1.6;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ddd;
+            width: 100%;
+            border: 1px solid #333;
         }
-        .seo-content h4 { color: #00d2ff; margin-bottom: 5px; }
-        .seo-content ul { padding-left: 15px; margin-bottom: 10px; }
+        .seo-content h4 { color: #00d2ff; margin-bottom: 5px; font-size: 0.9rem; }
+        .seo-content ul { padding-left: 20px; margin-top: 5px; }
+        .seo-content li { margin-bottom: 3px; }
+
+        /* Button Animation */
+        .download-btn {
+            margin-top: auto;
+            background: transparent;
+            color: #00d2ff;
+            border: 2px solid #00d2ff;
+            padding: 10px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .download-btn:hover {
+            background: #00d2ff;
+            color: #000;
+            box-shadow: 0 0 20px #00d2ff;
+            transform: scale(1.05);
+        }
+
+        /* --- Header & Search Fixes --- */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
         
-        .item-card { height: auto !important; min-height: 400px; display: flex; flex-direction: column; justify-content: space-between; }
+        .brand-text { color: white; margin: 0; }
+        .brand-highlight { color: #00d2ff; }
+        
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .search-bar { width: 100%; display: flex; }
+            .search-bar input { flex: 1; }
+            .grid-container { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        }
     </style>
 </head>
 <body>
@@ -57,7 +192,7 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="home.html" class="back-btn">
+                <a href="home.html" class="back-btn" style="color: #00d2ff; font-size: 1.2rem; margin-right: 15px;">
                     <i class="fas fa-arrow-left"></i>
                 </a>
                 <a href="home.html" style="text-decoration: none;">
@@ -65,46 +200,42 @@
                 </a>
             </div>
 
-            <div class="social-nav">
-                <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/nextgen.adi4u?igsh=bGN5N3pkbWdkZjhl&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/nextgenadi4u" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="https://discord.gg/jG2fpvjwnk" target="_blank"><i class="fab fa-discord"></i></a>
+            <div class="social-nav" style="display: flex; gap: 15px;">
+                <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank" style="color:#fff"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/nextgen.adi4u?igsh=bGN5N3pkbWdkZjhl&utm_source=qr" target="_blank" style="color:#fff"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/nextgenadi4u" target="_blank" style="color:#fff"><i class="fab fa-telegram"></i></a>
             </div>
 
-            <div class="search-bar">
-                <input type="text" placeholder="Search Softwares...">
-                <button><i class="fas fa-search"></i></button>
+            <div class="search-bar" style="background:rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #333;">
+                <input type="text" placeholder="Search Softwares..." style="background:transparent; border:none; color:white; outline:none;">
+                <button style="background:transparent; border:none; color:#00d2ff;"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero page-hero">
-            <h1 class="main-heading">Premium PC Softwares</h1>
-            <p class="sub-text">Explore the best collection of tools and resources for creators.</p>
+        <section class="hero page-hero" style="text-align: center; padding: 50px 20px;">
+            <h1 class="main-heading" style="font-size: 3rem; color: #fff; text-shadow: 0 0 15px #00d2ff; margin-bottom: 10px;">Premium PC Softwares</h1>
+            <p class="sub-text" style="color: #ccc; font-size: 1.1rem;">Download Full Version & Pre-Activated Tools</p>
         </section>
 
-        <section class="grid-container">
+        <section class="grid-container" id="softwareGrid">
             
             <div class="item-card">
                 <div class="card-img"><img src="S27.png" alt="Premiere Pro"></div>
                 <h3>Adobe Premiere Pro</h3>
-                <p>Professional Video Editing Tool</p>
-                <button class="info-btn" onclick="toggleInfo(this)">Software Info</button>
+                <p>v2024 | Video Editing</p>
                 
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
                 <div class="seo-content">
-                    <h4>About Adobe Premiere Pro</h4>
-                    <p>Adobe Premiere Pro is the industry-leading video editing software used by filmmakers, YouTubers, and professionals worldwide. It offers an advanced timeline-based editing environment and seamless integration with other Adobe apps like After Effects and Photoshop.</p>
-                    <h4>Key Features:</h4>
+                    <h4>About Premiere Pro</h4>
+                    <p>The industry-leading video editing software for film, TV, and the web. Creative tools, integration with other apps and services, and the power of Adobe Sensei help you craft footage into polished films and videos.</p>
+                    <h4>Key Highlights:</h4>
                     <ul>
-                        <li>AI-powered tools for faster editing and audio cleanup.</li>
-                        <li>Support for 4K, 8K, and VR video formats.</li>
-                        <li>Advanced Lumetri Color tools for cinematic grading.</li>
-                        <li>Seamless motion graphics integration.</li>
+                        <li>AI-Powered Text-Based Editing.</li>
+                        <li>Automatic Tone Mapping.</li>
+                        <li>System: Win 10/11 (64-bit), 8GB RAM min.</li>
                     </ul>
-                    <h4>System Requirements:</h4>
-                    <p>OS: Windows 10/11 (64-bit). RAM: 8GB (16GB recommended). Storage: High-speed SSD.</p>
                 </div>
 
                 <a href="https://www.mediafire.com/file/prj7cvzu4lqtvym/Adobe_Premiere_Pro_2024_%2528v24.4.1.002%2529_Multilingual.rar/file" target="_blank" class="download-btn">
@@ -115,21 +246,18 @@
             <div class="item-card">
                 <div class="card-img"><img src="S11.png" alt="Photoshop"></div>
                 <h3>Adobe Photoshop</h3>
-                <p>v2024 | Image Design</p>
-                <button class="info-btn" onclick="toggleInfo(this)">Software Info</button>
-                
+                <p>v2024 | Image Editing</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
                 <div class="seo-content">
-                    <h4>About Adobe Photoshop</h4>
-                    <p>Photoshop is the world's most advanced digital imaging software, used by photographers and designers to create and enhance everything from social media graphics to professional portraits. The 2024 version brings powerful AI tools like Generative Fill.</p>
-                    <h4>Key Features:</h4>
+                    <h4>About Photoshop 2024</h4>
+                    <p>The world's best imaging and graphic design software. Create and enhance photographs, illustrations, and 3D artwork. Design websites and mobile apps. Edit videos, simulate real-life paintings, and more.</p>
+                    <h4>Key Highlights:</h4>
                     <ul>
-                        <li>Generative AI powered by Adobe Firefly.</li>
-                        <li>Advanced layer masks and retouching tools.</li>
-                        <li>Extensive support for typography and vector graphics.</li>
-                        <li>Cloud-based editing for cross-device access.</li>
+                        <li>Generative Fill (AI Tool).</li>
+                        <li>Advanced Object Selection.</li>
+                        <li>System: 8GB RAM, 4GB GPU recommended.</li>
                     </ul>
-                    <h4>Hardware Needs:</h4>
-                    <p>Intel/AMD Multi-core processor with 64-bit support. 8GB RAM minimum. 4GB GPU Memory recommended.</p>
                 </div>
 
                 <a href="https://www.mediafire.com/file/iht1wfeg9tokjms/Adobe_Photoshop_2024_%2528v25.9.0.573%2529_Multilingual.rar/file" target="_blank" class="download-btn">
@@ -140,18 +268,17 @@
             <div class="item-card">
                 <div class="card-img"><img src="S30.png" alt="MS Office"></div>
                 <h3>MS Office 2021</h3>
-                <p>Full Productivity Suite</p>
-                <button class="info-btn" onclick="toggleInfo(this)">Software Info</button>
-                
+                <p>Pro Plus | Lifetime</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
                 <div class="seo-content">
-                    <h4>Microsoft Office Suite</h4>
-                    <p>Microsoft Office 2021 is the essential suite for students, businesses, and professionals. It includes Word for documents, Excel for spreadsheets, and PowerPoint for presentations. This perpetual version requires no subscription.</p>
-                    <h4>What's Included:</h4>
+                    <h4>About MS Office 2021</h4>
+                    <p>The essential tool for productive work. Microsoft Office 2021 Professional Plus includes classic versions of Word, Excel, PowerPoint, and Outlook, plus Publisher and Access.</p>
+                    <h4>Key Highlights:</h4>
                     <ul>
-                        <li>Word 2021: New dark mode and focus tools.</li>
-                        <li>Excel 2021: XLOOKUP and dynamic arrays support.</li>
-                        <li>PowerPoint 2021: Improved Slide Show Recording.</li>
-                        <li>Outlook: Optimized search and translation.</li>
+                        <li>Dark Mode support in Word.</li>
+                        <li>XLOOKUP & Dynamic Arrays in Excel.</li>
+                        <li>One-time purchase, no subscription needed.</li>
                     </ul>
                 </div>
 
@@ -163,9 +290,9 @@
             <div class="item-card">
                 <div class="card-img"><img src="S15.png" alt="WinRAR"></div>
                 <h3>WinRAR 2024</h3>
-                <p>Powerful File Compression</p>
-                <button class="info-btn" onclick="toggleInfo(this)">Software Info</button>
-                
+                <p>Compression Tool</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
                 <div class="seo-content">
                     <h4>WinRAR Compression Tool</h4>
                     <p>WinRAR is a powerful archive manager that can backup your data and reduce the size of email attachments, decompress RAR, ZIP, and other files. It is known for its high compression ratio and security features like password encryption.</p>
@@ -183,45 +310,545 @@
                 </a>
             </div>
 
-        </section>
+            <div class="item-card">
+                <div class="card-img"><img src="S1.jpg" alt="Acrobat"></div>
+                <h3>Adobe Acrobat Pro</h3>
+                <p>v2024 | PDF Editor</p>
 
-        <section style="max-width: 1000px; margin: 40px auto; padding: 20px; color: #888; border-top: 1px solid #222;">
-            <h2 style="color: #00d2ff;">Why Use Premium PC Softwares?</h2>
-            <p>Choosing the right productivity and creativity tools is essential for modern professionals. From video editing with Adobe Premiere Pro to document management with MS Office, having stable software ensures a smooth workflow. At NextGenAdi4U, we provide information about the latest technical specifications and system requirements to help you choose the right version for your computer hardware. Always ensure your PC meets the recommended RAM and CPU standards for a lag-free experience.</p>
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Acrobat Pro</h4>
+                    <p>The complete PDF solution for working anywhere. Create, edit, sign, and track documents from any device. Convert PDFs to Word, Excel, or PowerPoint formats easily.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Edit text and images in PDF.</li>
+                        <li>Combine multiple files into one PDF.</li>
+                        <li>E-signature support.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/h8y8rfepb8w7f8p/Adobe_Acrobat_Pro_2024_%2528v24.2.20895%2529_x64_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S26.png" alt="After Effects"></div>
+                <h3>Adobe After Effects</h3>
+                <p>v2024 | VFX & Motion</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About After Effects</h4>
+                    <p>Create cinematic movie titles, intros, and transitions. Remove an object from a clip. Start a fire or make it rain. The industry standard for motion graphics and visual effects.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Roto Brush 2 for faster separation.</li>
+                        <li>3D Transform Gizmos.</li>
+                        <li>Requires: 16GB RAM (32GB recommended).</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/frwxif8l97e7djs/Adobe_After_Effects_2024_%2528v24.4.1.002%2529_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S2.png" alt="Animate"></div>
+                <h3>Adobe Animate</h3>
+                <p>v2024 | 2D Animation</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Adobe Animate</h4>
+                    <p>Design interactive vector animations for games, TV shows, and the web. Bring cartoons and banner ads to life. Publish to multiple platforms including HTML5 Canvas and WebGL.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Asset warping for vector shapes.</li>
+                        <li>Rigging for character animation.</li>
+                        <li>Layer parenting and effects.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/gl88lz264opkekm/Adobe_Animate_2024_%2528v24.0.3.19%2529_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S3.jpg" alt="Audition"></div>
+                <h3>Adobe Audition</h3>
+                <p>v2024 | Audio Editor</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Adobe Audition</h4>
+                    <p>A professional audio workstation for mixing, finishing, and precision editing. Clean up audio, restore poor recordings, and create podcasts with advanced sound design tools.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Multitrack, waveform, and spectral display.</li>
+                        <li>Essential Sound panel for easy mixing.</li>
+                        <li>Remix feature to adjust song duration.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/tzmjf9j207wdacg/Adobe_Audition_2024_%2528v24.4.0.045%2529_Multilingua.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S16.png" alt="Bridge"></div>
+                <h3>Adobe Bridge</h3>
+                <p>v2024 | Asset Manager</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Adobe Bridge</h4>
+                    <p>A powerful creative asset manager that lets you preview, organize, edit, and publish multiple creative assets quickly and easily. Edit metadata and organize files efficiently.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Batch rename and organize files.</li>
+                        <li>Centralized access for all creative files.</li>
+                        <li>Supports RAW image processing.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/64s4dc0ycvxbh09/Adobe_Bridge_2024_%2528v14.1.0.257%2529_Multil.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S23.png" alt="Illustrator"></div>
+                <h3>Adobe Illustrator</h3>
+                <p>v2024 | Vector Design</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Adobe Illustrator</h4>
+                    <p>The industry-standard vector graphics software lets you create logos, icons, drawings, typography, and illustrations for print, web, video, and mobile.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Scalable vector graphics (no pixelation).</li>
+                        <li>Text to Vector AI generation.</li>
+                        <li>Advanced gradient and path tools.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/1ou9zu3771hatyv/Adobe_Illustrator_2024_%2528v28.4.1.86%2529_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S17.png" alt="Character Animator"></div>
+                <h3>Character Animator</h3>
+                <p>v2024 | Real-time Anim</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Character Animator</h4>
+                    <p>Uses your expressions and movements to animate characters in real-time. It's so fast, you can livestream while you animation. Turn any art into an animated character.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Face and body tracking via webcam.</li>
+                        <li>Automatic lip-syncing.</li>
+                        <li>Stream live animations.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/pgjvj6a0s5bvoxa/Adobe_Character_Animator_2024_%2528v24.0%2529_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S18.png" alt="Dimension"></div>
+                <h3>Adobe Dimension</h3>
+                <p>v2024 | 3D Mockups</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Adobe Dimension</h4>
+                    <p>Create engaging 3D content faster with models, materials, and lighting. Ideal for product mockups, brand visualizations, packaging design, and 3D art.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Drag and drop 3D models.</li>
+                        <li>Realistic rendering and lighting.</li>
+                        <li>Export to Photoshop layers.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/cdw00eu4gvc36a0/Adobe_Dimension_3.4.10_%2528x64%2529_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S19.png" alt="Dreamweaver"></div>
+                <h3>Adobe Dreamweaver</h3>
+                <p>v2021 | Web Design</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Dreamweaver</h4>
+                    <p>Quickly create and publish web pages almost anywhere with web design software that supports HTML, CSS, JavaScript, and more. Features a smart coding engine.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Live view editing.</li>
+                        <li>Multi-monitor support for Windows.</li>
+                        <li>Git support for version control.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/swuq4f2pmft8j69/Adobe_Dreamweaver_2021_v21.3_%2528x64%2529_Multilingual_%2528Pre-Activated%2529.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S20.png" alt="Fresco"></div>
+                <h3>Adobe Fresco</h3>
+                <p>v5.0 | Digital Art</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Adobe Fresco</h4>
+                    <p>Designed for the latest stylus and touch devices, Adobe Fresco brings together the world's largest collection of vector and raster brushes, plus revolutionary live brushes.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Live Brushes (Watercolors/Oils).</li>
+                        <li>Vector and Raster support.</li>
+                        <li>Seamless integration with Photoshop.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/it3uin8yk7s02gh/Adobe_Fresco_v5.0.1_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S21.png" alt="InCopy"></div>
+                <h3>Adobe InCopy</h3>
+                <p>v2024 | Text Editor</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Adobe InCopy</h4>
+                    <p>A professional word processor designed to integrate with Adobe InDesign. It allows writers and editors to style text, track changes, and make layout modifications concurrently.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Parallel workflow with designers.</li>
+                        <li>Track changes and notes.</li>
+                        <li>Copyfitting support.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/tbd2q99h54itsvc/Adobe_InCopy_2024_%2528v19.4.0.063%2529_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S22.png" alt="InDesign"></div>
+                <h3>Adobe InDesign</h3>
+                <p>v2024 | Layout Design</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Adobe InDesign</h4>
+                    <p>The industry-leading layout and page design software for print and digital media. Create beautiful graphic designs with typography from the world's top foundries.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Professional print layout tools.</li>
+                        <li>Interactive PDFs and eBooks.</li>
+                        <li>Content-Aware Fit for images.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/yr74jgixh22r1cp/Adobe_InDesign_2024_%2528v19.4.0.063%2529_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S24.png" alt="Lightroom"></div>
+                <h3>Adobe Lightroom</h3>
+                <p>Classic v13 | Photo Edit</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Lightroom Classic</h4>
+                    <p>Powerful photo editing and management. It offers robust tools for digital photography tasks, including adjusting exposure, color, and tone, as well as organizing large photo libraries.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>AI Denoise for cleaner images.</li>
+                        <li>Advanced color grading wheels.</li>
+                        <li>Masking tools for precise edits.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/4r5as0vd9hwifbo/Adobe_Lightroom_Classic_v13.3.1_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S25.png" alt="Media Encoder"></div>
+                <h3>Adobe Media Encoder</h3>
+                <p>v2024 | Video Render</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Media Encoder</h4>
+                    <p>Your go-to application for all media processing. Ingest, transcode, create proxies, and output any format you can imagine. Automates workflows for Premiere Pro and After Effects.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Background rendering.</li>
+                        <li>Supports almost all video formats.</li>
+                        <li>Direct publishing to social media.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/eeoed3mi39g8mp6/Adobe_Media_Encoder_2024_%2528v24.4.1.002%2529_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S28.png" alt="Premiere Rush"></div>
+                <h3>Adobe Premiere Rush</h3>
+                <p>v2.9 | Easy Edit</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Premiere Rush</h4>
+                    <p>Feed your followers a steady stream of awesome with Premiere Rush, the all-in-one app for creating and sharing online videos. Easy to use across all your devices.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Simple drag-and-drop editing.</li>
+                        <li>Built-in motion graphics templates.</li>
+                        <li>Fast export for YouTube/Instagram.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/szg7pqpjgzs6i0a/Adobe_Premiere_Rush_2.9.0.14_%2528x64%2529_Multilingual_%2528Pre-Activated%2529.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S29.png" alt="XD"></div>
+                <h3>Adobe XD</h3>
+                <p>v56.1 | UI/UX Design</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Adobe XD</h4>
+                    <p>Adobe XD is a vector-based user experience design tool for web apps and mobile apps. It features tools for wireframing, creating high-fidelity designs, and interactive prototyping.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Responsive resize tools.</li>
+                        <li>Auto-animate for prototypes.</li>
+                        <li>Grid layouts and repeat grids.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/lk9d466vpbz0bwn/Adobe_XD_56.1.12_%2528x64%2529_Multilingual.rar/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S5.png" alt="CapCut"></div>
+                <h3>CapCut PC</h3>
+                <p>v2024 | Pro Version</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About CapCut PC</h4>
+                    <p>An all-in-one video editor that offers easy-to-use editing features, massive free fonts and effects, advanced features like keyframe animation, smooth slow-motion, and stabilization.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Auto captions generation.</li>
+                        <li>Trending filters and effects.</li>
+                        <li>Remove background without green screen.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/7t3354u95aasyll/CapCut_7_0_0_2843_beta6_capcutpc_beta_creatortool.exe/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S12.png" alt="Photoshop Express"></div>
+                <h3>Photoshop Express</h3>
+                <p>v2024 | Quick Edit</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Photoshop Express</h4>
+                    <p>A mobile and web version of Photoshop for quick and easy photo editing. It includes basic features like cropping, straightening, rotating, and flipping, as well as filters.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>One-touch photo adjustments.</li>
+                        <li>Collage maker.</li>
+                        <li>Noise reduction and spot healing.</li>
+                    </ul>
+                </div>
+
+                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S9.png" alt="Topaz"></div>
+                <h3>Topaz Video AI</h3>
+                <p>v7.1 | Enhancer</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Topaz Video AI</h4>
+                    <p>World-class video quality enhancement software. It uses AI to upscale resolution (up to 8K), sharpen detail, reduce noise, and stabilize shaky footage.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Upscale SD to HD/4K/8K.</li>
+                        <li>AI Frame Interpolation (Smooth Motion).</li>
+                        <li>Requires strong GPU (NVIDIA Recommended).</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/qjtgoad9rxov4uz/Topaz+Video+AI+Pro+7.1.4+(x64)+%5BFileCR%5D.zip/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S6.png" alt="Canva"></div>
+                <h3>Canva Desktop</h3>
+                <p>v1.111 | Design Tool</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Canva</h4>
+                    <p>A graphic design platform used to create social media graphics, presentations, posters, documents, and other visual content. This desktop app makes designing faster.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Thousands of free templates.</li>
+                        <li>Drag-and-drop interface.</li>
+                        <li>Offline access to designs.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/vhdg6rd11hy7j1t/Canva+Setup+1.111.0.zip/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S10.png" alt="Aiseesoft"></div>
+                <h3>Aiseesoft Recorder</h3>
+                <p>v2024 | Full Version</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About Aiseesoft Screen Recorder</h4>
+                    <p>An easy-to-use screen recording software to capture any activity on Mac or Windows computer. It acts as a good video game recorder, Skype call capture, and more.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Record screen with system/mic audio.</li>
+                        <li>Capture webcam overlay.</li>
+                        <li>Real-time drawing and annotation.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/0y91bdlqnonu4qm/Aiseesoft+Screen+Recorder+3.1.22+(x64)+Multilingual+[FileCR].zip/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
+            <div class="item-card">
+                <div class="card-img"><img src="S14.png" alt="IObit"></div>
+                <h3>IObit Uninstaller</h3>
+                <p>Pro v15 | Cleaner</p>
+
+                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
+                <div class="seo-content">
+                    <h4>About IObit Uninstaller</h4>
+                    <p>A perfect uninstallation tool. It provides an easy and secure way to remove unwanted programs, Windows Apps, Universal Windows Platform (UWP) apps, and malicious plugins.</p>
+                    <h4>Key Highlights:</h4>
+                    <ul>
+                        <li>Removes stubborn software.</li>
+                        <li>Cleans leftover registry files.</li>
+                        <li>Software Health updater.</li>
+                    </ul>
+                </div>
+
+                <a href="https://www.mediafire.com/file/gqsaioavy9zkzo8/IObit+Uninstaller+Pro+15.0.0.8+Multilingual+%5BFileCR%5D.zip/file" target="_blank" class="download-btn">
+                    Download <i class="fas fa-download"></i>
+                </a>
+            </div>
+
         </section>
     </main>
 
     <footer>
-        <div class="footer-content">
+        <div class="footer-content" style="text-align: center; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px;">
             <div class="footer-bottom">
                 <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
-        // Toggle Info Script
+        // --- ADSENSE FRIENDLY TOGGLE FUNCTION ---
         function toggleInfo(btn) {
             const content = btn.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-                btn.innerText = "Software Info";
+                btn.innerHTML = 'Show Info <i class="fas fa-caret-down"></i>';
             } else {
                 content.style.display = "block";
-                btn.innerText = "Hide Info";
+                btn.innerHTML = 'Hide Info <i class="fas fa-caret-up"></i>';
             }
         }
+
+        // --- INITIALIZE ANIMATIONS ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll('.item-card');
+            cards.forEach((card, index) => {
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', (index % 4) * 100); 
+            });
+            AOS.init({ duration: 800, once: true, offset: 100 });
+        });
 
         // --- SEARCH LOGIC ---
         document.addEventListener("DOMContentLoaded", function() {
             const searchInput = document.querySelector('.search-bar input');
             const cards = document.querySelectorAll('.item-card');
+
             if (searchInput) {
                 searchInput.addEventListener('keyup', function(event) {
                     const query = event.target.value.toLowerCase();
                     cards.forEach(card => {
                         const title = card.querySelector('h3').textContent.toLowerCase();
-                        card.style.display = title.includes(query) ? "flex" : "none";
+                        const desc = card.querySelector('p').textContent.toLowerCase();
+                        // Also search inside the new description text
+                        const seoText = card.querySelector('.seo-content').innerText.toLowerCase();
+                        
+                        if (title.includes(query) || desc.includes(query) || seoText.includes(query)) {
+                            card.style.display = "flex";
+                        } else {
+                            card.style.display = "none";
+                        }
                     });
                 });
             }
@@ -232,7 +859,8 @@
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        let particlesArray = [];
+        let particlesArray;
+
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -244,25 +872,33 @@
             }
             update() {
                 this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
             }
             draw() {
                 ctx.fillStyle = this.color; ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
             }
         }
+
         function initParticles() {
             particlesArray = [];
             let numberOfParticles = (canvas.height * canvas.width) / 15000; 
             for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); }
         }
+
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); }
             requestAnimationFrame(animateParticles);
         }
-        window.addEventListener('resize', function() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles(); });
+
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles();
+        });
+
         initParticles(); animateParticles();
     </script>
 
