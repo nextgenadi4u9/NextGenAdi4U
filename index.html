@@ -37,6 +37,12 @@
             font-family: var(--font-main);
             overflow-x: hidden;
             position: relative;
+            
+            /* Anti-Theft: Prevent Text Selection */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         /* Particle Canvas */
@@ -766,6 +772,25 @@
         function match(text, keywords) {
             return keywords.some(keyword => text.includes(keyword));
         }
+
+        // --- 5. SECURITY SCRIPT (Anti-Theft) ---
+        // Disable Right Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Disable F12, Ctrl+U, Ctrl+C etc.
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S
+        }
+        
+        // Prevent Dragging Images
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('draggable', false);
+        });
     </script>
 </body>
 </html>
