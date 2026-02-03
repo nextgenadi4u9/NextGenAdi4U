@@ -609,11 +609,12 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+
     <script>
-        // Init Libraries
+        // --- 1. INITIALIZATION ---
         AOS.init({ duration: 800, once: true });
         
-        // Tilt Effect for specific cards
+        // Tilt Effect for Cards
         VanillaTilt.init(document.querySelectorAll(".category-card"), {
             max: 5, speed: 400, glare: true, "max-glare": 0.1
         });
@@ -621,7 +622,7 @@
             max: 10, speed: 400, glare: true, "max-glare": 0.2
         });
 
-        // --- PARTICLE BACKGROUND ---
+        // --- 2. PARTICLE BACKGROUND (Optimized) ---
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -632,10 +633,10 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5; // Smaller, cleaner particles
+                this.size = Math.random() * 2 + 0.5;
                 this.speedX = Math.random() * 0.5 - 0.25;
                 this.speedY = Math.random() * 0.5 - 0.25;
-                this.color = Math.random() > 0.5 ? 'rgba(0, 242, 255, 0.5)' : 'rgba(255, 255, 255, 0.3)'; // Cyan & White mix
+                this.color = Math.random() > 0.5 ? 'rgba(0, 210, 255, 0.6)' : 'rgba(255, 255, 255, 0.3)';
             }
             update() {
                 this.x += this.speedX;
@@ -655,7 +656,7 @@
 
         function initParticles() {
             particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 10000;
+            let numberOfParticles = (canvas.height * canvas.width) / 9000; // Adjusted density
             for (let i = 0; i < numberOfParticles; i++) {
                 particlesArray.push(new Particle());
             }
@@ -675,13 +676,33 @@
             canvas.height = window.innerHeight;
             initParticles();
         });
-
         initParticles();
         animateParticles();
 
-        // --- CHATBOT LOGIC ---
+        // --- 3. SEARCH LOGIC (Website Content Filtering) ---
+        // Html madhe input la id="globalSearch" de, ani cards la class="searchable-item" de
+        function searchContent() {
+            let input = document.getElementById('globalSearch').value.toLowerCase();
+            let cards = document.getElementsByClassName('searchable-item'); // Cards la ha class de
+            
+            for (let i = 0; i < cards.length; i++) { 
+                if (!cards[i].innerHTML.toLowerCase().includes(input)) {
+                    cards[i].style.display = "none";
+                } else {
+                    cards[i].style.display = "block"; // Or "flex" based on your design
+                }
+            }
+        }
+
+        // --- 4. ADVANCED CHATBOT LOGIC ---
         function toggleChat() {
-            document.getElementById("chatBox").classList.toggle("active");
+            const chatBox = document.getElementById("chatBox");
+            chatBox.classList.toggle("active");
+            
+            // Auto focus input when opened
+            if(chatBox.classList.contains("active")){
+                setTimeout(() => document.getElementById("userInput").focus(), 300);
+            }
         }
 
         function handleKeyPress(e) {
@@ -695,6 +716,7 @@
 
             if (userText === "") return;
 
+            // User Message
             const userDiv = document.createElement("div");
             userDiv.className = "message user-msg";
             userDiv.innerText = userText;
@@ -703,24 +725,71 @@
             inputField.value = "";
             chatBody.scrollTop = chatBody.scrollHeight;
 
+            // Bot Typing Effect
+            const loadingDiv = document.createElement("div");
+            loadingDiv.className = "message bot-msg";
+            loadingDiv.innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Analyzing...";
+            chatBody.appendChild(loadingDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
             setTimeout(() => {
+                chatBody.removeChild(loadingDiv); // Remove loading
                 const botDiv = document.createElement("div");
                 botDiv.className = "message bot-msg";
-                botDiv.innerHTML = getBotResponse(userText.toLowerCase());
+                botDiv.innerHTML = getAdvancedBotResponse(userText.toLowerCase());
                 chatBody.appendChild(botDiv);
                 chatBody.scrollTop = chatBody.scrollHeight;
-            }, 600);
+            }, 800);
         }
 
-        function getBotResponse(input) {
-            if (input.includes("hi") || input.includes("hello")) return "Hello Gamer! What do you need today?";
-            if (input.includes("pc game")) return "High Graphics PC Games: <a href='pcgames.html' class='bot-link'>Click Here</a>";
-            if (input.includes("mobile") || input.includes("apk")) return "Modded APKs & Mobile Games: <a href='mobileapks.html' class='bot-link'>Click Here</a>";
-            if (input.includes("software")) return "Premium Softwares: <a href='softwares.html' class='bot-link'>Click Here</a>";
-            if (input.includes("cheat") || input.includes("mod")) return "Game Cheats & Mods: <a href='gamemagics.html' class='bot-link'>Click Here</a>";
-            if (input.includes("contact") || input.includes("owner")) return "Contact Admin on Telegram: <a href='https://t.me/nextgenadi4u' class='bot-link'>@nextgenadi4u</a>";
-            return "I didn't get that. Try asking for 'PC Games', 'Softwares', or 'Contact'.";
+        // --- THE BRAIN: ADVANCED RESPONSES ---
+        function getAdvancedBotResponse(input) {
+            // 1. GREETINGS & BASICS
+            if (match(input, ["hi", "hello", "hey", "start", "good morning"])) 
+                return "Welcome, User! 🚀 <br>Systems operational. I can help you with <b>PC Games</b>, <b>Mods</b>, or <b>Web Development</b>. What's your command?";
+            
+            if (match(input, ["who are you", "bot", "name"])) 
+                return "I am <b>NextGen AI</b>. A virtual assistant programmed by Aditya to navigate this digital arsenal.";
+
+            if (match(input, ["how are you", "what's up"])) 
+                return "Operating at 100% efficiency. Ready to serve your request.";
+
+            // 2. PC GAMES & TITLES
+            if (match(input, ["pc game", "computer game", "windows"])) 
+                return "Accessing High-Performance Library... 🖥️<br>Check out our <a href='pcgames.html' class='bot-link'>PC Games Collection</a>.";
+            
+            if (match(input, ["gta", "grand theft auto", "cyberpunk", "rdr2", "forza"])) 
+                return `Searching database for '${input}'... <br>Found! You can find high-graphics titles like that in our <a href='pcgames.html' class='bot-link'>PC Section</a>.`;
+
+            // 3. MOBILE / ANDROID / APK
+            if (match(input, ["mobile", "android", "apk", "phone"])) 
+                return "Unlocking Android Potential... 📱<br>Get Modded APKs and premium apps here: <a href='mobileapks.html' class='bot-link'>Mobile Zone</a>.";
+
+            if (match(input, ["pubg", "bgmi", "free fire", "cod", "minecraft"])) 
+                return `Target locked: '${input}'. <br>For mobile versions and mods, visit the <a href='mobileapks.html' class='bot-link'>Android APK Section</a>.`;
+
+            // 4. SOFTWARE & TOOLS
+            if (match(input, ["software", "adobe", "photoshop", "editor", "premire"])) 
+                return "Loading Premium Tools... 💿<br>Download full versions without cost: <a href='softwares.html' class='bot-link'>Software Hub</a>.";
+
+            // 5. CHEATS & HACKS
+            if (match(input, ["cheat", "hack", "mod menu", "script", "config"])) 
+                return "⚠️ <b>Restricted Area Accessed</b> ⚠️<br>Get the ultimate advantage safely here: <a href='gamemagics.html' class='bot-link'>Game Magics</a>.";
+
+            // 6. SERVICES (WEB DEV / LOGO)
+            if (match(input, ["website", "developer", "design", "logo", "banner"])) 
+                return "Need a digital identity? 🎨<br>I can build Websites & Brands. <a href='contact.html' class='bot-link'>Hire Me Now</a>.";
+
+            // 7. CONTACT & OWNER
+            if (match(input, ["contact", "owner", "admin", "aditya", "help", "issue"])) 
+                return "Establishing secure line... 📡<br>Contact Admin directly on Telegram: <a href='https://t.me/nextgenadi4u' target='_blank' class='bot-link'>@nextgenadi4u</a>";
+
+            // 8. FALLBACK (SMART SEARCH)
+            return `Command '${input}' not recognized in core database. <br>Try clicking the <a href='#' onclick='toggleChat()' class='bot-link'>Menu</a> or ask for 'PC Games' or 'Softwares'.`;
+        }
+
+        // Helper function for multiple keyword matching
+        function match(text, keywords) {
+            return keywords.some(keyword => text.includes(keyword));
         }
     </script>
-</body>
-</html>
