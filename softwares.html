@@ -3,186 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00d2ff">
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685"
-     crossorigin="anonymous"></script>
-    <title>Softwares - NextGenAdi4U</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685" crossorigin="anonymous"></script>
     
+    <title>Premium Softwares - NextGenAdi4U</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     
     <style>
-        /* --- BACKGROUND --- */
+        /* --- 1. GLOBAL VARIABLES & RESET --- */
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #007bb5;
+            --bg-dark: #050505;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            background-color: #050505;
-            color: white;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        /* Particle Background */
         #dustCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: #050505;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; background: radial-gradient(circle at center, #0f1520 0%, #000000 100%);
         }
 
-        /* --- GRID CONTAINER --- */
+        a { text-decoration: none; transition: 0.3s; }
+        
+        /* --- 2. HEADER SECTION --- */
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
+            padding: 15px 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .header-container {
+            display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto;
+        }
+
+        .logo { display: flex; align-items: center; gap: 15px; }
+        
+        .brand-text {
+            font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin: 0;
+        }
+        .brand-highlight { color: var(--primary-color); }
+
+        .back-btn {
+            color: var(--primary-color); font-size: 1.4rem; padding: 5px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .back-btn:hover { background: rgba(0, 210, 255, 0.1); transform: translateX(-5px); }
+
+        /* Search Bar */
+        .search-box {
+            position: relative; width: 300px;
+        }
+        .search-box input {
+            width: 100%; padding: 10px 45px 10px 20px;
+            border-radius: 50px; border: 1px solid #333;
+            background: rgba(255, 255, 255, 0.05); color: #fff;
+            outline: none; font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+            background: rgba(0,0,0,0.8);
+        }
+        .search-box button {
+            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+            background: none; border: none; color: var(--text-muted); cursor: pointer;
+        }
+        .search-box input:focus + button { color: var(--primary-color); }
+
+        /* Mobile Header Adjustments */
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .search-box { width: 100%; }
+            .social-nav { display: none; } /* Hide social icons on mobile header to save space */
+        }
+
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            text-align: center; padding: 60px 20px 40px;
+        }
+        .hero h1 {
+            font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; color: transparent;
+        }
+        .hero p { color: var(--primary-color); font-size: 1.1rem; }
+
+        /* --- 4. GRID LAYOUT & CARDS --- */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 30px 5%;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Smart Responsive Columns */
+            gap: 25px;
+            padding: 20px 5% 80px;
+            max-width: 1400px; margin: 0 auto;
         }
 
-        /* --- ✨ ANIMATED CARD STYLES ✨ --- */
-        .item-card {
-            background: rgba(20, 20, 20, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
+        .software-card {
+            background: var(--card-bg);
+            border: var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: auto; /* Changed to auto for expanding content */
+            transition: all 0.4s ease;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        .item-card:hover {
+        /* Hover Effect */
+        .software-card:hover {
             transform: translateY(-10px);
-            border-color: #00d2ff;
-            box-shadow: 0 10px 40px -10px rgba(0, 210, 255, 0.25);
-            background: rgba(30, 30, 30, 0.9);
+            background: rgba(30, 30, 30, 0.85);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
         }
 
-        .card-img {
-            width: 100%;
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
-            padding: 10px;
+        .card-img-wrapper {
+            width: 100%; height: 160px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 15px; padding: 10px;
         }
+        
+        .card-img-wrapper img {
+            max-width: 100%; max-height: 100%;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+            transition: 0.4s;
+        }
+        .software-card:hover .card-img-wrapper img { transform: scale(1.15) rotate(2deg); }
 
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-            transition: transform 0.5s ease;
+        .software-card h3 {
+            font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 5px;
         }
+        
+        .software-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
 
-        .item-card:hover .card-img img {
-            transform: scale(1.1);
+        /* Info & Buttons */
+        .toggle-info-btn {
+            background: transparent; border: 1px solid #444; color: #ccc;
+            padding: 6px 15px; font-size: 0.8rem; border-radius: 20px; cursor: pointer;
+            margin-bottom: 15px; transition: 0.3s; display: flex; align-items: center; gap: 5px;
         }
+        .toggle-info-btn:hover { background: #fff; color: #000; }
 
-        .item-card h3 {
-            font-size: 1.3rem;
-            margin: 0 0 5px 0;
-            color: #fff;
-            font-weight: 700;
-        }
-
-        .item-card p {
-            font-size: 0.95rem;
-            color: #aaa;
-            margin-bottom: 15px;
-        }
-
-        /* --- ADSENSE FRIENDLY INFO BUTTON & CONTENT --- */
-        .info-btn {
-            background: transparent;
-            border: 1px solid #00d2ff;
-            color: #00d2ff;
-            padding: 5px 15px;
-            font-size: 0.8rem;
-            border-radius: 20px;
-            cursor: pointer;
-            margin-bottom: 15px;
-            transition: 0.3s;
-        }
-        .info-btn:hover {
-            background: #00d2ff;
-            color: #000;
-        }
-
-        .seo-content {
-            display: none; /* Hidden by default */
-            text-align: left;
-            background: rgba(0,0,0,0.3);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            font-size: 0.85rem;
-            color: #ddd;
-            width: 100%;
-            border: 1px solid #333;
-        }
-        .seo-content h4 { color: #00d2ff; margin-bottom: 5px; font-size: 0.9rem; }
-        .seo-content ul { padding-left: 20px; margin-top: 5px; }
-        .seo-content li { margin-bottom: 3px; }
-
-        /* Button Animation */
         .download-btn {
-            margin-top: auto;
-            background: transparent;
-            color: #00d2ff;
-            border: 2px solid #00d2ff;
-            padding: 10px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            margin-top: auto; width: 100%;
+            background: transparent; color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px; border-radius: 50px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
         }
-
         .download-btn:hover {
-            background: #00d2ff;
-            color: #000;
-            box-shadow: 0 0 20px #00d2ff;
-            transform: scale(1.05);
+            background: var(--primary-color); color: #000;
+            box-shadow: 0 0 20px var(--primary-color);
         }
 
-        /* --- Header & Search Fixes --- */
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        /* SEO Content Box */
+        .seo-box {
+            display: none; width: 100%;
+            background: rgba(0,0,0,0.4); border: 1px solid #333;
+            border-radius: 10px; padding: 15px; text-align: left;
+            margin-bottom: 20px; font-size: 0.85rem; color: #ddd;
+        }
+        .seo-box h4 { color: var(--primary-color); margin-bottom: 5px; }
+        .seo-box ul { padding-left: 20px; margin-top: 5px; }
+
+        /* --- 5. FOOTER --- */
+        footer {
+            border-top: var(--glass-border); padding: 30px; text-align: center;
+            color: #666; font-size: 0.9rem; background: #000;
         }
         
-        .brand-text { color: white; margin: 0; }
-        .brand-highlight { color: #00d2ff; }
-        
-        @media (max-width: 768px) {
-            .header-container { flex-direction: column; gap: 15px; }
-            .search-bar { width: 100%; display: flex; }
-            .search-bar input { flex: 1; }
-            .grid-container { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-        }
     </style>
 </head>
 <body>
@@ -192,49 +206,46 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="index.html" class="back-btn" style="color: #00d2ff; font-size: 1.2rem; margin-right: 15px;">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-                <a href="index.html" style="text-decoration: none;">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <a href="index.html">
                     <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
                 </a>
             </div>
 
             <div class="social-nav" style="display: flex; gap: 15px;">
-                <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank" style="color:#fff"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/nextgen.adi4u?igsh=bGN5N3pkbWdkZjhl&utm_source=qr" target="_blank" style="color:#fff"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/nextgenadi4u" target="_blank" style="color:#fff"><i class="fab fa-telegram"></i></a>
+                 <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank" style="color:#fff"><i class="fab fa-youtube"></i></a>
+                 <a href="https://www.instagram.com/nextgen.adi4u" target="_blank" style="color:#fff"><i class="fab fa-instagram"></i></a>
+                 <a href="https://t.me/nextgenadi4u" target="_blank" style="color:#fff"><i class="fab fa-telegram"></i></a>
             </div>
 
-            <div class="search-bar" style="background:rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; border: 1px solid #333;">
-                <input type="text" placeholder="Search Softwares..." style="background:transparent; border:none; color:white; outline:none;">
-                <button style="background:transparent; border:none; color:#00d2ff;"><i class="fas fa-search"></i></button>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Find Software...">
+                <button><i class="fas fa-search"></i></button>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero page-hero" style="text-align: center; padding: 50px 20px;">
-            <h1 class="main-heading" style="font-size: 3rem; color: #fff; text-shadow: 0 0 15px #00d2ff; margin-bottom: 10px;">Premium PC Softwares</h1>
-            <p class="sub-text" style="color: #ccc; font-size: 1.1rem;">Download Full Version & Pre-Activated Tools</p>
+        <section class="hero" data-aos="fade-down">
+            <h1>Premium PC Softwares</h1>
+            <p>Cracked • Full Version • Pre-Activated</p>
         </section>
 
         <section class="grid-container" id="softwareGrid">
             
-            <div class="item-card">
-                <div class="card-img"><img src="S27.png" alt="Premiere Pro"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S27.png" alt="Premiere Pro"></div>
                 <h3>Adobe Premiere Pro</h3>
                 <p>v2024 | Video Editing</p>
                 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
                     <h4>About Premiere Pro</h4>
-                    <p>The industry-leading video editing software for film, TV, and the web. Creative tools, integration with other apps and services, and the power of Adobe Sensei help you craft footage into polished films and videos.</p>
-                    <h4>Key Highlights:</h4>
+                    <p>The industry-leading video editing software. AI-powered tools help you craft footage into polished films.</p>
                     <ul>
-                        <li>AI-Powered Text-Based Editing.</li>
-                        <li>Automatic Tone Mapping.</li>
-                        <li>System: Win 10/11 (64-bit), 8GB RAM min.</li>
+                        <li>AI Text-Based Editing.</li>
+                        <li>Auto Tone Mapping.</li>
+                        <li>Win 10/11 (64-bit).</li>
                     </ul>
                 </div>
 
@@ -243,20 +254,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S11.png" alt="Photoshop"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S11.png" alt="Photoshop"></div>
                 <h3>Adobe Photoshop</h3>
                 <p>v2024 | Image Editing</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Photoshop 2024</h4>
-                    <p>The world's best imaging and graphic design software. Create and enhance photographs, illustrations, and 3D artwork. Design websites and mobile apps. Edit videos, simulate real-life paintings, and more.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Photoshop</h4>
+                    <p>Create and enhance photographs, illustrations, and 3D artwork with Generative AI.</p>
                     <ul>
-                        <li>Generative Fill (AI Tool).</li>
-                        <li>Advanced Object Selection.</li>
-                        <li>System: 8GB RAM, 4GB GPU recommended.</li>
+                        <li>Generative Fill AI.</li>
+                        <li>Neural Filters.</li>
+                        <li>8GB RAM Required.</li>
                     </ul>
                 </div>
 
@@ -265,43 +275,40 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S30.png" alt="MS Office"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S30.png" alt="Office"></div>
                 <h3>MS Office 2021</h3>
                 <p>Pro Plus | Lifetime</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About MS Office 2021</h4>
-                    <p>The essential tool for productive work. Microsoft Office 2021 Professional Plus includes classic versions of Word, Excel, PowerPoint, and Outlook, plus Publisher and Access.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About MS Office</h4>
+                    <p>Includes Word, Excel, PowerPoint, and Outlook. No subscription needed.</p>
                     <ul>
-                        <li>Dark Mode support in Word.</li>
-                        <li>XLOOKUP & Dynamic Arrays in Excel.</li>
-                        <li>One-time purchase, no subscription needed.</li>
+                        <li>Dark Mode Support.</li>
+                        <li>XLOOKUP in Excel.</li>
+                        <li>Lifetime Activation.</li>
                     </ul>
                 </div>
 
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
+                <a href="#" target="_blank" class="download-btn">
                     Download <i class="fas fa-download"></i>
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S15.png" alt="WinRAR"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S15.png" alt="WinRAR"></div>
                 <h3>WinRAR 2024</h3>
                 <p>Compression Tool</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>WinRAR Compression Tool</h4>
-                    <p>WinRAR is a powerful archive manager that can backup your data and reduce the size of email attachments, decompress RAR, ZIP, and other files. It is known for its high compression ratio and security features like password encryption.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About WinRAR</h4>
+                    <p>Powerful archive manager. Compress, encrypt, and backup your data.</p>
                     <ul>
-                        <li>Supports RAR5 format for superior compression.</li>
-                        <li>Archive encryption with 256-bit AES.</li>
-                        <li>Self-extracting archive (SFX) creation.</li>
-                        <li>Recovers physically damaged archives.</li>
+                        <li>RAR5 Compression.</li>
+                        <li>AES-256 Encryption.</li>
+                        <li>Fast Extraction.</li>
                     </ul>
                 </div>
 
@@ -310,20 +317,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S1.jpg" alt="Acrobat"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S1.jpg" alt="Acrobat"></div>
                 <h3>Adobe Acrobat Pro</h3>
                 <p>v2024 | PDF Editor</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Acrobat Pro</h4>
-                    <p>The complete PDF solution for working anywhere. Create, edit, sign, and track documents from any device. Convert PDFs to Word, Excel, or PowerPoint formats easily.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Acrobat</h4>
+                    <p>The complete PDF solution. Edit, sign, and convert PDFs easily.</p>
                     <ul>
-                        <li>Edit text and images in PDF.</li>
-                        <li>Combine multiple files into one PDF.</li>
-                        <li>E-signature support.</li>
+                        <li>Edit Text & Images.</li>
+                        <li>Convert to Word/Excel.</li>
+                        <li>E-Signatures.</li>
                     </ul>
                 </div>
 
@@ -332,20 +338,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S26.png" alt="After Effects"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S26.png" alt="After Effects"></div>
                 <h3>Adobe After Effects</h3>
                 <p>v2024 | VFX & Motion</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
                     <h4>About After Effects</h4>
-                    <p>Create cinematic movie titles, intros, and transitions. Remove an object from a clip. Start a fire or make it rain. The industry standard for motion graphics and visual effects.</p>
-                    <h4>Key Highlights:</h4>
+                    <p>Create cinematic movie titles, intros, and transitions. The standard for motion graphics.</p>
                     <ul>
-                        <li>Roto Brush 2 for faster separation.</li>
+                        <li>Roto Brush 2 AI.</li>
                         <li>3D Transform Gizmos.</li>
-                        <li>Requires: 16GB RAM (32GB recommended).</li>
+                        <li>16GB RAM Min.</li>
                     </ul>
                 </div>
 
@@ -354,20 +359,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S2.png" alt="Animate"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S2.png" alt="Animate"></div>
                 <h3>Adobe Animate</h3>
                 <p>v2024 | 2D Animation</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Adobe Animate</h4>
-                    <p>Design interactive vector animations for games, TV shows, and the web. Bring cartoons and banner ads to life. Publish to multiple platforms including HTML5 Canvas and WebGL.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Animate</h4>
+                    <p>Design interactive vector animations for games, TV, and the web.</p>
                     <ul>
-                        <li>Asset warping for vector shapes.</li>
-                        <li>Rigging for character animation.</li>
-                        <li>Layer parenting and effects.</li>
+                        <li>Asset Warping.</li>
+                        <li>Character Rigging.</li>
+                        <li>HTML5 Canvas Support.</li>
                     </ul>
                 </div>
 
@@ -376,20 +380,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S3.jpg" alt="Audition"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S3.jpg" alt="Audition"></div>
                 <h3>Adobe Audition</h3>
                 <p>v2024 | Audio Editor</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Adobe Audition</h4>
-                    <p>A professional audio workstation for mixing, finishing, and precision editing. Clean up audio, restore poor recordings, and create podcasts with advanced sound design tools.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Audition</h4>
+                    <p>Professional audio workstation for mixing, finishing, and precision editing.</p>
                     <ul>
-                        <li>Multitrack, waveform, and spectral display.</li>
-                        <li>Essential Sound panel for easy mixing.</li>
-                        <li>Remix feature to adjust song duration.</li>
+                        <li>Multitrack Editing.</li>
+                        <li>Noise Reduction.</li>
+                        <li>Podcast Tools.</li>
                     </ul>
                 </div>
 
@@ -398,20 +401,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S16.png" alt="Bridge"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S16.png" alt="Bridge"></div>
                 <h3>Adobe Bridge</h3>
                 <p>v2024 | Asset Manager</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Adobe Bridge</h4>
-                    <p>A powerful creative asset manager that lets you preview, organize, edit, and publish multiple creative assets quickly and easily. Edit metadata and organize files efficiently.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Bridge</h4>
+                    <p>Organize, preview, and edit metadata of your creative assets centrally.</p>
                     <ul>
-                        <li>Batch rename and organize files.</li>
-                        <li>Centralized access for all creative files.</li>
-                        <li>Supports RAW image processing.</li>
+                        <li>Batch Rename.</li>
+                        <li>Photo Organization.</li>
+                        <li>RAW Support.</li>
                     </ul>
                 </div>
 
@@ -420,20 +422,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S23.png" alt="Illustrator"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S23.png" alt="Illustrator"></div>
                 <h3>Adobe Illustrator</h3>
                 <p>v2024 | Vector Design</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Adobe Illustrator</h4>
-                    <p>The industry-standard vector graphics software lets you create logos, icons, drawings, typography, and illustrations for print, web, video, and mobile.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Illustrator</h4>
+                    <p>Create logos, icons, and illustrations with vector graphics.</p>
                     <ul>
-                        <li>Scalable vector graphics (no pixelation).</li>
-                        <li>Text to Vector AI generation.</li>
-                        <li>Advanced gradient and path tools.</li>
+                        <li>Scalable Vectors.</li>
+                        <li>Text to Vector AI.</li>
+                        <li>Advanced Gradients.</li>
                     </ul>
                 </div>
 
@@ -442,20 +443,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S17.png" alt="Character Animator"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S17.png" alt="Character Animator"></div>
                 <h3>Character Animator</h3>
                 <p>v2024 | Real-time Anim</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
                     <h4>About Character Animator</h4>
-                    <p>Uses your expressions and movements to animate characters in real-time. It's so fast, you can livestream while you animation. Turn any art into an animated character.</p>
-                    <h4>Key Highlights:</h4>
+                    <p>Uses your webcam to animate characters in real-time. Good for streaming.</p>
                     <ul>
-                        <li>Face and body tracking via webcam.</li>
-                        <li>Automatic lip-syncing.</li>
-                        <li>Stream live animations.</li>
+                        <li>Face Tracking.</li>
+                        <li>Auto Lip-Sync.</li>
+                        <li>Live Animation.</li>
                     </ul>
                 </div>
 
@@ -464,20 +464,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S18.png" alt="Dimension"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S18.png" alt="Dimension"></div>
                 <h3>Adobe Dimension</h3>
                 <p>v2024 | 3D Mockups</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Adobe Dimension</h4>
-                    <p>Create engaging 3D content faster with models, materials, and lighting. Ideal for product mockups, brand visualizations, packaging design, and 3D art.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Dimension</h4>
+                    <p>Create 3D product mockups and brand visualizations easily.</p>
                     <ul>
-                        <li>Drag and drop 3D models.</li>
-                        <li>Realistic rendering and lighting.</li>
-                        <li>Export to Photoshop layers.</li>
+                        <li>Drag & Drop 3D.</li>
+                        <li>Realistic Lighting.</li>
+                        <li>Photoshop Export.</li>
                     </ul>
                 </div>
 
@@ -486,20 +485,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S19.png" alt="Dreamweaver"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S19.png" alt="Dreamweaver"></div>
                 <h3>Adobe Dreamweaver</h3>
                 <p>v2021 | Web Design</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
                     <h4>About Dreamweaver</h4>
-                    <p>Quickly create and publish web pages almost anywhere with web design software that supports HTML, CSS, JavaScript, and more. Features a smart coding engine.</p>
-                    <h4>Key Highlights:</h4>
+                    <p>Create and publish web pages. Supports HTML, CSS, JS.</p>
                     <ul>
-                        <li>Live view editing.</li>
-                        <li>Multi-monitor support for Windows.</li>
-                        <li>Git support for version control.</li>
+                        <li>Live View Editing.</li>
+                        <li>Git Support.</li>
+                        <li>Smart Coding Engine.</li>
                     </ul>
                 </div>
 
@@ -508,20 +506,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S20.png" alt="Fresco"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S20.png" alt="Fresco"></div>
                 <h3>Adobe Fresco</h3>
                 <p>v5.0 | Digital Art</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Adobe Fresco</h4>
-                    <p>Designed for the latest stylus and touch devices, Adobe Fresco brings together the world's largest collection of vector and raster brushes, plus revolutionary live brushes.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Fresco</h4>
+                    <p>Painting app with live watercolor and oil brushes.</p>
                     <ul>
-                        <li>Live Brushes (Watercolors/Oils).</li>
-                        <li>Vector and Raster support.</li>
-                        <li>Seamless integration with Photoshop.</li>
+                        <li>Live Brushes.</li>
+                        <li>Vector Support.</li>
+                        <li>Touch Optimized.</li>
                     </ul>
                 </div>
 
@@ -530,20 +527,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S21.png" alt="InCopy"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S21.png" alt="InCopy"></div>
                 <h3>Adobe InCopy</h3>
                 <p>v2024 | Text Editor</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Adobe InCopy</h4>
-                    <p>A professional word processor designed to integrate with Adobe InDesign. It allows writers and editors to style text, track changes, and make layout modifications concurrently.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About InCopy</h4>
+                    <p>Word processor that integrates with InDesign for writers.</p>
                     <ul>
-                        <li>Parallel workflow with designers.</li>
-                        <li>Track changes and notes.</li>
-                        <li>Copyfitting support.</li>
+                        <li>Collaborative Workflow.</li>
+                        <li>Track Changes.</li>
+                        <li>Copyfitting.</li>
                     </ul>
                 </div>
 
@@ -552,20 +548,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S22.png" alt="InDesign"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S22.png" alt="InDesign"></div>
                 <h3>Adobe InDesign</h3>
                 <p>v2024 | Layout Design</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Adobe InDesign</h4>
-                    <p>The industry-leading layout and page design software for print and digital media. Create beautiful graphic designs with typography from the world's top foundries.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About InDesign</h4>
+                    <p>Layout software for magazines, books, and digital media.</p>
                     <ul>
-                        <li>Professional print layout tools.</li>
-                        <li>Interactive PDFs and eBooks.</li>
-                        <li>Content-Aware Fit for images.</li>
+                        <li>Print Layouts.</li>
+                        <li>Interactive eBooks.</li>
+                        <li>Professional Type.</li>
                     </ul>
                 </div>
 
@@ -574,20 +569,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S24.png" alt="Lightroom"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S24.png" alt="Lightroom"></div>
                 <h3>Adobe Lightroom</h3>
                 <p>Classic v13 | Photo Edit</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Lightroom Classic</h4>
-                    <p>Powerful photo editing and management. It offers robust tools for digital photography tasks, including adjusting exposure, color, and tone, as well as organizing large photo libraries.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Lightroom</h4>
+                    <p>Powerful photo editing, color grading, and organization.</p>
                     <ul>
-                        <li>AI Denoise for cleaner images.</li>
-                        <li>Advanced color grading wheels.</li>
-                        <li>Masking tools for precise edits.</li>
+                        <li>AI Denoise.</li>
+                        <li>Color Grading.</li>
+                        <li>Masking Tools.</li>
                     </ul>
                 </div>
 
@@ -596,20 +590,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S25.png" alt="Media Encoder"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S25.png" alt="Media Encoder"></div>
                 <h3>Adobe Media Encoder</h3>
                 <p>v2024 | Video Render</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
                     <h4>About Media Encoder</h4>
-                    <p>Your go-to application for all media processing. Ingest, transcode, create proxies, and output any format you can imagine. Automates workflows for Premiere Pro and After Effects.</p>
-                    <h4>Key Highlights:</h4>
+                    <p>Render and export videos from Premiere Pro and After Effects.</p>
                     <ul>
-                        <li>Background rendering.</li>
-                        <li>Supports almost all video formats.</li>
-                        <li>Direct publishing to social media.</li>
+                        <li>Background Rendering.</li>
+                        <li>All Formats Support.</li>
+                        <li>Social Publishing.</li>
                     </ul>
                 </div>
 
@@ -618,20 +611,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S28.png" alt="Premiere Rush"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S28.png" alt="Premiere Rush"></div>
                 <h3>Adobe Premiere Rush</h3>
                 <p>v2.9 | Easy Edit</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
                     <h4>About Premiere Rush</h4>
-                    <p>Feed your followers a steady stream of awesome with Premiere Rush, the all-in-one app for creating and sharing online videos. Easy to use across all your devices.</p>
-                    <h4>Key Highlights:</h4>
+                    <p>Simple video editor for creators. Edit and share to social media fast.</p>
                     <ul>
-                        <li>Simple drag-and-drop editing.</li>
-                        <li>Built-in motion graphics templates.</li>
-                        <li>Fast export for YouTube/Instagram.</li>
+                        <li>Drag-and-Drop.</li>
+                        <li>Motion Templates.</li>
+                        <li>Fast Export.</li>
                     </ul>
                 </div>
 
@@ -640,20 +632,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S29.png" alt="XD"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S29.png" alt="XD"></div>
                 <h3>Adobe XD</h3>
                 <p>v56.1 | UI/UX Design</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
                     <h4>About Adobe XD</h4>
-                    <p>Adobe XD is a vector-based user experience design tool for web apps and mobile apps. It features tools for wireframing, creating high-fidelity designs, and interactive prototyping.</p>
-                    <h4>Key Highlights:</h4>
+                    <p>Vector-based tool for designing web and mobile app interfaces.</p>
                     <ul>
-                        <li>Responsive resize tools.</li>
-                        <li>Auto-animate for prototypes.</li>
-                        <li>Grid layouts and repeat grids.</li>
+                        <li>Prototyping.</li>
+                        <li>Auto-Animate.</li>
+                        <li>Grid Layouts.</li>
                     </ul>
                 </div>
 
@@ -662,20 +653,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S5.png" alt="CapCut"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S5.png" alt="CapCut"></div>
                 <h3>CapCut PC</h3>
                 <p>v2024 | Pro Version</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
                     <h4>About CapCut PC</h4>
-                    <p>An all-in-one video editor that offers easy-to-use editing features, massive free fonts and effects, advanced features like keyframe animation, smooth slow-motion, and stabilization.</p>
-                    <h4>Key Highlights:</h4>
+                    <p>All-in-one video editor with trending effects and auto-captions.</p>
                     <ul>
-                        <li>Auto captions generation.</li>
-                        <li>Trending filters and effects.</li>
-                        <li>Remove background without green screen.</li>
+                        <li>Auto Captions.</li>
+                        <li>Background Remover.</li>
+                        <li>TikTok Effects.</li>
                     </ul>
                 </div>
 
@@ -684,42 +674,40 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S12.png" alt="Photoshop Express"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S12.png" alt="Photoshop Express"></div>
                 <h3>Photoshop Express</h3>
                 <p>v2024 | Quick Edit</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Photoshop Express</h4>
-                    <p>A mobile and web version of Photoshop for quick and easy photo editing. It includes basic features like cropping, straightening, rotating, and flipping, as well as filters.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About PS Express</h4>
+                    <p>Quick and easy photo editing. Crop, rotate, and add filters.</p>
                     <ul>
-                        <li>One-touch photo adjustments.</li>
-                        <li>Collage maker.</li>
-                        <li>Noise reduction and spot healing.</li>
+                        <li>One-Touch Fixes.</li>
+                        <li>Collage Maker.</li>
+                        <li>Spot Healing.</li>
                     </ul>
                 </div>
 
-                <a href="YOUR_LINK_HERE" target="_blank" class="download-btn">
+                <a href="#" target="_blank" class="download-btn">
                     Download <i class="fas fa-download"></i>
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S9.png" alt="Topaz"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S9.png" alt="Topaz"></div>
                 <h3>Topaz Video AI</h3>
                 <p>v7.1 | Enhancer</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Topaz Video AI</h4>
-                    <p>World-class video quality enhancement software. It uses AI to upscale resolution (up to 8K), sharpen detail, reduce noise, and stabilize shaky footage.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Topaz</h4>
+                    <p>Upscale video resolution to 4K/8K and smooth motion with AI.</p>
                     <ul>
-                        <li>Upscale SD to HD/4K/8K.</li>
-                        <li>AI Frame Interpolation (Smooth Motion).</li>
-                        <li>Requires strong GPU (NVIDIA Recommended).</li>
+                        <li>Upscale to 8K.</li>
+                        <li>60fps Smoothing.</li>
+                        <li>Requires GPU.</li>
                     </ul>
                 </div>
 
@@ -728,20 +716,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S6.png" alt="Canva"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S6.png" alt="Canva"></div>
                 <h3>Canva Desktop</h3>
                 <p>v1.111 | Design Tool</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
                     <h4>About Canva</h4>
-                    <p>A graphic design platform used to create social media graphics, presentations, posters, documents, and other visual content. This desktop app makes designing faster.</p>
-                    <h4>Key Highlights:</h4>
+                    <p>Graphic design platform for social media, presentations, and posters.</p>
                     <ul>
-                        <li>Thousands of free templates.</li>
-                        <li>Drag-and-drop interface.</li>
-                        <li>Offline access to designs.</li>
+                        <li>Free Templates.</li>
+                        <li>Drag-and-Drop.</li>
+                        <li>Offline Mode.</li>
                     </ul>
                 </div>
 
@@ -750,20 +737,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S10.png" alt="Aiseesoft"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S10.png" alt="Aiseesoft"></div>
                 <h3>Aiseesoft Recorder</h3>
                 <p>v2024 | Full Version</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About Aiseesoft Screen Recorder</h4>
-                    <p>An easy-to-use screen recording software to capture any activity on Mac or Windows computer. It acts as a good video game recorder, Skype call capture, and more.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About Aiseesoft</h4>
+                    <p>Record your screen, gameplay, or webcam with system audio.</p>
                     <ul>
-                        <li>Record screen with system/mic audio.</li>
-                        <li>Capture webcam overlay.</li>
-                        <li>Real-time drawing and annotation.</li>
+                        <li>Screen Recording.</li>
+                        <li>Webcam Capture.</li>
+                        <li>Annotations.</li>
                     </ul>
                 </div>
 
@@ -772,20 +758,19 @@
                 </a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="S14.png" alt="IObit"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="S14.png" alt="IObit"></div>
                 <h3>IObit Uninstaller</h3>
                 <p>Pro v15 | Cleaner</p>
 
-                <button class="info-btn" onclick="toggleInfo(this)">Show Info <i class="fas fa-caret-down"></i></button>
-                <div class="seo-content">
-                    <h4>About IObit Uninstaller</h4>
-                    <p>A perfect uninstallation tool. It provides an easy and secure way to remove unwanted programs, Windows Apps, Universal Windows Platform (UWP) apps, and malicious plugins.</p>
-                    <h4>Key Highlights:</h4>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About IObit</h4>
+                    <p>Completely remove unwanted programs and leftover files.</p>
                     <ul>
-                        <li>Removes stubborn software.</li>
-                        <li>Cleans leftover registry files.</li>
-                        <li>Software Health updater.</li>
+                        <li>Stubborn Removal.</li>
+                        <li>Registry Clean.</li>
+                        <li>Safe Uninstall.</li>
                     </ul>
                 </div>
 
@@ -798,77 +783,51 @@
     </main>
 
     <footer>
-        <div class="footer-content" style="text-align: center; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px;">
-            <div class="footer-bottom">
-                <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
-            </div>
-        </div>
+        <p>&copy; 2026 NextGenAdi4U. All Rights Reserved.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <script>
-        // --- ADSENSE FRIENDLY TOGGLE FUNCTION ---
+        // Init Animation
+        AOS.init({ duration: 800, once: true, offset: 50 });
+
+        // Info Toggle Logic (AdSense Safe)
         function toggleInfo(btn) {
-            const content = btn.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-                btn.innerHTML = 'Show Info <i class="fas fa-caret-down"></i>';
+            const box = btn.nextElementSibling;
+            if (box.style.display === "block") {
+                box.style.display = "none";
+                btn.innerHTML = 'Info <i class="fas fa-chevron-down"></i>';
             } else {
-                content.style.display = "block";
-                btn.innerHTML = 'Hide Info <i class="fas fa-caret-up"></i>';
+                box.style.display = "block";
+                btn.innerHTML = 'Close <i class="fas fa-chevron-up"></i>';
             }
         }
 
-        // --- INITIALIZE ANIMATIONS ---
-        document.addEventListener("DOMContentLoaded", function() {
-            const cards = document.querySelectorAll('.item-card');
-            cards.forEach((card, index) => {
-                card.setAttribute('data-aos', 'fade-up');
-                card.setAttribute('data-aos-delay', (index % 4) * 100); 
+        // Search Logic
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.software-card');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(term) ? 'flex' : 'none';
             });
-            AOS.init({ duration: 800, once: true, offset: 100 });
         });
 
-        // --- SEARCH LOGIC ---
-        document.addEventListener("DOMContentLoaded", function() {
-            const searchInput = document.querySelector('.search-bar input');
-            const cards = document.querySelectorAll('.item-card');
-
-            if (searchInput) {
-                searchInput.addEventListener('keyup', function(event) {
-                    const query = event.target.value.toLowerCase();
-                    cards.forEach(card => {
-                        const title = card.querySelector('h3').textContent.toLowerCase();
-                        const desc = card.querySelector('p').textContent.toLowerCase();
-                        // Also search inside the new description text
-                        const seoText = card.querySelector('.seo-content').innerText.toLowerCase();
-                        
-                        if (title.includes(query) || desc.includes(query) || seoText.includes(query)) {
-                            card.style.display = "flex";
-                        } else {
-                            card.style.display = "none";
-                        }
-                    });
-                });
-            }
-        });
-
-        // --- FLOATING NEON DUST ANIMATION ---
+        // Particle Background Logic
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        let particlesArray;
+        let particles = [];
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1; 
-                this.speedX = Math.random() * 1 - 0.5; 
-                this.speedY = Math.random() * 1 - 0.5; 
-                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')'; 
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
             }
             update() {
                 this.x += this.speedX; this.y += this.speedY;
@@ -878,29 +837,28 @@
                 if (this.y < 0) this.y = canvas.height;
             }
             draw() {
-                ctx.fillStyle = this.color; ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+                ctx.fillStyle = 'rgba(0, 210, 255, 0.4)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
 
-        function initParticles() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 15000; 
-            for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); }
+        function init() {
+            particles = [];
+            for (let i = 0; i < 80; i++) particles.push(new Particle());
         }
-
-        function animateParticles() {
+        function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); }
-            requestAnimationFrame(animateParticles);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
         }
-
-        window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles();
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
         });
-
-        initParticles(); animateParticles();
+        init(); animate();
     </script>
-
 </body>
 </html>
