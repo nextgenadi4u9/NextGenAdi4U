@@ -3,19 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00d2ff">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685" crossorigin="anonymous"></script>
+    
     <title>Terms of Service - NextGenAdi4U</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
     <style>
-        /* --- PARTICLE BACKGROUND CSS --- */
+        /* --- 1. GLOBAL VARIABLES & RESET --- */
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #007bb5;
+            --bg-dark: #050505;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #b0b0b0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        /* Particle Background */
         #dustCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: #050505; /* गडद काळा बॅकग्राउंड */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; background: radial-gradient(circle at center, #0f1520 0%, #000000 100%);
+        }
+
+        a { text-decoration: none; transition: 0.3s; color: inherit; }
+        
+        /* --- 2. HEADER SECTION --- */
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
+            padding: 15px 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .header-container {
+            display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto;
+        }
+
+        .logo { display: flex; align-items: center; gap: 15px; }
+        
+        .brand-text {
+            font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin: 0;
+        }
+        .brand-highlight { color: var(--primary-color); }
+
+        .back-btn {
+            color: var(--primary-color); font-size: 1.4rem; padding: 5px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .back-btn:hover { background: rgba(0, 210, 255, 0.1); transform: translateX(-5px); }
+
+        /* Social Icons Header */
+        .social-nav { display: flex; gap: 20px; }
+        .social-nav a { font-size: 1.2rem; color: var(--text-muted); }
+        .social-nav a:hover { color: var(--primary-color); transform: translateY(-3px); }
+
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            text-align: center; padding: 60px 20px 40px;
+        }
+        .hero h1 {
+            font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; color: transparent;
+        }
+        .hero p { color: var(--primary-color); font-size: 1.1rem; }
+
+        /* --- 4. POLICY CONTENT --- */
+        .policy-wrapper {
+            max-width: 1000px; margin: 0 auto 60px; padding: 0 20px;
+        }
+
+        .policy-container {
+            background: var(--card-bg);
+            border: var(--glass-border);
+            border-radius: 20px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        }
+
+        .policy-container h2 {
+            font-family: 'Rajdhani', sans-serif; color: var(--primary-color);
+            font-size: 1.8rem; margin-top: 30px; margin-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding-bottom: 10px;
+        }
+        .policy-container h2:first-child { margin-top: 0; }
+
+        .policy-container p {
+            color: var(--text-muted); line-height: 1.8; margin-bottom: 15px; font-size: 1rem; text-align: justify;
+        }
+
+        .policy-container strong { color: #fff; }
+        
+        .policy-link {
+            color: var(--primary-color); font-weight: 600; position: relative;
+        }
+        .policy-link::after {
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 0%; height: 1px;
+            background: var(--primary-color); transition: 0.3s;
+        }
+        .policy-link:hover::after { width: 100%; }
+
+        @media (max-width: 768px) {
+            .policy-container { padding: 30px 20px; }
+            .hero h1 { font-size: 2.2rem; }
+            .social-nav { display: none; }
+        }
+
+        /* --- 5. FOOTER --- */
+        footer {
+            border-top: var(--glass-border); padding: 30px; text-align: center;
+            color: #666; font-size: 0.9rem; background: #000; margin-top: auto;
         }
     </style>
 </head>
@@ -25,113 +141,110 @@
 
     <header>
         <div class="header-container">
-           <div class="logo">
-    <a href="index.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-    </a>
-    
-    <a href="index.html" style="text-decoration: none;">
-        <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
-    </a>
-</div>
+            <div class="logo">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <a href="index.html">
+                    <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
+                </a>
+            </div>
+            
+            <div class="social-nav">
+                 <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank"><i class="fab fa-youtube"></i></a>
+                 <a href="https://www.instagram.com/nextgen.adi4u" target="_blank"><i class="fab fa-instagram"></i></a>
+                 <a href="https://t.me/nextgenadi4u" target="_blank"><i class="fab fa-telegram"></i></a>
+            </div>
         </div>
     </header>
 
     <main>
-        <section class="hero page-hero">
-            <h1 class="main-heading">Terms of Service</h1>
-            <p class="sub-text">Rules, Regulations & AdSense Policy.</p>
+        <section class="hero" data-aos="fade-down">
+            <h1>Terms of Service</h1>
+            <p>Rules, Regulations & User Agreement</p>
         </section>
 
-        <section class="policy-container">
-            <h2>1. Agreement to Terms</h2>
-            <p>These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”) and <strong>NextGenAdi4U</strong> regarding your access to and use of the website.</p>
+        <div class="policy-wrapper" data-aos="fade-up">
+            <section class="policy-container">
+                
+                <h2>1. Agreement to Terms</h2>
+                <p>These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”) and <strong>NextGenAdi4U</strong> regarding your access to and use of the website. By accessing the site, you agree that you have read, understood, and agreed to be bound by all of these Terms of Use.</p>
 
-            <h2>2. User Representations</h2>
-            <p>By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information.</p>
+                <h2>2. User Representations</h2>
+                <p>By using the Site, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Terms of Use.</p>
 
-            <h2>3. Google AdSense & Advertising</h2>
-            <p>We use third-party advertising companies (such as Google AdSense) to serve ads when you visit our website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you.</p>
-            <p>Google, as a third-party vendor, uses cookies to serve ads on our site. Google's use of the advertising cookie enables it and its partners to serve ads to our users based on their visit to our site and/or other sites on the Internet.</p>
+                <h2>3. Google AdSense & Advertising</h2>
+                <p>We use third-party advertising companies (such as <strong>Google AdSense</strong>) to serve ads when you visit our website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you.</p>
+                <p>Google, as a third-party vendor, uses cookies to serve ads on our site. Google's use of the advertising cookie enables it and its partners to serve ads to our users based on their visit to our site and/or other sites on the Internet.</p>
 
-            <h2>4. Cookie Policy</h2>
-            <p>Users may opt-out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" style="color: #00d2ff;">Google Ads Settings</a>. Alternatively, you can opt-out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="http://www.aboutads.info/choices/" target="_blank" style="color: #00d2ff;">www.aboutads.info</a>.</p>
+                <h2>4. Cookie Policy</h2>
+                <p>Users may opt-out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" class="policy-link">Google Ads Settings</a>. Alternatively, you can opt-out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="http://www.aboutads.info/choices/" target="_blank" class="policy-link">www.aboutads.info</a>.</p>
 
-            <h2>5. Disclaimer</h2>
-            <p>The site is provided on an as-is and as-available basis. You agree that your use of the site and our services will be at your sole risk. We make no warranties or representations about the accuracy or completeness of the site’s content.</p>
+                <h2>5. Intellectual Property Rights</h2>
+                <p>Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the Site (collectively, the “Content”) and the trademarks, service marks, and logos contained therein (the “Marks”) are owned or controlled by us or licensed to us.</p>
 
-            <h2>6. Modifications</h2>
-            <p>We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice.</p>
-        </section>
+                <h2>6. Disclaimer</h2>
+                <p>The site is provided on an as-is and as-available basis. You agree that your use of the site and our services will be at your sole risk. To the fullest extent permitted by law, we disclaim all warranties, express or implied, in connection with the site and your use thereof.</p>
+
+                <h2>7. Modifications</h2>
+                <p>We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. However, we have no obligation to update any information on our Site. We also reserve the right to modify or discontinue all or part of the Site without notice at any time.</p>
+
+            </section>
+        </div>
     </main>
 
     <footer>
-        <div class="footer-bottom">
-            <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
-        </div>
+        <p>&copy; 2026 NextGenAdi4U. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Init Animation
+        AOS.init({ duration: 800, once: true });
+
+        // Particle Background Logic
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
-        
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        let particlesArray;
+        let particlesArray = [];
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1; 
-                this.speedX = Math.random() * 1 - 0.5; 
-                this.speedY = Math.random() * 1 - 0.5; 
-                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')'; 
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
             }
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
+                this.x += this.speedX; this.y += this.speedY;
                 if (this.x > canvas.width) this.x = 0;
                 if (this.x < 0) this.x = canvas.width;
                 if (this.y > canvas.height) this.y = 0;
                 if (this.y < 0) this.y = canvas.height;
             }
             draw() {
-                ctx.fillStyle = this.color;
+                ctx.fillStyle = 'rgba(0, 210, 255, 0.3)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
 
-        function initParticles() {
+        function init() {
             particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 15000; 
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
+            for (let i = 0; i < 80; i++) particlesArray.push(new Particle());
         }
-
-        function animateParticles() {
+        function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
+            particlesArray.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
         }
-
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            initParticles();
+            init();
         });
-
-        initParticles();
-        animateParticles();
+        init(); animate();
     </script>
-
 </body>
 </html>
