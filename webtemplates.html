@@ -4,427 +4,311 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#00d2ff">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685" crossorigin="anonymous"></script>
-    
     <title>Web Templates - NextGenAdi4U</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
-        /* --- 1. GLOBAL VARIABLES & RESET --- */
-        :root {
-            --primary-color: #00d2ff;
-            --secondary-color: #007bb5;
-            --bg-dark: #050505;
-            --card-bg: rgba(20, 20, 20, 0.6);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
+        /* Page Specific Overrides */
+        .market-price {
+            text-decoration: line-through; color: #666; font-size: 0.9rem; margin-right: 10px;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            display: flex; flex-direction: column; min-height: 100vh;
+        .our-price {
+            color: #00ff88; font-weight: 800; font-size: 1.3rem; text-shadow: 0 0 10px rgba(0,255,136,0.3);
         }
-
-        /* Particle Background */
-        #dustCanvas {
+        
+        /* Modals */
+        .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2; background: radial-gradient(circle at center, #0f1520 0%, #000000 100%);
+            background: rgba(0,0,0,0.9); z-index: 2000; display: none;
+            justify-content: center; align-items: center; backdrop-filter: blur(8px);
         }
-
-        a { text-decoration: none; transition: 0.3s; }
+        .modal-content {
+            background: #111; padding: 30px; border-radius: 20px; border: 1px solid var(--primary);
+            max-width: 500px; width: 90%; text-align: center; position: relative;
+            box-shadow: 0 0 50px rgba(0, 210, 255, 0.2); animation: popIn 0.3s ease;
+        }
+        .modal-close {
+            position: absolute; top: 15px; right: 20px; font-size: 1.8rem; color: #fff; cursor: pointer; transition: 0.3s;
+        }
+        .modal-close:hover { color: #ff0055; transform: rotate(90deg); }
         
-        /* --- 2. HEADER SECTION --- */
-        header {
-            position: sticky; top: 0; z-index: 1000;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: var(--glass-border);
-            padding: 15px 5%;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        /* Platform Buttons */
+        .platform-grid { display: flex; justify-content: center; gap: 20px; margin-top: 25px; }
+        .plat-btn {
+            width: 65px; height: 65px; border-radius: 18px; display: flex;
+            align-items: center; justify-content: center; font-size: 2rem;
+            color: #fff; transition: 0.3s; cursor: pointer; border: 1px solid rgba(255,255,255,0.1);
         }
-
-        .header-container {
-            display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto;
-        }
-
-        .logo { display: flex; align-items: center; gap: 15px; }
+        .plat-btn:hover { transform: translateY(-8px) scale(1.1); }
         
-        .brand-text {
-            font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin: 0;
-        }
-        .brand-highlight { color: var(--primary-color); }
+        .tg-btn { background: #0088cc; box-shadow: 0 0 20px rgba(0, 136, 204, 0.4); }
+        .ig-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 0 20px rgba(220, 39, 67, 0.4); }
+        .dc-btn { background: #5865F2; box-shadow: 0 0 20px rgba(88, 101, 242, 0.4); }
 
-        .back-btn {
-            color: var(--primary-color); font-size: 1.4rem; padding: 5px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .back-btn:hover { background: rgba(0, 210, 255, 0.1); transform: translateX(-5px); }
-
-        /* Search Bar */
-        .search-box {
-            position: relative; width: 300px;
-        }
-        .search-box input {
-            width: 100%; padding: 10px 45px 10px 20px;
-            border-radius: 50px; border: 1px solid #333;
-            background: rgba(255, 255, 255, 0.05); color: #fff;
-            outline: none; font-family: 'Poppins', sans-serif;
-            transition: 0.3s;
-        }
-        .search-box input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
-            background: rgba(0,0,0,0.8);
-        }
-        .search-box button {
-            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-            background: none; border: none; color: var(--text-muted); cursor: pointer;
-        }
-        .search-box input:focus + button { color: var(--primary-color); }
-
-        @media (max-width: 768px) {
-            .header-container { flex-direction: column; gap: 15px; }
-            .search-box { width: 100%; }
-        }
-
-        /* --- 3. HERO SECTION --- */
-        .hero {
-            text-align: center; padding: 60px 20px 30px;
-        }
-        .hero h1 {
-            font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
-            background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; color: transparent;
-        }
-        .hero p { color: var(--primary-color); font-size: 1.1rem; }
-
-        /* --- 4. TABS --- */
-        .tab-container {
-            display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; padding: 0 20px;
-        }
-        .tab-btn {
-            background: rgba(255,255,255,0.05); border: 1px solid #333;
-            color: #aaa; padding: 12px 30px; border-radius: 30px;
-            font-size: 1rem; cursor: pointer; transition: 0.3s;
-            display: flex; align-items: center; gap: 8px; font-weight: 600;
-        }
-        .tab-btn:hover { border-color: var(--primary-color); color: #fff; }
+        /* Preview Image */
+        .preview-container { width: 100%; height: 300px; overflow-y: scroll; border-radius: 10px; margin-bottom: 20px; border: 1px solid #333; }
+        .preview-img { width: 100%; display: block; }
         
-        .tab-btn.active {
-            background: var(--primary-color); color: #000; border-color: var(--primary-color);
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
-        }
-
-        /* --- 5. GRID & SECTIONS --- */
-        .template-section { display: none; padding: 0 5% 50px; max-width: 1400px; margin: 0 auto; animation: fadeIn 0.5s ease; }
-        .template-section.active-sec { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- SHOPIFY CARDS --- */
-        .shopify-card {
-            background: var(--card-bg); border: var(--glass-border);
-            border-radius: 20px; overflow: hidden; transition: 0.4s;
-            display: flex; flex-direction: column;
-        }
-        .shopify-card:hover {
-            transform: translateY(-10px); border-color: var(--primary-color);
-            box-shadow: 0 10px 40px rgba(0, 210, 255, 0.15);
-        }
-
-        .card-thumb {
-            width: 100%; height: 200px; overflow: hidden; position: relative;
-        }
-        .card-thumb img {
-            width: 100%; height: 100%; object-fit: cover; transition: 0.5s;
-        }
-        .shopify-card:hover .card-thumb img { transform: scale(1.1); }
-        
-        .price-badge {
-            position: absolute; top: 15px; right: 15px;
-            background: var(--primary-color); color: #000;
-            padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 0.8rem;
-        }
-
-        .card-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-        .card-title { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; color: #fff; margin-bottom: 5px; }
-        .card-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; flex: 1; }
-
-        .btn-group { display: flex; gap: 10px; margin-top: auto; }
-        .action-btn {
-            flex: 1; padding: 10px; border-radius: 50px; text-align: center;
-            font-size: 0.9rem; font-weight: 600; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 5px;
-        }
-        .preview-btn { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
-        .preview-btn:hover { background: #fff; color: #000; }
-        .buy-btn { background: var(--primary-color); color: #000; border: 1px solid var(--primary-color); }
-        .buy-btn:hover { background: transparent; color: var(--primary-color); }
-
-        /* --- GITHUB CARDS --- */
-        .github-card {
-            background: #0d1117; border: 1px solid #30363d;
-            border-radius: 15px; padding: 25px; transition: 0.3s;
-            display: flex; flex-direction: column;
-        }
-        .github-card:hover { border-color: #2ea44f; box-shadow: 0 0 20px rgba(46, 164, 79, 0.2); transform: translateY(-5px); }
-
-        .git-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .git-icon { font-size: 2rem; color: #fff; }
-        .git-info h3 { font-size: 1.2rem; color: #58a6ff; margin: 0; }
-        .version-badge { background: #238636; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; margin-top: 5px; display: inline-block; }
-
-        .tech-stack { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-        .tech-badge { background: rgba(56, 139, 253, 0.15); color: #58a6ff; border: 1px solid rgba(56, 139, 253, 0.4); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; }
-
-        .git-download {
-            margin-top: auto; padding: 12px; background: #238636; color: white;
-            text-align: center; border-radius: 8px; font-weight: 600; transition: 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .git-download:hover { background: #2ea44f; }
-
-        /* --- 6. FOOTER --- */
-        footer {
-            border-top: var(--glass-border); padding: 30px; text-align: center;
-            color: #666; font-size: 0.9rem; background: #000; margin-top: auto;
-        }
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
 
     <canvas id="dustCanvas"></canvas>
 
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <a href="home.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-                <a href="home.html">
-                    <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
-                </a>
+    <nav class="navbar">
+        <a href="index.html" class="logo">NextGen<span>Adi4U</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero page-hero">
+        <h1 class="main-heading">Premium Themes Store</h1>
+        <p class="sub-text">Unlocked Shopify Themes & Source Codes @ <span style="color:#00ff88; font-weight:bold;">95% OFF</span></p>
+    </div>
+
+    <div class="tab-container" data-aos="fade-up">
+        <button class="tab-btn active-btn" onclick="switchTab('shopify')"><i class="fab fa-shopify"></i> Shopify Themes</button>
+        <button class="tab-btn" onclick="switchTab('github')"><i class="fab fa-github"></i> GitHub Codes</button>
+    </div>
+
+    <section id="shopify-sec" class="template-section active-sec">
+        <div class="shopify-grid" id="shopify-container">
             </div>
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search Templates...">
-                <button><i class="fas fa-search"></i></button>
+    </section>
+
+    <section id="github-sec" class="template-section">
+        <div class="github-grid" id="github-container">
+            </div>
+    </section>
+
+    <div class="modal-overlay" id="buyModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('buyModal')">&times;</span>
+            <h2 style="color:var(--primary)">Select Platform</h2>
+            <p style="color:#aaa; margin-top:5px">Where should we send the file?</p>
+            
+            <div class="platform-grid">
+                <div class="plat-btn tg-btn" onclick="redirectTo('telegram')" title="Telegram"><i class="fab fa-telegram-plane"></i></div>
+                <div class="plat-btn ig-btn" onclick="redirectTo('instagram')" title="Instagram"><i class="fab fa-instagram"></i></div>
+                <div class="plat-btn dc-btn" onclick="redirectTo('discord')" title="Discord"><i class="fab fa-discord"></i></div>
             </div>
         </div>
-    </header>
+    </div>
 
-    <main>
-        <section class="hero" data-aos="fade-down">
-            <h1>Web Templates Market</h1>
-            <p>Premium Shopify Themes • Open Source Projects</p>
-        </section>
-
-        <div class="tab-container" data-aos="fade-up">
-            <button class="tab-btn active" onclick="openTab('shopify')">
-                <i class="fab fa-shopify"></i> Shopify Themes
-            </button>
-            <button class="tab-btn" onclick="openTab('github')">
-                <i class="fab fa-github"></i> GitHub Projects
-            </button>
+    <div class="modal-overlay" id="previewModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="modal-close" onclick="closeModal('previewModal')">&times;</span>
+            <h2 id="previewTitle" style="color:#fff; margin-bottom: 10px;">Theme Preview</h2>
+            <div class="preview-container">
+                <img src="" id="previewImage" class="preview-img" alt="Theme Preview">
+            </div>
+            <button class="buy-btn" style="width:100%" onclick="openBuyModalFromPreview()">Buy Now - Limited Offer 🔥</button>
         </div>
-
-        <section id="shopify" class="template-section active-sec">
-            
-            <div class="shopify-card" data-aos="zoom-in">
-                <div class="card-thumb">
-                    <div class="price-badge">₹499</div>
-                    <img src="S1.jpg" alt="Theme 1">
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Kalles - Multipurpose</div>
-                    <p class="card-desc">Best-selling Shopify theme with 20+ demos. Fast & SEO friendly.</p>
-                    <div class="btn-group">
-                        <a href="#" class="action-btn preview-btn"><i class="fas fa-eye"></i> Demo</a>
-                        <a href="#" class="action-btn buy-btn"><i class="fas fa-shopping-cart"></i> Buy</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="shopify-card" data-aos="zoom-in" data-aos-delay="100">
-                <div class="card-thumb">
-                    <div class="price-badge">₹599</div>
-                    <img src="S5.png" alt="Theme 2">
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Ella - Fashion Store</div>
-                    <p class="card-desc">All-in-one template for fashion and apparel stores. Mobile optimized.</p>
-                    <div class="btn-group">
-                        <a href="#" class="action-btn preview-btn"><i class="fas fa-eye"></i> Demo</a>
-                        <a href="#" class="action-btn buy-btn"><i class="fas fa-shopping-cart"></i> Buy</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="shopify-card" data-aos="zoom-in" data-aos-delay="200">
-                <div class="card-thumb">
-                    <div class="price-badge">₹399</div>
-                    <img src="S2.png" alt="Theme 3">
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Wokiee - Electronics</div>
-                    <p class="card-desc">Powerful design tool for electronics and gadget shops.</p>
-                    <div class="btn-group">
-                        <a href="#" class="action-btn preview-btn"><i class="fas fa-eye"></i> Demo</a>
-                        <a href="#" class="action-btn buy-btn"><i class="fas fa-shopping-cart"></i> Buy</a>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <section id="github" class="template-section">
-            
-            <div class="github-card">
-                <div class="git-header">
-                    <i class="fab fa-github git-icon"></i>
-                    <div class="git-info">
-                        <h3>Portfolio Website</h3>
-                        <span class="version-badge">v1.0.2</span>
-                    </div>
-                </div>
-                <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">A clean, dark-themed personal portfolio template for developers.</p>
-                <div class="tech-stack">
-                    <span class="tech-badge">HTML5</span>
-                    <span class="tech-badge">CSS3</span>
-                    <span class="tech-badge">JS</span>
-                </div>
-                <a href="#" class="git-download"><i class="fas fa-download"></i> Download Code</a>
-            </div>
-
-            <div class="github-card">
-                <div class="git-header">
-                    <i class="fab fa-react git-icon" style="color: #61dafb;"></i>
-                    <div class="git-info">
-                        <h3>E-Commerce React</h3>
-                        <span class="version-badge">v2.1.0</span>
-                    </div>
-                </div>
-                <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">Full stack e-commerce application with cart functionality.</p>
-                <div class="tech-stack">
-                    <span class="tech-badge">React</span>
-                    <span class="tech-badge">NodeJS</span>
-                    <span class="tech-badge">MongoDB</span>
-                </div>
-                <a href="#" class="git-download"><i class="fas fa-download"></i> Download Code</a>
-            </div>
-
-            <div class="github-card">
-                <div class="git-header">
-                    <i class="fab fa-python git-icon" style="color: #f7d13a;"></i>
-                    <div class="git-info">
-                        <h3>AI Chatbot UI</h3>
-                        <span class="version-badge">v1.5</span>
-                    </div>
-                </div>
-                <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 15px;">Modern chat interface for AI models like GPT.</p>
-                <div class="tech-stack">
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">Flask</span>
-                    <span class="tech-badge">Tailwind</span>
-                </div>
-                <a href="#" class="git-download"><i class="fas fa-download"></i> Download Code</a>
-            </div>
-
-        </section>
-
-    </main>
+    </div>
 
     <footer>
-        <p>&copy; 2026 NextGenAdi4U. All Rights Reserved.</p>
+        &copy; 2026 Aditya Shete Solutions. All Rights Reserved.
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Init Animation
-        AOS.init({ duration: 800, once: true });
+        AOS.init();
 
-        // Tab Switching Logic
-        function openTab(tabName) {
-            // Hide all sections
-            document.querySelectorAll('.template-section').forEach(sec => {
-                sec.classList.remove('active-sec');
-            });
-            // Remove active class from buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+        // --- 1. THEME DATABASE (EDIT HERE) ---
+        // Mi Popular themes takle aahet. Tu Drive madhe check karun naav update kar.
+        const themes = [
+            {
+                id: 1,
+                type: 'shopify',
+                name: "Impulse - High Fashion",
+                marketPrice: "₹28,000",
+                ourPrice: "₹299",
+                image: "https://cdn.shopify.com/s/files/1/0264/6360/0726/files/impulse-theme_600x600.jpg", 
+                desc: "Best for clothing brands. High conversion rate & fast loading."
+            },
+            {
+                id: 2,
+                type: 'shopify',
+                name: "Prestige - Luxury Store",
+                marketPrice: "₹30,000",
+                ourPrice: "₹499",
+                image: "https://themes.shopifycdn.com/themes/prestige/styles/couture/preview/images/157297926216/desktop_screenshot.jpg",
+                desc: "Premium look for jewelry and luxury items. 98% Off."
+            },
+            {
+                id: 3,
+                type: 'shopify',
+                name: "Motion - Video Based",
+                marketPrice: "₹25,000",
+                ourPrice: "₹199",
+                image: "https://themes.shopifycdn.com/themes/motion/styles/classic/preview/images/157297926216/desktop_screenshot.jpg",
+                desc: "Perfect for storytelling with video backgrounds."
+            },
+            {
+                id: 4,
+                type: 'shopify',
+                name: "Impact - Bold Design",
+                marketPrice: "₹29,000",
+                ourPrice: "₹399",
+                image: "https://themes.shopifycdn.com/themes/impact/styles/default/preview/images/157297926216/desktop_screenshot.jpg",
+                desc: "Modern gradients and big typography for tech stores."
+            },
+            {
+                id: 5,
+                type: 'shopify',
+                name: "Warehouse - Large Catalog",
+                marketPrice: "₹26,000",
+                ourPrice: "₹249",
+                image: "https://themes.shopifycdn.com/themes/warehouse/styles/metal/preview/images/157297926216/desktop_screenshot.jpg",
+                desc: "Designed for stores with huge inventory like Amazon."
+            },
+            // GitHub Section
+            {
+                id: 101,
+                type: 'github',
+                name: "Jod Cheats Source Code",
+                marketPrice: "₹15,000",
+                ourPrice: "₹999",
+                image: "https://github.blog/wp-content/uploads/2020/12/102393310-72733280-3f97-11eb-81c4-14227c44400e.png",
+                desc: "Full C++ Source code with Bypass Login System."
+            }
+        ];
 
-            // Show selected section & activate button
-            document.getElementById(tabName).classList.add('active-sec');
-            // Find the button that was clicked (approximate logic for demo)
-            event.currentTarget.classList.add('active');
+        // --- 2. RENDER LOGIC ---
+        const shopifyContainer = document.getElementById('shopify-container');
+        const githubContainer = document.getElementById('github-container');
+
+        function renderProducts() {
+            shopifyContainer.innerHTML = '';
+            githubContainer.innerHTML = '';
+
+            themes.forEach(product => {
+                const cardHTML = `
+                    <div class="shopify-card" data-aos="fade-up">
+                        <div class="card-img">
+                            <img src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="card-details">
+                            <div class="card-title">${product.name}</div>
+                            <div>
+                                <span class="market-price">${product.marketPrice}</span>
+                                <span class="our-price">${product.ourPrice}</span>
+                            </div>
+                            <p class="card-desc">${product.desc}</p>
+                            
+                            <div class="btn-group">
+                                <button class="card-btn preview-btn" onclick="openPreview(${product.id})">
+                                    <i class="fas fa-eye"></i> Preview
+                                </button>
+                                <button class="card-btn buy-btn" onclick="initiateBuy(${product.id})">
+                                    Buy Now <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                if(product.type === 'shopify') shopifyContainer.innerHTML += cardHTML;
+                else githubContainer.innerHTML += cardHTML;
+            });
+        }
+        renderProducts();
+
+        // --- 3. TAB LOGIC ---
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-btn'));
+            document.querySelectorAll('.template-section').forEach(sec => sec.classList.remove('active-sec'));
+
+            if(tab === 'shopify') {
+                document.querySelector('.tab-btn:nth-child(1)').classList.add('active-btn');
+                document.getElementById('shopify-sec').classList.add('active-sec');
+            } else {
+                document.querySelector('.tab-btn:nth-child(2)').classList.add('active-btn');
+                document.getElementById('github-sec').classList.add('active-sec');
+            }
         }
 
-        // Search Logic
-        document.getElementById('searchInput').addEventListener('keyup', function(e) {
-            const term = e.target.value.toLowerCase();
-            const activeSection = document.querySelector('.template-section.active-sec');
-            if(!activeSection) return;
+        // --- 4. PREVIEW SYSTEM ---
+        let selectedProduct = null;
 
-            const cards = activeSection.querySelectorAll('.shopify-card, .github-card');
+        function openPreview(id) {
+            const product = themes.find(p => p.id === id);
+            if(!product) return;
+            selectedProduct = product;
             
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                card.style.display = text.includes(term) ? 'flex' : 'none';
-            });
-        });
+            document.getElementById('previewTitle').innerText = product.name;
+            document.getElementById('previewImage').src = product.image;
+            document.getElementById('previewModal').style.display = 'flex';
+        }
 
-        // Particle Background Logic
+        function openBuyModalFromPreview() {
+            closeModal('previewModal');
+            if(selectedProduct) initiateBuy(selectedProduct.id);
+        }
+
+        // --- 5. BUY SYSTEM (AUTO MESSAGE) ---
+        function initiateBuy(id) {
+            const product = themes.find(p => p.id === id);
+            selectedProduct = product;
+            document.getElementById('buyModal').style.display = 'flex';
+        }
+
+        function redirectTo(platform) {
+            if(!selectedProduct) return;
+            
+            // Auto Message Logic
+            const text = `Hello Aditya! 👋%0AI am interested in buying:%0A%0A📦 *${selectedProduct.name}*%0A💰 Offer Price: ${selectedProduct.ourPrice}%0A%0APlease share the payment QR Code.`;
+            
+            let url = "";
+            if(platform === 'telegram') {
+                url = `https://t.me/nextgenadi4u?text=${text}`;
+            } else if(platform === 'instagram') {
+                url = `https://instagram.com/aditya_shete_official`; // Web doesn't allow pre-fill easily
+                alert("Opening Instagram... Please type the theme name manually.");
+            } else if(platform === 'discord') {
+                url = `https://discord.gg/YOUR_CODE`; // Replace with your Discord link
+                alert("Joining Discord Server...");
+            }
+
+            window.open(url, '_blank');
+            closeModal('buyModal');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.className === 'modal-overlay') {
+                event.target.style.display = "none";
+            }
+        }
+
+        // --- PARTICLE BACKGROUND ---
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         let particles = [];
-
         class Particle {
             constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
+                this.speedX = Math.random() * 0.5 - 0.25; this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = 'rgba(0, 210, 255, 0.3)';
             }
-            update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(0, 210, 255, 0.4)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+            update() { this.x += this.speedX; this.y += this.speedY; if(this.x>canvas.width)this.x=0; if(this.x<0)this.x=canvas.width; if(this.y>canvas.height)this.y=0; if(this.y<0)this.y=canvas.height; }
+            draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
         }
-
-        function init() {
-            particles = [];
-            for (let i = 0; i < 80; i++) particles.push(new Particle());
-        }
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animate);
-        }
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            init();
-        });
-        init(); animate();
+        for(let i=0; i<60; i++) particles.push(new Particle());
+        function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw()}); requestAnimationFrame(animate); }
+        animate();
     </script>
 </body>
 </html>
