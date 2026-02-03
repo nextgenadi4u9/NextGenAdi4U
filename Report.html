@@ -3,82 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ff0055"> <title>Report Issue - NextGenAdi4U</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#ff0055">
+    <title>Report Issue - NextGenAdi4U</title>
+    
+    <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary: #ff0055; /* Danger Red */
-            --cyan: #00d2ff;
-            --bg: #050505;
-            --glass: rgba(25, 25, 35, 0.8);
-            --border: 1px solid rgba(255, 0, 85, 0.3);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg); color: #fff; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
-
-        #dustCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-
-        /* Navbar */
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
-            position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .logo { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none;}
-        .logo span { color: var(--cyan); }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
-
-        /* Report Section */
-        .report-container {
-            min-height: 90vh; display: flex; align-items: center; justify-content: center;
-            padding: 50px 20px;
-        }
-
-        .report-box {
-            width: 100%; max-width: 600px;
-            background: var(--glass); border: var(--border);
-            padding: 40px; border-radius: 20px;
-            box-shadow: 0 0 50px rgba(255, 0, 85, 0.1);
-            position: relative; overflow: hidden;
-        }
-
-        /* Warning Strip Animation */
-        .report-box::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
-            background: linear-gradient(90deg, var(--primary), transparent, var(--primary));
-            animation: scan 2s infinite linear;
-        }
-        @keyframes scan { 0% { background-position: 0% 0%; } 100% { background-position: 100% 0%; } }
-
-        .title {
-            text-align: center; font-family: 'Rajdhani'; font-size: 2.5rem;
-            margin-bottom: 10px; color: var(--primary); text-transform: uppercase;
-        }
-        .subtitle { text-align: center; color: #aaa; margin-bottom: 30px; font-size: 0.9rem; }
-
-        .form-group { margin-bottom: 20px; }
-        .form-label { display: block; color: #fff; margin-bottom: 5px; font-size: 0.9rem; }
-        .form-control, select {
-            width: 100%; background: rgba(0,0,0,0.5); border: 1px solid #333;
-            padding: 12px; border-radius: 8px; color: #fff; font-family: 'Poppins'; outline: none; transition: 0.3s;
-        }
-        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(255, 0, 85, 0.2); }
-
-        .submit-btn {
-            width: 100%; background: var(--primary); color: #fff;
-            padding: 15px; border: none; border-radius: 8px; font-weight: bold;
-            cursor: pointer; font-family: 'Rajdhani'; font-size: 1.1rem;
-            transition: 0.3s; text-transform: uppercase;
-        }
-        .submit-btn:hover { background: #ff3377; box-shadow: 0 0 20px var(--primary); }
-
-    </style>
 </head>
 <body>
 
@@ -88,7 +18,7 @@
         <a href="index.html" class="logo">NextGen<span>Adi4U</span></a>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="Contact.html">Contact</a>
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
 
@@ -97,10 +27,10 @@
             <h1 class="title"><i class="fas fa-bug"></i> Report Issue</h1>
             <p class="subtitle">Found a broken link or a bug? Let us know immediately.</p>
 
-            <form onsubmit="submitReport(event)">
+            <form id="reportForm">
                 <div class="form-group">
                     <label class="form-label">Issue Type</label>
-                    <select class="form-control">
+                    <select class="form-control" id="issueType">
                         <option>Broken Link (Download Failed)</option>
                         <option>Website Bug / Error</option>
                         <option>Copyright Issue</option>
@@ -110,15 +40,15 @@
 
                 <div class="form-group">
                     <label class="form-label">Affected URL (Optional)</label>
-                    <input type="url" class="form-control" placeholder="https://nextgenadi4u.com/page...">
+                    <input type="url" class="form-control" id="issueUrl" placeholder="https://nextgenadi4u.com/page...">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Describe the Problem</label>
-                    <textarea class="form-control" rows="5" placeholder="Please describe what happened..." required></textarea>
+                    <textarea class="form-control" id="issueMsg" rows="5" placeholder="Please describe what happened..." required></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn">Submit Report</button>
+                <button type="submit" class="submit-btn" onclick="sendToTelegram(event)">Submit Report</button>
             </form>
         </div>
     </section>
@@ -127,7 +57,7 @@
     <script>
         AOS.init();
 
-        // Particle System (Red Tint for Error vibe)
+        // Particle System
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -140,23 +70,66 @@
                 this.size = Math.random() * 2 + 0.5;
                 this.speedX = Math.random() * 0.5 - 0.25;
                 this.speedY = Math.random() * 0.5 - 0.25;
-                this.color = 'rgba(255, 0, 85, 0.3)'; // Red Particles
+                this.color = 'rgba(255, 0, 85, 0.3)';
             }
-            update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if(this.x > canvas.width) this.x=0; if(this.x<0) this.x=canvas.width;
-                if(this.y > canvas.height) this.y=0; if(this.y<0) this.y=canvas.height;
-            }
+            update() { this.x += this.speedX; this.y += this.speedY; if(this.x>canvas.width)this.x=0; if(this.x<0)this.x=canvas.width; if(this.y>canvas.height)this.y=0; if(this.y<0)this.y=canvas.height; }
             draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
         }
         for(let i=0; i<60; i++) particles.push(new Particle());
         function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw()}); requestAnimationFrame(animate); }
         animate();
 
-        function submitReport(e) {
-            e.preventDefault();
-            alert("Report Submitted! Thank you for helping us improve.");
-            e.target.reset();
+        // --- TELEGRAM BOT LOGIC (UPDATED WITH YOUR ID) ---
+        function sendToTelegram(e) {
+            e.preventDefault(); // Page reload thambvato
+
+            // 1. Data Ghene
+            const type = document.getElementById("issueType").value;
+            const url = document.getElementById("issueUrl").value || "Not Provided";
+            const msg = document.getElementById("issueMsg").value;
+            const btn = document.querySelector(".submit-btn");
+
+            if(msg === "") {
+                alert("Please describe the problem first.");
+                return;
+            }
+
+            // Button Loading Effect
+            const originalText = btn.innerText;
+            btn.innerText = "Sending...";
+            btn.style.opacity = "0.7";
+
+            // 2. Settings (Tuzha Original Data Ithe Takla Aahe)
+            const botToken = "8528071613:AAGsfjrIZjWIAycm8jFbFans-Gn_36U-_Go"; 
+            const chatId = "8255824096"; 
+
+            // 3. Message Ready Karne
+            const text = `🚨 *New Issue Reported!*%0A%0A📌 *Type:* ${type}%0A🔗 *URL:* ${url}%0A📝 *Message:* ${msg}`;
+
+            // 4. Telegram la Pathvne
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${text}&parse_mode=Markdown`)
+            .then(response => {
+                if(response.ok) {
+                    btn.innerText = "Sent Successfully! ✅";
+                    btn.style.background = "#00ff88"; // Green
+                    alert("Report Sent to Admin! We will fix it soon.");
+                    document.getElementById("reportForm").reset(); // Form clear kar
+                } else {
+                    alert("Error Sending Report. Check Bot Token.");
+                    btn.innerText = originalText;
+                }
+            })
+            .catch(error => {
+                alert("Internet Error. Please try again.");
+                btn.innerText = originalText;
+            });
+
+            // 3 second nantar button reset
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "var(--primary)"; // Reset to red (via CSS variable)
+                btn.style.opacity = "1";
+            }, 3000);
         }
     </script>
 </body>
