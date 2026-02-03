@@ -6,123 +6,10 @@
     <meta name="theme-color" content="#00d2ff">
     <title>Contact - NextGenAdi4U</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <style>
-        /* --- CORE VARIABLES --- */
-        :root {
-            --primary: #00d2ff;     /* Cyan */
-            --secondary: #7000ff;   /* Purple */
-            --bg: #050505;
-            --glass: rgba(25, 25, 35, 0.6);
-            --border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg);
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* --- BACKGROUND --- */
-        #dustCanvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-        }
-
-        /* --- NAVBAR --- */
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px);
-            position: sticky; top: 0; z-index: 100; border-bottom: var(--border);
-        }
-        .logo { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none;}
-        .logo span { color: var(--primary); }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; transition: 0.3s; font-size: 1rem; }
-        .nav-links a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
-
-        /* --- CONTACT SECTION --- */
-        .contact-section {
-            display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
-            padding: 80px 5%; gap: 50px; min-height: 90vh;
-        }
-
-        /* Left Side: Info */
-        .contact-info {
-            flex: 1; min-width: 300px; max-width: 500px;
-        }
-        .section-title {
-            font-family: 'Rajdhani', sans-serif; font-size: 3.5rem; line-height: 1;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; color: transparent;
-        }
-        .info-desc { color: #aaa; margin-bottom: 40px; font-size: 1.1rem; }
-
-        .info-card {
-            background: var(--glass); border: var(--border); padding: 20px;
-            border-radius: 15px; display: flex; align-items: center; gap: 20px;
-            margin-bottom: 20px; transition: 0.3s; cursor: pointer;
-        }
-        .info-card:hover { transform: translateX(10px); border-color: var(--primary); box-shadow: 0 0 20px rgba(0, 210, 255, 0.2); }
-        .icon-box {
-            width: 50px; height: 50px; background: rgba(0, 210, 255, 0.1);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; color: var(--primary);
-        }
-        .card-text h4 { font-family: 'Rajdhani'; font-size: 1.3rem; }
-        .card-text p { color: #888; font-size: 0.9rem; }
-
-        /* Right Side: Form */
-        .contact-form-container {
-            flex: 1; min-width: 300px; max-width: 600px;
-            background: rgba(20, 20, 30, 0.8); backdrop-filter: blur(15px);
-            padding: 40px; border-radius: 20px; border: var(--border);
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-            position: relative; overflow: hidden;
-        }
-        
-        .contact-form-container::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: conic-gradient(transparent, var(--primary), transparent 30%);
-            animation: rotate 4s linear infinite; opacity: 0.1; z-index: -1;
-        }
-        @keyframes rotate { 100% { transform: rotate(360deg); } }
-
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; color: var(--primary); margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
-        
-        .form-control {
-            width: 100%; background: rgba(0,0,0,0.3); border: 1px solid #333;
-            padding: 15px; border-radius: 8px; color: #fff; font-family: 'Poppins';
-            transition: 0.3s; outline: none;
-        }
-        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
-
-        .submit-btn {
-            width: 100%; background: linear-gradient(45deg, var(--secondary), var(--primary));
-            border: none; padding: 15px; font-size: 1.1rem; font-weight: bold;
-            color: #fff; border-radius: 8px; cursor: pointer; transition: 0.3s;
-            text-transform: uppercase; font-family: 'Rajdhani'; letter-spacing: 1px;
-        }
-        .submit-btn:hover { box-shadow: 0 0 30px var(--primary); transform: scale(1.02); }
-
-        /* Footer */
-        footer {
-            text-align: center; padding: 20px; color: #555; font-size: 0.9rem;
-            border-top: var(--border); background: #020202;
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .section-title { font-size: 2.5rem; }
-            .contact-section { padding: 40px 5%; }
-        }
-    </style>
 </head>
 <body>
 
@@ -171,34 +58,42 @@
         </div>
 
         <div class="contact-form-container" data-aos="fade-left">
-            <form onsubmit="sendEmail(event)">
+            <form id="contactForm">
                 <div class="form-group">
                     <label>YOUR NAME</label>
-                    <input type="text" class="form-control" placeholder="Enter your name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>EMAIL ADDRESS</label>
-                    <input type="email" class="form-control" placeholder="name@example.com" required>
+                    <input type="text" id="userName" class="form-control" placeholder="Enter your name" required>
                 </div>
 
                 <div class="form-group">
                     <label>SERVICE / TOPIC</label>
-                    <select class="form-control">
+                    <select id="userTopic" class="form-control">
                         <option>General Inquiry</option>
                         <option>Web Development (Hire Me)</option>
                         <option>Shopify Store Setup</option>
                         <option>Game Mods Support</option>
-                        <option>Report Issue</option>
                     </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>HOW SHOULD WE CONTACT YOU?</label>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <select id="contactMethod" class="form-control" style="flex: 1;" onchange="updatePlaceholder()">
+                            <option value="WhatsApp">WhatsApp</option>
+                            <option value="Telegram">Telegram</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Discord">Discord</option>
+                            <option value="Email">Email</option>
+                        </select>
+                    </div>
+                    <input type="text" id="contactID" class="form-control" placeholder="Enter your WhatsApp Number" required>
                 </div>
 
                 <div class="form-group">
                     <label>YOUR MESSAGE</label>
-                    <textarea class="form-control" rows="5" placeholder="Tell me about your project or question..." required></textarea>
+                    <textarea id="userMsg" class="form-control" rows="5" placeholder="Tell me about your project or question..." required></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                <button type="submit" class="submit-btn" onclick="sendContactToTelegram(event)">Send Message <i class="fas fa-paper-plane"></i></button>
             </form>
         </div>
 
@@ -211,72 +106,88 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Init Animate On Scroll
         AOS.init({ duration: 1000, once: true });
 
-        // --- PARTICLE BACKGROUND SCRIPT (Optimized) ---
+        // Helper to change placeholder based on selection
+        function updatePlaceholder() {
+            const method = document.getElementById("contactMethod").value;
+            const input = document.getElementById("contactID");
+            
+            if(method === "WhatsApp") input.placeholder = "Enter WhatsApp Number";
+            else if(method === "Email") input.placeholder = "Enter Email Address";
+            else input.placeholder = `Enter your ${method} Username/ID`;
+        }
+
+        // --- PARTICLE BACKGROUND ---
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        let particlesArray;
-
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let particlesArray = [];
         class Particle {
             constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
+                this.speedX = Math.random() * 0.5 - 0.25; this.speedY = Math.random() * 0.5 - 0.25;
                 this.color = Math.random() > 0.5 ? 'rgba(0, 210, 255, 0.4)' : 'rgba(112, 0, 255, 0.3)';
             }
-            update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.fillStyle = this.color; ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
-            }
+            update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width; if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height; }
+            draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
         }
-        function initParticles() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 10000;
-            for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); }
-        }
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-        window.addEventListener('resize', () => { 
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles(); 
-        });
+        function initParticles() { particlesArray = []; for (let i = 0; i < 60; i++) particlesArray.push(new Particle()); }
+        function animateParticles() { ctx.clearRect(0, 0, canvas.width, canvas.height); particlesArray.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animateParticles); }
         initParticles(); animateParticles();
 
-        // --- FORM HANDLING (Simulation) ---
-        function sendEmail(e) {
+        // --- TELEGRAM BOT LOGIC ---
+        function sendContactToTelegram(e) {
             e.preventDefault();
-            // Since there is no backend, we simulate success
-            const btn = document.querySelector('.submit-btn');
+
+            // 1. Data Ghene
+            const name = document.getElementById("userName").value;
+            const topic = document.getElementById("userTopic").value;
+            const method = document.getElementById("contactMethod").value;
+            const contactID = document.getElementById("contactID").value;
+            const msg = document.getElementById("userMsg").value;
+            const btn = document.querySelector(".submit-btn");
+
+            if(name === "" || contactID === "" || msg === "") {
+                alert("Please fill all details.");
+                return;
+            }
+
+            // Button Loading
             const originalText = btn.innerHTML;
-            
-            btn.innerHTML = '<i class="fas fa-check"></i> Sent Successfully!';
-            btn.style.background = 'var(--success)'; // Green color
-            
-            alert("Thanks for contacting Aditya Shete Solutions! We will get back to you on Telegram or Email soon.");
-            
-            // Reset form after 3 seconds
+            btn.innerHTML = "Sending... <i class='fas fa-spinner fa-spin'></i>";
+            btn.style.opacity = "0.7";
+
+            // 2. Settings (Tuzha Token & ID)
+            const botToken = "8528071613:AAGsfjrIZjWIAycm8jFbFans-Gn_36U-_Go"; 
+            const chatId = "8255824096"; 
+
+            // 3. Message Format
+            const text = `📬 *New Contact Inquiry!*%0A%0A👤 *Name:* ${name}%0A📌 *Topic:* ${topic}%0A%0A📞 *Contact via:* ${method}%0A🆔 *ID/Number:* \`${contactID}\`%0A%0A📝 *Message:* ${msg}`;
+
+            // 4. Send
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${text}&parse_mode=Markdown`)
+            .then(response => {
+                if(response.ok) {
+                    btn.innerHTML = "Message Sent! ✅";
+                    btn.style.background = "#00ff88"; 
+                    alert("Thanks! Aditya will contact you shortly via " + method + ".");
+                    document.getElementById("contactForm").reset();
+                } else {
+                    alert("Error Sending Message.");
+                    btn.innerHTML = originalText;
+                }
+            })
+            .catch(error => {
+                alert("Internet Error. Please check connection.");
+                btn.innerHTML = originalText;
+            });
+
             setTimeout(() => {
                 btn.innerHTML = originalText;
-                btn.style.background = 'linear-gradient(45deg, var(--secondary), var(--primary))';
-                e.target.reset();
+                btn.style.background = "linear-gradient(45deg, var(--secondary), var(--primary))";
+                btn.style.opacity = "1";
             }, 3000);
         }
     </script>
