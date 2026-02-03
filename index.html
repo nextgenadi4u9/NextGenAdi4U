@@ -3,460 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NextGenAdi4U - Premium Gaming Resources, Softwares, and Developer Tools.">
+    <meta name="theme-color" content="#00d2ff">
     
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685"
-      crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685" crossorigin="anonymous"></script>
 
-    <title>Home - NextGenAdi4U</title>
+    <title>NextGenAdi4U | Premium Resources</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="style.css">
     <style>
-        /* --- GLOBAL PARTICLE BACKGROUND --- */
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #050505;
+            --glass-bg: rgba(20, 20, 20, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary-neon: #00f2ff;
+            --secondary-neon: #bd00ff;
+            --gold: #FFD700;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --font-main: 'Poppins', sans-serif;
+            --font-tech: 'Rajdhani', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Particle Canvas */
         #dustCanvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background: #050505;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a1020 0%, #000000 100%);
         }
 
-        /* --- 💎 PREMIUM TEMPLATES SECTION (GOLD THEME) 💎 --- */
-        .premium-container {
-            width: 100%;
-            margin-bottom: 30px; /* Space below this card */
-            position: relative;
-        }
-        
-        .premium-card {
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- 2. HEADER (GLASSMORPHISM) --- */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 15px 5%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(50, 40, 0, 0.9));
-            border: 2px solid #FFD700; /* Gold Border */
-            border-radius: 15px;
-            padding: 25px 30px;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
-            transition: all 0.4s ease;
-            animation: goldPulse 3s infinite;
         }
 
-        .premium-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
-            background: linear-gradient(135deg, #000, #3a2e00);
+        .logo a {
+            display: flex; align-items: center; gap: 12px;
         }
-
-        .prem-content { display: flex; align-items: center; gap: 25px; position: relative; z-index: 2; }
         
-        .prem-icon {
-            font-size: 2.8rem;
-            color: #FFD700;
-            background: rgba(255, 215, 0, 0.1);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            display: flex; align-items: center; justify-content: center;
+        .brand-icon {
+            font-size: 1.8rem;
+            color: var(--primary-neon);
+            text-shadow: 0 0 15px var(--primary-neon);
         }
 
-        .prem-text h3 {
-            color: #FFD700;
-            font-size: 1.6rem;
-            font-weight: 800;
+        .brand-text {
+            font-family: var(--font-tech);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
         }
 
-        .prem-text p { color: #ddd; font-size: 0.95rem; margin: 0; }
+        .brand-highlight {
+            color: transparent;
+            background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+            -webkit-background-clip: text;
+        }
 
-        .buy-btn {
-            background: #FFD700;
-            color: #000;
-            padding: 12px 30px;
+        /* Social Icons Header */
+        .social-nav { display: flex; gap: 20px; }
+        .social-nav a {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+        .social-nav a:hover { color: var(--primary-neon); transform: translateY(-3px); text-shadow: 0 0 10px var(--primary-neon); }
+
+        /* Search Bar (Hidden on small mobile) */
+        .search-bar {
+            display: flex;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 1rem;
-            text-transform: uppercase;
-            display: flex; align-items: center; gap: 10px;
-            transition: 0.3s;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-            white-space: nowrap;
-        }
-
-        .premium-card:hover .buy-btn {
-            background: #fff;
-            color: #d4af37;
-            transform: scale(1.05);
-        }
-
-        .pro-badge {
-            position: absolute;
-            top: 0; left: 0;
-            background: #FFD700;
-            color: #000;
-            font-weight: bold;
-            font-size: 0.75rem;
             padding: 5px 15px;
-            border-bottom-right-radius: 15px;
-            z-index: 3;
+            width: 250px;
+        }
+        .search-bar input {
+            background: transparent; border: none; outline: none; color: white; width: 100%; font-family: var(--font-main);
+        }
+        .search-bar button {
+            background: transparent; border: none; color: var(--primary-neon); cursor: pointer;
         }
 
-        @keyframes goldPulse { 0%, 100% { border-color: #FFD700; } 50% { border-color: rgba(255, 255, 255, 0.5); } }
-
-        /* Mobile Responsiveness for Premium Card */
         @media (max-width: 768px) {
-            .premium-card { flex-direction: column; text-align: center; gap: 20px; padding: 25px 20px; }
-            .prem-content { flex-direction: column; gap: 15px; }
-            .prem-text h3 { font-size: 1.4rem; }
-            .prem-icon { font-size: 2.5rem; padding: 12px; }
-            .buy-btn { width: 100%; justify-content: center; }
+            .search-bar { display: none; }
+            .brand-text { font-size: 1.4rem; }
+            header { padding: 15px 20px; }
         }
 
-        /* --- SPECIAL GAME CARD (Top Banner) --- */
-        .special-card {
-            width: 100%;
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(0, 40, 60, 0.9));
-            border: 2px solid #00d2ff;
-            border-radius: 15px;
-            padding: 25px;
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 140px 20px 60px;
+            position: relative;
+        }
+
+        .main-heading {
+            font-family: var(--font-tech);
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff, #aaa);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+        }
+
+        .sub-text {
+            font-size: 1.2rem;
+            color: var(--primary-neon);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .main-heading { font-size: 2.5rem; }
+        }
+
+        /* --- 4. GRID LAYOUT & CARDS --- */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 100px;
+        }
+
+        .categories-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        /* --- PREMIUM CARD (GOLD) --- */
+        .premium-container { margin-bottom: 30px; }
+        .premium-card {
+            background: linear-gradient(135deg, rgba(20,20,20,0.95), rgba(40,30,0,0.4));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
+            transition: 0.4s;
+        }
+        
+        .premium-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,215,0,0.1), transparent);
+            transform: translateX(-100%); transition: 0.6s;
+        }
+        .premium-card:hover::before { transform: translateX(100%); }
+        .premium-card:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(255, 215, 0, 0.15); border-color: var(--gold); }
+
+        .prem-content { display: flex; align-items: center; gap: 25px; z-index: 2; }
+        .prem-icon {
+            font-size: 3rem; color: var(--gold);
+            filter: drop-shadow(0 0 15px rgba(255,215,0,0.6));
+        }
+        .prem-text h3 { font-family: var(--font-tech); font-size: 2rem; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; }
+        .pro-badge {
+            position: absolute; top: 0; right: 0; background: var(--gold); color: #000; 
+            padding: 5px 20px; font-weight: bold; font-size: 0.8rem; border-bottom-left-radius: 15px;
+        }
+        
+        /* --- SPECIAL GAME CARD (NEON) --- */
+        .special-card {
+            background: linear-gradient(90deg, rgba(0,0,0,0.9), rgba(0,30,40,0.6));
+            border: 1px solid var(--primary-neon);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: relative; overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
             margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
-            transition: all 0.4s ease;
-            animation: pulseGlow 3s infinite;
         }
-        .special-card:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 210, 255, 0.5); }
+        .special-card:hover { box-shadow: 0 0 40px rgba(0, 242, 255, 0.3); transform: scale(1.01); }
         .special-content { display: flex; align-items: center; gap: 20px; }
-        .special-icon { font-size: 2.5rem; color: #00d2ff; background: rgba(0, 210, 255, 0.1); padding: 15px; border-radius: 50%; }
-        .special-text h3 { color: #fff; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; }
-        .special-text p { color: #ccc; font-size: 0.9rem; }
-        .play-btn { background: #00d2ff; color: #000; padding: 10px 25px; border-radius: 25px; font-weight: bold; text-transform: uppercase; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
-        .special-card:hover .play-btn { background: #fff; color: #00d2ff; }
-        .new-badge { position: absolute; top: 0; right: 0; background: #ff0055; color: white; font-size: 0.7rem; font-weight: bold; padding: 5px 15px; border-bottom-left-radius: 15px; }
-        @keyframes pulseGlow { 0%, 100% { border-color: #00d2ff; } 50% { border-color: rgba(255, 255, 255, 0.5); } }
+        .special-icon { font-size: 2.5rem; color: var(--primary-neon); }
+        .special-text h3 { font-family: var(--font-tech); font-size: 1.8rem; text-transform: uppercase; color: #fff; }
+        .play-btn {
+            background: var(--primary-neon); color: #000; padding: 10px 30px; border-radius: 30px;
+            font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 10px;
+            transition: 0.3s;
+        }
+        .play-btn:hover { background: #fff; box-shadow: 0 0 20px var(--primary-neon); }
 
-        /* --- 🔥 CATEGORY CARDS 🔥 --- */
-        .category-card {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            background: rgba(15, 15, 15, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-left: 3px solid transparent;
-            padding: 20px 25px;
-            border-radius: 12px;
-            color: white;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
-            margin-bottom: 15px;
-            position: relative;
-            overflow: hidden;
+        /* --- STANDARD CATEGORY CARDS --- */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
         }
 
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.05), transparent);
-            transform: translateX(-100%);
-            transition: 0.6s;
+        .category-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex; align-items: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .category-card:hover {
-            transform: translateX(10px) scale(1.02);
-            background: rgba(20, 20, 20, 0.9);
-            border-color: rgba(0, 210, 255, 0.3);
-            border-left-color: #00d2ff;
-            box-shadow: 0 10px 30px -10px rgba(0, 210, 255, 0.15);
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .category-card:hover::before {
-            transform: translateX(100%);
+        /* Hover Gradient Border Effect */
+        .category-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 3px;
+            background: var(--primary-neon); transition: 0.4s;
         }
+        .category-card:hover::after { width: 100%; }
 
         .cat-icon {
-            font-size: 2rem;
-            color: #666;
-            margin-right: 25px;
+            width: 60px; height: 60px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: var(--primary-neon);
+            margin-right: 20px;
             transition: 0.4s;
-            filter: drop-shadow(0 0 0 transparent);
         }
+        .category-card:hover .cat-icon { background: var(--primary-neon); color: #000; transform: rotate(10deg); }
 
-        .category-card:hover .cat-icon {
-            color: #00d2ff;
-            filter: drop-shadow(0 0 15px #00d2ff);
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .cat-info h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 4px;
-            transition: 0.3s;
-        }
-
-        .category-card:hover .cat-info h3 {
-            color: #00d2ff;
-            letter-spacing: 0.5px;
-        }
-
-        .cat-info p {
-            font-size: 0.9rem;
-            color: #888;
-            transition: 0.3s;
-        }
-
-        .category-card:hover .cat-info p {
-            color: #ccc;
-        }
+        .cat-info h3 { font-family: var(--font-tech); font-size: 1.5rem; color: #fff; margin-bottom: 5px; }
+        .cat-info p { font-size: 0.9rem; color: var(--text-muted); }
 
         .arrow {
-            margin-left: auto;
-            width: 40px; height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
+            margin-left: auto; width: 35px; height: 35px;
+            border: 1px solid var(--glass-border); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            color: #555;
-            transition: 0.4s;
-            border: 1px solid rgba(255,255,255,0.05);
+            color: #555; transition: 0.3s;
         }
-
-        .category-card:hover .arrow {
-            background: #00d2ff;
-            color: #000;
-            transform: rotate(-45deg);
-            box-shadow: 0 0 15px #00d2ff;
-            border-color: #00d2ff;
-        }
-
-        /* --- HIRE ME SECTION CSS --- */
-        .hire-section {
-            max-width: 900px;
-            margin: 60px auto 20px;
-            padding: 0 20px;
-        }
-
-        .hire-card {
-            background: linear-gradient(180deg, rgba(0, 10, 20, 0.95), rgba(0, 40, 60, 0.9));
-            border: 2px solid #00d2ff;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 0 40px rgba(0, 210, 255, 0.15);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hire-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #ff0055;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            box-shadow: 0 0 10px #ff0055;
-            animation: pulseRed 2s infinite;
-        }
-
-        .hire-title {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .hire-desc {
-            color: #ccc;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            max-width: 600px;
-        }
-
-        .hire-btn {
-            background: transparent;
-            color: #00d2ff;
-            border: 2px solid #00d2ff;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 50px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.4s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .hire-btn:hover {
-            background: #00d2ff;
-            color: #000;
-            box-shadow: 0 0 20px #00d2ff;
-            transform: scale(1.05);
-        }
-
-        @keyframes pulseRed { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .category-card:hover .arrow { border-color: var(--primary-neon); color: var(--primary-neon); transform: rotate(-45deg); }
 
         @media (max-width: 768px) {
-            .special-card { flex-direction: column; text-align: center; }
-            .special-content { flex-direction: column; }
-            .category-card:hover { transform: translateY(-5px); }
-            .hire-title { font-size: 1.5rem; }
+            .premium-card, .special-card { flex-direction: column; text-align: center; gap: 20px; padding: 30px 20px; }
+            .prem-content, .special-content { flex-direction: column; }
+            .play-btn { width: 100%; justify-content: center; }
+            .category-grid { grid-template-columns: 1fr; }
         }
 
-        /* --- 🤖 CHATBOT CSS START --- */
-        .chat-toggle-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: #00d2ff;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
-            z-index: 10000;
-            transition: transform 0.3s;
-            animation: bounce 2s infinite;
-        }
-        .chat-toggle-btn:hover { transform: scale(1.1); }
-        .chat-toggle-btn i { font-size: 30px; color: #000; }
-        
-        .chat-container {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            max-width: 90vw;
-            height: 500px;
-            background: rgba(0, 15, 30, 0.95);
-            border: 2px solid #00d2ff;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
-            display: flex;
-            flex-direction: column;
+        /* --- 5. HIRE ME SECTION --- */
+        .hire-section { margin-top: 80px; }
+        .hire-card {
+            background: linear-gradient(180deg, #0f172a, #000);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
             overflow: hidden;
-            z-index: 9999;
-            transform: scale(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-in-out;
-            backdrop-filter: blur(10px);
         }
+        /* Neon glow behind */
+        .hire-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0,242,255,0.1) 0%, transparent 70%);
+            animation: rotateBg 10s linear infinite;
+        }
+        @keyframes rotateBg { 100% { transform: rotate(360deg); } }
+
+        .hire-content { position: relative; z-index: 2; }
+        .hire-title { font-family: var(--font-tech); font-size: 2.5rem; text-transform: uppercase; margin-bottom: 15px; }
+        .hire-desc { max-width: 600px; margin: 0 auto 30px; color: var(--text-muted); font-size: 1.1rem; }
         
-        .chat-container.active { transform: scale(1); }
+        .hire-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 40px; background: transparent;
+            border: 2px solid var(--primary-neon); color: var(--primary-neon);
+            border-radius: 50px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s; cursor: pointer;
+        }
+        .hire-btn:hover { background: var(--primary-neon); color: #000; box-shadow: 0 0 30px var(--primary-neon); }
+
+        /* --- 6. FOOTER --- */
+        footer {
+            background: #000;
+            border-top: 1px solid var(--glass-border);
+            padding: 60px 20px 20px;
+            margin-top: 80px;
+            text-align: center;
+        }
+        .footer-content {
+            display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: 0 auto 40px; gap: 40px; text-align: left;
+        }
+        .footer-left h2 { font-family: var(--font-tech); font-size: 2rem; color: #fff; margin-bottom: 15px; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links a:hover { color: var(--primary-neon); padding-left: 5px; }
         
-        .chat-header {
-            background: linear-gradient(90deg, #00d2ff, #007bb5);
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #000;
-            font-weight: bold;
+        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
+        .social-icons a {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; transition: 0.3s;
         }
-        .close-chat { cursor: pointer; font-size: 1.2rem; }
-        
-        .chat-body {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            scrollbar-width: thin;
-            scrollbar-color: #00d2ff #000;
-        }
-        
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            word-wrap: break-word;
-        }
-        .bot-msg {
-            background: rgba(0, 210, 255, 0.2);
-            color: #fff;
-            align-self: flex-start;
-            border: 1px solid rgba(0, 210, 255, 0.3);
-            border-bottom-left-radius: 0;
-        }
-        .user-msg {
-            background: #00d2ff;
-            color: #000;
-            align-self: flex-end;
-            border-bottom-right-radius: 0;
-            font-weight: 500;
-        }
-        
-        .chat-input-area {
-            padding: 10px;
-            border-top: 1px solid rgba(0, 210, 255, 0.3);
-            display: flex;
-            gap: 10px;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        
-        .chat-input-area input {
-            flex: 1;
-            background: transparent;
-            border: 1px solid #00d2ff;
-            padding: 10px;
-            border-radius: 20px;
-            color: #fff;
-            outline: none;
-        }
-        
-        .chat-input-area button {
-            background: #00d2ff;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-        }
-        .chat-input-area button:hover { background: #fff; }
-        
-        .bot-link {
-            color: #00d2ff;
-            text-decoration: underline;
-            font-weight: bold;
-            display: block;
-            margin-top: 5px;
+        .social-icons a:hover { background: var(--primary-neon); color: #000; transform: translateY(-3px); }
+
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.9rem; color: #666; }
+
+        @media (max-width: 768px) {
+            .footer-content { flex-direction: column; text-align: center; }
+            .social-icons { justify-content: center; }
         }
 
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
-        /* --- 🤖 CHATBOT CSS END --- */
+        /* --- 7. CHATBOT (HUD STYLE) --- */
+        .chat-toggle-btn {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 65px; height: 65px;
+            background: var(--primary-neon);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: #000;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0,242,255,0.6);
+            z-index: 10000;
+            transition: 0.3s;
+            animation: pulseBot 2s infinite;
+        }
+        .chat-toggle-btn:hover { transform: scale(1.1) rotate(10deg); }
+        @keyframes pulseBot { 0% { box-shadow: 0 0 0 0 rgba(0,242,255,0.7); } 70% { box-shadow: 0 0 0 15px rgba(0,242,255,0); } 100% { box-shadow: 0 0 0 0 rgba(0,242,255,0); } }
+
+        .chat-container {
+            position: fixed; bottom: 110px; right: 30px;
+            width: 360px; max-width: 90vw; height: 500px;
+            background: rgba(5, 10, 20, 0.95);
+            border: 1px solid var(--primary-neon);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            display: flex; flex-direction: column;
+            transform: scale(0); transform-origin: bottom right; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 9999;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+        .chat-container.active { transform: scale(1); }
+
+        .chat-header {
+            background: linear-gradient(90deg, #006eb3, #00d2ff);
+            padding: 15px; color: #fff; font-weight: bold; display: flex; justify-content: space-between; align-items: center;
+        }
+        .chat-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; scrollbar-width: thin; }
+        
+        .message { padding: 10px 15px; border-radius: 12px; font-size: 0.9rem; max-width: 80%; line-height: 1.4; }
+        .bot-msg { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); align-self: flex-start; border-bottom-left-radius: 2px; }
+        .user-msg { background: var(--primary-neon); color: #000; align-self: flex-end; border-bottom-right-radius: 2px; font-weight: 600; }
+        
+        .chat-input-area { padding: 15px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 10px; background: rgba(0,0,0,0.3); }
+        .chat-input-area input { flex: 1; background: transparent; border: 1px solid #333; padding: 10px 15px; border-radius: 20px; color: #fff; outline: none; }
+        .chat-input-area input:focus { border-color: var(--primary-neon); }
+        .chat-input-area button { background: var(--primary-neon); border: none; width: 40px; height: 40px; border-radius: 50%; color: #000; cursor: pointer; }
+        
+        .bot-link { color: var(--primary-neon); text-decoration: underline; font-weight: bold; }
+
     </style>
 </head>
 <body>
@@ -464,74 +397,72 @@
     <canvas id="dustCanvas"></canvas>
 
     <header>
-        <div class="header-container">
-            <div class="logo">
-                <a href="home.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-gamepad brand-icon"></i> 
-                    <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
-                </a>
-            </div>
+        <div class="logo">
+            <a href="home.html">
+                <i class="fas fa-gamepad brand-icon"></i> 
+                <span class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></span>
+            </a>
+        </div>
 
-            <div class="social-nav">
-                <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/nextgen.adi4u?igsh=bGN5N3pkbWdkZjhl&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/nextgenadi4u" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="https://discord.gg/jG2fpvjwnk" target="_blank"><i class="fab fa-discord"></i></a>
-            </div>
+        <div class="social-nav">
+            <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/nextgen.adi4u" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/nextgenadi4u" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://discord.gg/jG2fpvjwnk" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
 
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Find cheats, tools...">
+            <button><i class="fas fa-search"></i></button>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <h1 class="main-heading">Discover Here What You Need</h1>
-            <p class="sub-text">Unlimited Premium Resources & Tools</p>
+        <section class="hero" data-aos="fade-down">
+            <h1 class="main-heading">Ultimate Gaming<br><span style="color: var(--primary-neon);">Resources</span></h1>
+            <p class="sub-text">Premium Scripts • Softwares • APKs</p>
         </section>
 
-        <section class="categories-container">
-            
-           <div class="premium-container" data-aos="zoom-in">
-                <div class="premium-card" style="cursor: default;">
-                    <div class="pro-badge" style="background: #ff0055; color: white;">COMING SOON</div>
-                    <div class="prem-content">
-                        <div class="prem-icon"><i class="fas fa-code"></i></div>
-                        <div class="prem-text">
-                            <h3>Premium Web Templates</h3>
-                            <p>High Quality Shopify & HTML Templates. <b>Launching Soon!</b></p>
-                        </div>
+        <div class="premium-container" data-aos="zoom-in" data-tilt>
+            <div class="premium-card">
+                <div class="pro-badge">COMING SOON</div>
+                <div class="prem-content">
+                    <div class="prem-icon"><i class="fas fa-crown"></i></div>
+                    <div class="prem-text">
+                        <h3>Premium Templates</h3>
+                        <p style="color: #ddd;">Exclusive Shopify & HTML Stores. <span style="color:var(--gold);">Launching Soon!</span></p>
                     </div>
-                    <div class="buy-btn" style="background: #333; color: #888; box-shadow: none; cursor: not-allowed;">
-                        Stay Tuned <i class="fas fa-clock"></i>
-                    </div>
+                </div>
+                <div class="hire-btn" style="border-color: var(--gold); color: var(--gold); cursor: not-allowed; opacity: 0.7;">
+                    Stay Tuned
                 </div>
             </div>
-            
-            <a href="game.html" class="special-card">
-                <div class="new-badge">NEW LAUNCH</div>
-                <div class="special-content">
-                    <div class="special-icon"><i class="fas fa-brain"></i></div>
-                    <div class="special-text">
-                        <h3>Code Master Quiz</h3>
-                        <p>Test your HTML skills & become a Pro Developer!</p>
-                    </div>
+        </div>
+        
+        <a href="game.html" class="special-card" data-aos="fade-up">
+            <div class="new-badge" style="position: absolute; top:0; right:0; background: #ff0055; color:#fff; padding:5px 15px; font-weight:bold; font-size:0.7rem;">NEW</div>
+            <div class="special-content">
+                <div class="special-icon"><i class="fas fa-code"></i></div>
+                <div class="special-text">
+                    <h3>Code Master Quiz</h3>
+                    <p>Test your knowledge & win respect!</p>
                 </div>
-                <div class="play-btn">Play Now <i class="fas fa-play"></i></div>
-            </a>
+            </div>
+            <div class="play-btn">Play Now <i class="fas fa-play"></i></div>
+        </a>
 
-            <a href="softwares.html" class="category-card">
-                <div class="cat-icon"><i class="fas fa-desktop"></i></div>
+        <div class="category-grid">
+            
+            <a href="softwares.html" class="category-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="cat-icon"><i class="fas fa-laptop-code"></i></div>
                 <div class="cat-info">
                     <h3>Softwares</h3>
-                    <p>Premium PC Softwares</p>
+                    <p>Cracked & Premium Tools</p>
                 </div>
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="mobileapks.html" class="category-card">
+            <a href="mobileapks.html" class="category-card" data-aos="fade-up" data-aos-delay="150">
                 <div class="cat-icon"><i class="fab fa-android"></i></div>
                 <div class="cat-info">
                     <h3>Mobile APKs</h3>
@@ -540,8 +471,8 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="pcgames.html" class="category-card">
-                <div class="cat-icon"><i class="fas fa-gamepad"></i></div>
+            <a href="pcgames.html" class="category-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="cat-icon"><i class="fas fa-ghost"></i></div>
                 <div class="cat-info">
                     <h3>PC Games</h3>
                     <p>High Graphics Gaming</p>
@@ -549,53 +480,53 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="mobilegames.html" class="category-card">
-                <div class="cat-icon"><i class="fas fa-mobile-alt"></i></div>
+            <a href="mobilegames.html" class="category-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="cat-icon"><i class="fas fa-gamepad"></i></div>
                 <div class="cat-info">
                     <h3>Mobile Games</h3>
-                    <p>Trending & Viral Games</p>
+                    <p>Trending Viral Games</p>
                 </div>
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="reels.html" class="category-card">
+            <a href="reels.html" class="category-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="cat-icon"><i class="fab fa-instagram"></i></div>
                 <div class="cat-info">
                     <h3>Reels Bundle</h3>
-                    <p>Viral Content for Creators</p>
+                    <p>Viral Content Pack</p>
                 </div>
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="steam.html" class="category-card">
-                <div class="cat-icon"><i class="fab fa-steam"></i></div>
+            <a href="steam.html" class="category-card" data-aos="fade-up" data-aos-delay="350">
+                <div class="cat-icon"><i class="fab fa-steam-symbol"></i></div>
                 <div class="cat-info">
                     <h3>Steam Accounts</h3>
-                    <p>Premium Access</p>
+                    <p>Cheap & Full Access</p>
                 </div>
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="editing.html" class="category-card">
-                <div class="cat-icon"><i class="fas fa-photo-video"></i></div>
+            <a href="editing.html" class="category-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="cat-icon"><i class="fas fa-film"></i></div>
                 <div class="cat-info">
-                    <h3>Editing Materials</h3>
-                    <p>LUTs, Overlays & Effects</p>
+                    <h3>Editing Assets</h3>
+                    <p>LUTs, Overlays & FX</p>
                 </div>
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="courses.html" class="category-card">
+            <a href="courses.html" class="category-card" data-aos="fade-up" data-aos-delay="450">
                 <div class="cat-icon"><i class="fas fa-graduation-cap"></i></div>
                 <div class="cat-info">
                     <h3>Courses</h3>
-                    <p>Learn & Grow</p>
+                    <p>Learn Coding & Hacking</p>
                 </div>
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="gamemagics.html" class="category-card">
-                <div class="cat-icon"><i class="fas fa-magic"></i></div>
+            <a href="gamemagics.html" class="category-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="cat-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
                 <div class="cat-info">
                     <h3>Game Magics</h3>
                     <p>Cheats, Tricks & Mods</p>
@@ -603,16 +534,18 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-        </section>
+        </div>
 
         <section class="hire-section" data-aos="flip-up">
             <div class="hire-card" data-tilt>
-                <div class="hire-badge">First Demo FREE</div>
-                <div class="hire-title">Want a Website Like This?</div>
-                <p class="hire-desc">Get your own futuristic, responsive, and custom-designed website. I will build it exactly how you want!</p>
-                <a href="https://t.me/nextgenadi4u" target="_blank" class="hire-btn">
-                    Order Now <i class="fab fa-telegram"></i>
-                </a>
+                <div class="hire-content">
+                    <div style="color: var(--primary-neon); margin-bottom: 10px; font-weight: bold;">Freelance Service</div>
+                    <h2 class="hire-title">Need a <span style="color: var(--primary-neon);">Website</span> Like This?</h2>
+                    <p class="hire-desc">I build high-quality, futuristic, and responsive websites for gaming, business, and personal use. Let's create something insane together.</p>
+                    <a href="https://t.me/nextgenadi4u" target="_blank" class="hire-btn">
+                        Get a Quote <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -622,31 +555,35 @@
         <div class="footer-content">
             <div class="footer-left">
                 <h2>NextGenAdi4U</h2>
-                <p>is a premium digital platform designed for creators, gamers, and tech enthusiasts...</p>
+                <p style="color: #aaa; max-width: 300px; line-height: 1.6;">Your #1 destination for premium gaming resources, development tools, and digital assets. Level up your digital life today.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
             </div>
             
             <div class="footer-links">
-                <h3>Legal</h3>
+                <h3 style="color: #fff; margin-bottom: 20px;">Quick Links</h3>
                 <ul>
                     <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="ADss.html">Ads Policy</a></li>
-                    <li><a href="copyright.html">Copyright</a></li>
+                    <li><a href="ADss.html">Advertising</a></li>
                     <li><a href="terms.html">Terms of Service</a></li>
                 </ul>
             </div>
 
-            <div class="footer-social">
-                <h3>Connect</h3>
-                <div class="social-icons">
-                    <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.instagram.com/nextgen.adi4u?igsh=bGN5N3pkbWdkZjhl&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://t.me/nextgenadi4u" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="https://discord.gg/jG2fpvjwnk" target="_blank"><i class="fab fa-discord"></i></a>
-                </div>
+            <div class="footer-links">
+                <h3 style="color: #fff; margin-bottom: 20px;">Support</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Report Link</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 NextGenAdi4U. All Rights Reserved.</p>
+            <p>&copy; 2026 NextGenAdi4U. Designed with <i class="fas fa-heart" style="color: red;"></i> by Aditya.</p>
         </div>
     </footer>
 
@@ -656,29 +593,35 @@
 
     <div class="chat-container" id="chatBox">
         <div class="chat-header">
-            <span>NextGen Assistant 🤖</span>
-            <span class="close-chat" onclick="toggleChat()"><i class="fas fa-times"></i></span>
+            <span>NextGen AI 🤖</span>
+            <span class="close-chat" onclick="toggleChat()" style="cursor: pointer;"><i class="fas fa-times"></i></span>
         </div>
         <div class="chat-body" id="chatBody">
             <div class="message bot-msg">
-                Hello! I am Nextgenadi4u's Assistant. How can I help you? Ask me for Games, Softwares, or Social Links!
+                Hello! I am your assistant. Ask me for Games, Softwares, or Help!
             </div>
         </div>
         <div class="chat-input-area">
-            <input type="text" id="userInput" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
+            <input type="text" id="userInput" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
             <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <script>
-        // Init Animations
-        AOS.init({ duration: 1000, once: true });
-        VanillaTilt.init(document.querySelectorAll(".hire-card"), {
+        // Init Libraries
+        AOS.init({ duration: 800, once: true });
+        
+        // Tilt Effect for specific cards
+        VanillaTilt.init(document.querySelectorAll(".category-card"), {
+            max: 5, speed: 400, glare: true, "max-glare": 0.1
+        });
+        VanillaTilt.init(document.querySelectorAll(".premium-card, .hire-card"), {
             max: 10, speed: 400, glare: true, "max-glare": 0.2
         });
 
-        // --- OLD PARTICLE SCRIPT (UNCHANGED) ---
+        // --- PARTICLE BACKGROUND ---
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -689,10 +632,10 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')';
+                this.size = Math.random() * 2 + 0.5; // Smaller, cleaner particles
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = Math.random() > 0.5 ? 'rgba(0, 242, 255, 0.5)' : 'rgba(255, 255, 255, 0.3)'; // Cyan & White mix
             }
             update() {
                 this.x += this.speedX;
@@ -712,7 +655,7 @@
 
         function initParticles() {
             particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 15000;
+            let numberOfParticles = (canvas.height * canvas.width) / 10000;
             for (let i = 0; i < numberOfParticles; i++) {
                 particlesArray.push(new Particle());
             }
@@ -736,16 +679,13 @@
         initParticles();
         animateParticles();
 
-        // --- 🤖 CHATBOT LOGIC START 🤖 ---
+        // --- CHATBOT LOGIC ---
         function toggleChat() {
-            const chatBox = document.getElementById("chatBox");
-            chatBox.classList.toggle("active");
+            document.getElementById("chatBox").classList.toggle("active");
         }
 
         function handleKeyPress(e) {
-            if (e.key === "Enter") {
-                sendMessage();
-            }
+            if (e.key === "Enter") sendMessage();
         }
 
         function sendMessage() {
@@ -755,7 +695,6 @@
 
             if (userText === "") return;
 
-            // User Message
             const userDiv = document.createElement("div");
             userDiv.className = "message user-msg";
             userDiv.innerText = userText;
@@ -764,90 +703,24 @@
             inputField.value = "";
             chatBody.scrollTop = chatBody.scrollHeight;
 
-            // Bot Response (Simulated Delay)
             setTimeout(() => {
                 const botDiv = document.createElement("div");
                 botDiv.className = "message bot-msg";
                 botDiv.innerHTML = getBotResponse(userText.toLowerCase());
                 chatBody.appendChild(botDiv);
                 chatBody.scrollTop = chatBody.scrollHeight;
-            }, 500);
+            }, 600);
         }
 
         function getBotResponse(input) {
-            // Greetings
-            if (input.includes("hello") || input.includes("hi") || input.includes("hey")) {
-                return "Hello! Welcome to NextGenAdi4U. How can I help you today?";
-            } 
-            else if (input.includes("how are you")) {
-                return "I'm just a bot, but I'm functioning perfectly! How can I assist you?";
-            }
-            else if (input.includes("good morning")) {
-                return "Good Morning! Ready to explore some games and tools?";
-            }
-            else if (input.includes("good evening")) {
-                return "Good Evening! How can I help you tonight?";
-            }
-            else if (input.includes("good night")) {
-                return "Good Night! Sleep well and come back for more gaming resources tomorrow.";
-            }
-            
-            // Identity & Owner
-            else if (input.includes("who are you") || input.includes("your name")) {
-                return "Hello, I am Nextgenadi4u's Assistant, how can I assist you? Tell me what you need.";
-            }
-            else if (input.includes("owner") || input.includes("creator") || input.includes("made this")) {
-                return "This website is owned and developed by NextGenAdi. He is a passionate developer and gamer.";
-            }
-
-            // Website Categories (Logic for links)
-            else if (input.includes("pc game") || input.includes("computer game")) {
-                return "You can find high-graphics PC Games here: <a href='pcgames.html' class='bot-link'>Open PC Games</a>";
-            }
-            else if (input.includes("mobile game") || input.includes("android game")) {
-                return "Check out trending Mobile Games here: <a href='mobilegames.html' class='bot-link'>Open Mobile Games</a>";
-            }
-            else if (input.includes("software") || input.includes("pc app") || input.includes("windows")) {
-                return "Get premium PC Softwares here: <a href='softwares.html' class='bot-link'>Open Softwares</a>";
-            }
-            else if (input.includes("apk") || input.includes("mod") || input.includes("app")) {
-                return "Download Modded & Pro Mobile APKs here: <a href='mobileapks.html' class='bot-link'>Open APKs</a>";
-            }
-            else if (input.includes("reels") || input.includes("shorts") || input.includes("instagram")) {
-                return "Get viral Reels Bundles for creators here: <a href='reels.html' class='bot-link'>Open Reels Bundle</a>";
-            }
-            else if (input.includes("editing") || input.includes("lut") || input.includes("overlay")) {
-                return "Download Editing Materials (LUTs, Effects) here: <a href='editing.html' class='bot-link'>Open Editing Materials</a>";
-            }
-            else if (input.includes("steam") || input.includes("account")) {
-                return "Get Premium Steam Accounts here: <a href='steam.html' class='bot-link'>Open Steam Section</a>";
-            }
-            else if (input.includes("course") || input.includes("learning") || input.includes("study")) {
-                return "Learn and Grow with our Courses here: <a href='courses.html' class='bot-link'>Open Courses</a>";
-            }
-            else if (input.includes("magic") || input.includes("cheat") || input.includes("trick")) {
-                return "Explore Game Magics, Cheats & Tricks here: <a href='gamemagics.html' class='bot-link'>Open Game Magics</a>";
-            }
-            else if (input.includes("quiz") || input.includes("test")) {
-                return "Test your skills with our Code Master Quiz: <a href='game.html' class='bot-link'>Play Quiz</a>";
-            }
-
-            // Social Links
-            else if (input.includes("social") || input.includes("contact") || input.includes("youtube") || input.includes("telegram") || input.includes("discord")) {
-                return "Connect with us on Social Media:<br>" +
-                       "<a href='https://t.me/nextgenadi4u' target='_blank' class='bot-link'>Telegram</a>" +
-                       "<a href='https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA' target='_blank' class='bot-link'>YouTube</a>" +
-                       "<a href='https://discord.gg/jG2fpvjwnk' target='_blank' class='bot-link'>Discord</a>" +
-                       "<a href='https://www.instagram.com/nextgen.adi4u' target='_blank' class='bot-link'>Instagram</a>";
-            }
-
-            // Default Fallback
-            else {
-                return "I'm not sure I understand. Try asking for 'PC Games', 'Softwares', 'Mobile APKs', or 'Social Links'.";
-            }
+            if (input.includes("hi") || input.includes("hello")) return "Hello Gamer! What do you need today?";
+            if (input.includes("pc game")) return "High Graphics PC Games: <a href='pcgames.html' class='bot-link'>Click Here</a>";
+            if (input.includes("mobile") || input.includes("apk")) return "Modded APKs & Mobile Games: <a href='mobileapks.html' class='bot-link'>Click Here</a>";
+            if (input.includes("software")) return "Premium Softwares: <a href='softwares.html' class='bot-link'>Click Here</a>";
+            if (input.includes("cheat") || input.includes("mod")) return "Game Cheats & Mods: <a href='gamemagics.html' class='bot-link'>Click Here</a>";
+            if (input.includes("contact") || input.includes("owner")) return "Contact Admin on Telegram: <a href='https://t.me/nextgenadi4u' class='bot-link'>@nextgenadi4u</a>";
+            return "I didn't get that. Try asking for 'PC Games', 'Softwares', or 'Contact'.";
         }
-        // --- 🤖 CHATBOT LOGIC END 🤖 ---
-
     </script>
 </body>
 </html>
