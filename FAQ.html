@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00ff88"> <title>FAQ - NextGenAdi4U</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #00ff88; /* Success Green */
+            --cyan: #00d2ff;
+            --bg: #050505;
+            --glass: rgba(20, 20, 30, 0.8);
+            --border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: #fff; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+
+        #dustCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none;}
+        .logo span { color: var(--cyan); }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px; margin: 50px auto; padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center; font-family: 'Rajdhani'; font-size: 3rem; margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; color: transparent;
+        }
+        .page-desc { text-align: center; color: #aaa; margin-bottom: 50px; }
+
+        /* Accordion Styles */
+        .accordion-item {
+            background: var(--glass); border: var(--border); margin-bottom: 15px;
+            border-radius: 10px; overflow: hidden; transition: 0.3s;
+        }
+        .accordion-item:hover { border-color: var(--primary); box-shadow: 0 0 15px rgba(0, 255, 136, 0.1); }
+
+        .accordion-header {
+            width: 100%; padding: 20px; background: transparent; border: none;
+            color: #fff; text-align: left; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            font-family: 'Rajdhani';
+        }
+        .accordion-header i { transition: 0.3s; color: var(--primary); }
+        
+        .accordion-body {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+            background: rgba(0,0,0,0.2);
+        }
+        .accordion-body p { padding: 20px; color: #ccc; font-size: 0.95rem; line-height: 1.6; }
+
+        /* Active State */
+        .accordion-item.active .accordion-header i { transform: rotate(180deg); }
+        .accordion-item.active .accordion-header { color: var(--primary); }
+        .accordion-item.active { border-color: var(--primary); }
+
+        /* Search Bar */
+        .search-wrapper { margin-bottom: 40px; text-align: center; }
+        .faq-search {
+            width: 100%; max-width: 500px; padding: 15px 25px; border-radius: 30px;
+            background: rgba(255,255,255,0.1); border: 1px solid #333; color: #fff;
+            outline: none; font-size: 1rem; text-align: center; transition: 0.3s;
+        }
+        .faq-search:focus { border-color: var(--primary); box-shadow: 0 0 20px rgba(0,255,136,0.2); }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="dustCanvas"></canvas>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">NextGen<span>Adi4U</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="report.html" style="color: #ff0055;">Report Issue</a>
+        </div>
+    </nav>
+
+    <div class="faq-container">
+        <h1 class="page-title">Knowledge Base</h1>
+        <p class="page-desc">Common questions about Mods, Games, and Services.</p>
+
+        <div class="search-wrapper" data-aos="fade-down">
+            <input type="text" class="faq-search" id="faqSearch" placeholder="Search for answers..." onkeyup="filterFAQ()">
+        </div>
+
+        <div class="faq-list">
+            
+            <div class="accordion-item" data-aos="fade-up">
+                <button class="accordion-header">
+                    Are the game mods safe to use?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>Yes. All mods and APKs provided on NextGenAdi4U are tested personally by Aditya. However, we always recommend using a guest account for modded games to avoid any potential bans.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                <button class="accordion-header">
+                    How do I download files?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>Simply click the "Download" button on the game card. It will take you to a secure Google Drive or MediaFire link. No annoying ads or redirects.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                <button class="accordion-header">
+                    Can I hire you for a Website or Shopify Store?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>Absolutely! "Aditya Shete Solutions" offers Web Development, Shopify Setup, and Business Logo Design services. Visit the <a href="contact.html" style="color:var(--primary)">Contact Page</a> to get a quote.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                <button class="accordion-header">
+                    Do you provide Forex Trading tips?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>We share insights and basic strategies occasionally, but we are not financial advisors. Trade responsibly with your own capital.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                <button class="accordion-header">
+                    My game is crashing, what do I do?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-body">
+                    <p>Ensure your device meets the minimum requirements. Clear cache, and make sure you have granted all necessary permissions (Storage/Overlay). If the issue persists, use the <a href="report.html" style="color:var(--primary)">Report Page</a>.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Accordion Logic
+        const acc = document.getElementsByClassName("accordion-header");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                // Close others (Optional - remove this block if you want multiple open)
+                /* for (let j = 0; j < acc.length; j++) {
+                    if (acc[j] !== this) {
+                        acc[j].parentElement.classList.remove("active");
+                        acc[j].nextElementSibling.style.maxHeight = null;
+                    }
+                }
+                */
+
+                this.parentElement.classList.toggle("active");
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        // Search Logic
+        function filterFAQ() {
+            let input = document.getElementById('faqSearch').value.toLowerCase();
+            let items = document.getElementsByClassName('accordion-item');
+            
+            for (let i = 0; i < items.length; i++) {
+                let btnText = items[i].querySelector('.accordion-header').innerText.toLowerCase();
+                let bodyText = items[i].querySelector('.accordion-body').innerText.toLowerCase();
+                
+                if (btnText.includes(input) || bodyText.includes(input)) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        // Particle System (Green Tint)
+        const canvas = document.getElementById('dustCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let particles = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = 'rgba(0, 255, 136, 0.3)';
+            }
+            update() { this.x += this.speedX; this.y += this.speedY; if(this.x>canvas.width)this.x=0; if(this.x<0)this.x=canvas.width; if(this.y>canvas.height)this.y=0; if(this.y<0)this.y=canvas.height; }
+            draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
+        }
+        for(let i=0; i<60; i++) particles.push(new Particle());
+        function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw()}); requestAnimationFrame(animate); }
+        animate();
+    </script>
+</body>
+</html>
