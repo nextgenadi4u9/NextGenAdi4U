@@ -412,7 +412,7 @@
         </div>
 
         <div class="search-bar">
-            <input type="text" placeholder="Find cheats, tools...">
+            <input type="text" id="globalSearch" onkeyup="searchContent()" placeholder="Find cheats, tools...">
             <button><i class="fas fa-search"></i></button>
         </div>
     </header>
@@ -423,9 +423,8 @@
             <p class="sub-text">Premium Scripts • Softwares • APKs</p>
         </section>
 
-      <div class="premium-container" data-aos="zoom-in" data-tilt>
+        <div class="premium-container" data-aos="zoom-in" data-tilt>
             <div class="premium-card" style="cursor: not-allowed; opacity: 0.85;">
-                
                 <div class="pro-badge" style="background: #444; color: #ccc;">Coming Soon</div>
                 
                 <div class="prem-content">
@@ -436,16 +435,10 @@
                     </div>
                 </div>
                 
-                <button class="buy-btn" style="background: transparent; border: 1px solid #FFD700; color: #FFD700; box-shadow: none; pointer-events: none;">
+                <button class="buy-btn" style="background: transparent; border: 1px solid #FFD700; color: #FFD700; box-shadow: none; pointer-events: none; padding: 10px 20px; border-radius: 50px;">
                     Stay Tuned <i class="fas fa-hourglass-half"></i>
                 </button>
             </div>
-        </div>
-                
-                <button class="buy-btn">
-                    Open Store <i class="fas fa-arrow-right"></i>
-                </button>
-            </a>
         </div>
         
         <a href="game.html" class="special-card" data-aos="fade-up">
@@ -462,7 +455,7 @@
 
         <div class="category-grid">
             
-            <a href="softwares.html" class="category-card" data-aos="fade-up" data-aos-delay="100">
+            <a href="softwares.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="100">
                 <div class="cat-icon"><i class="fas fa-laptop-code"></i></div>
                 <div class="cat-info">
                     <h3>Softwares</h3>
@@ -471,7 +464,7 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="mobileapks.html" class="category-card" data-aos="fade-up" data-aos-delay="150">
+            <a href="mobileapks.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="150">
                 <div class="cat-icon"><i class="fab fa-android"></i></div>
                 <div class="cat-info">
                     <h3>Mobile APKs</h3>
@@ -480,7 +473,7 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="pcgames.html" class="category-card" data-aos="fade-up" data-aos-delay="200">
+            <a href="pcgames.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="cat-icon"><i class="fas fa-ghost"></i></div>
                 <div class="cat-info">
                     <h3>PC Games</h3>
@@ -489,7 +482,7 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="mobilegames.html" class="category-card" data-aos="fade-up" data-aos-delay="250">
+            <a href="mobilegames.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="250">
                 <div class="cat-icon"><i class="fas fa-gamepad"></i></div>
                 <div class="cat-info">
                     <h3>Mobile Games</h3>
@@ -498,7 +491,7 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="reels.html" class="category-card" data-aos="fade-up" data-aos-delay="300">
+            <a href="reels.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="300">
                 <div class="cat-icon"><i class="fab fa-instagram"></i></div>
                 <div class="cat-info">
                     <h3>Reels Bundle</h3>
@@ -507,7 +500,7 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="steam.html" class="category-card" data-aos="fade-up" data-aos-delay="350">
+            <a href="steam.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="350">
                 <div class="cat-icon"><i class="fab fa-steam-symbol"></i></div>
                 <div class="cat-info">
                     <h3>Steam Accounts</h3>
@@ -516,7 +509,7 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="editing.html" class="category-card" data-aos="fade-up" data-aos-delay="400">
+            <a href="editing.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="400">
                 <div class="cat-icon"><i class="fas fa-film"></i></div>
                 <div class="cat-info">
                     <h3>Editing Assets</h3>
@@ -525,7 +518,7 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="courses.html" class="category-card" data-aos="fade-up" data-aos-delay="450">
+            <a href="courses.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="450">
                 <div class="cat-icon"><i class="fas fa-graduation-cap"></i></div>
                 <div class="cat-info">
                     <h3>Courses</h3>
@@ -534,7 +527,7 @@
                 <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="gamemagics.html" class="category-card" data-aos="fade-up" data-aos-delay="500">
+            <a href="gamemagics.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="500">
                 <div class="cat-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
                 <div class="cat-info">
                     <h3>Game Magics</h3>
@@ -623,7 +616,7 @@
         // --- 1. INITIALIZATION ---
         AOS.init({ duration: 800, once: true });
         
-        // Tilt Effect for Cards
+        // Tilt Effect
         VanillaTilt.init(document.querySelectorAll(".category-card"), {
             max: 5, speed: 400, glare: true, "max-glare": 0.1
         });
@@ -631,7 +624,7 @@
             max: 10, speed: 400, glare: true, "max-glare": 0.2
         });
 
-        // --- 2. PARTICLE BACKGROUND (Optimized) ---
+        // --- 2. PARTICLE BACKGROUND ---
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -648,58 +641,33 @@
                 this.color = Math.random() > 0.5 ? 'rgba(0, 210, 255, 0.6)' : 'rgba(255, 255, 255, 0.3)';
             }
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
             }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+            draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
         }
 
         function initParticles() {
             particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 9000; // Adjusted density
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); }
         }
-
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
+            for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); }
             requestAnimationFrame(animateParticles);
         }
+        window.addEventListener('resize', function() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles(); });
+        initParticles(); animateParticles();
 
-        window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initParticles();
-        });
-        initParticles();
-        animateParticles();
-
-        // --- 3. SEARCH LOGIC (Website Content Filtering) ---
-        // Html madhe input la id="globalSearch" de, ani cards la class="searchable-item" de
+        // --- 3. SEARCH LOGIC ---
         function searchContent() {
             let input = document.getElementById('globalSearch').value.toLowerCase();
-            let cards = document.getElementsByClassName('searchable-item'); // Cards la ha class de
-            
+            let cards = document.getElementsByClassName('searchable-item');
             for (let i = 0; i < cards.length; i++) { 
-                if (!cards[i].innerHTML.toLowerCase().includes(input)) {
-                    cards[i].style.display = "none";
-                } else {
-                    cards[i].style.display = "block"; // Or "flex" based on your design
-                }
+                if (!cards[i].innerText.toLowerCase().includes(input)) { cards[i].style.display = "none"; } 
+                else { cards[i].style.display = "flex"; }
             }
         }
 
@@ -707,25 +675,17 @@
         function toggleChat() {
             const chatBox = document.getElementById("chatBox");
             chatBox.classList.toggle("active");
-            
-            // Auto focus input when opened
-            if(chatBox.classList.contains("active")){
-                setTimeout(() => document.getElementById("userInput").focus(), 300);
-            }
+            if(chatBox.classList.contains("active")){ setTimeout(() => document.getElementById("userInput").focus(), 300); }
         }
 
-        function handleKeyPress(e) {
-            if (e.key === "Enter") sendMessage();
-        }
+        function handleKeyPress(e) { if (e.key === "Enter") sendMessage(); }
 
         function sendMessage() {
             const inputField = document.getElementById("userInput");
             const chatBody = document.getElementById("chatBody");
             const userText = inputField.value.trim();
-
             if (userText === "") return;
 
-            // User Message
             const userDiv = document.createElement("div");
             userDiv.className = "message user-msg";
             userDiv.innerText = userText;
@@ -734,7 +694,6 @@
             inputField.value = "";
             chatBody.scrollTop = chatBody.scrollHeight;
 
-            // Bot Typing Effect
             const loadingDiv = document.createElement("div");
             loadingDiv.className = "message bot-msg";
             loadingDiv.innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Analyzing...";
@@ -742,7 +701,7 @@
             chatBody.scrollTop = chatBody.scrollHeight;
 
             setTimeout(() => {
-                chatBody.removeChild(loadingDiv); // Remove loading
+                chatBody.removeChild(loadingDiv);
                 const botDiv = document.createElement("div");
                 botDiv.className = "message bot-msg";
                 botDiv.innerHTML = getAdvancedBotResponse(userText.toLowerCase());
@@ -751,54 +710,62 @@
             }, 800);
         }
 
-        // --- THE BRAIN: ADVANCED RESPONSES ---
+        // --- THE BRAIN: EXPANDED CATEGORIES ---
         function getAdvancedBotResponse(input) {
-            // 1. GREETINGS & BASICS
+            
+            // 1. Basic & Greetings
             if (match(input, ["hi", "hello", "hey", "start", "good morning"])) 
-                return "Welcome, User! 🚀 <br>Systems operational. I can help you with <b>PC Games</b>, <b>Mods</b>, or <b>Web Development</b>. What's your command?";
-            
+                return "Welcome, User! 🚀 <br>Systems operational. Ask for <b>Games</b>, <b>Software</b>, or <b>Contact</b>.";
             if (match(input, ["who are you", "bot", "name"])) 
-                return "I am <b>NextGen AI</b>. A virtual assistant programmed by Aditya to navigate this digital arsenal.";
+                return "I am <b>NextGen AI</b>. A virtual assistant programmed by Aditya.";
 
-            if (match(input, ["how are you", "what's up"])) 
-                return "Operating at 100% efficiency. Ready to serve your request.";
+            // 2. PC Games
+            if (match(input, ["pc game", "computer", "gta", "rdr2", "cyberpunk", "windows game"])) 
+                return "High-Graphics PC Games detected! 🖥️<br>Check out: <a href='pcgames.html' class='bot-link'>PC Games Collection</a>.";
 
-            // 2. PC GAMES & TITLES
-            if (match(input, ["pc game", "computer game", "windows"])) 
-                return "Accessing High-Performance Library... 🖥️<br>Check out our <a href='pcgames.html' class='bot-link'>PC Games Collection</a>.";
-            
-            if (match(input, ["gta", "grand theft auto", "cyberpunk", "rdr2", "forza"])) 
-                return `Searching database for '${input}'... <br>Found! You can find high-graphics titles like that in our <a href='pcgames.html' class='bot-link'>PC Section</a>.`;
+            // 3. Mobile APKs
+            if (match(input, ["mobile apk", "android", "mod apk", "premium app", "cracked app"])) 
+                return "Unlocking Android Potential... 📱<br>Get Modded Apps here: <a href='mobileapks.html' class='bot-link'>Mobile APKs</a>.";
 
-            // 3. MOBILE / ANDROID / APK
-            if (match(input, ["mobile", "android", "apk", "phone"])) 
-                return "Unlocking Android Potential... 📱<br>Get Modded APKs and premium apps here: <a href='mobileapks.html' class='bot-link'>Mobile Zone</a>.";
+            // 4. Mobile Games
+            if (match(input, ["mobile game", "pubg", "bgmi", "free fire", "minecraft", "cod"])) 
+                return "Mobile Gaming Zone Accessed! 🎮<br>Download trending games: <a href='mobilegames.html' class='bot-link'>Mobile Games</a>.";
 
-            if (match(input, ["pubg", "bgmi", "free fire", "cod", "minecraft"])) 
-                return `Target locked: '${input}'. <br>For mobile versions and mods, visit the <a href='mobileapks.html' class='bot-link'>Android APK Section</a>.`;
+            // 5. Softwares
+            if (match(input, ["software", "tool", "utility", "adobe", "office", "window"])) 
+                return "Loading Premium Tools... 💿<br>Get Full Versions: <a href='softwares.html' class='bot-link'>Software Hub</a>.";
 
-            // 4. SOFTWARE & TOOLS
-            if (match(input, ["software", "adobe", "photoshop", "editor", "premire"])) 
-                return "Loading Premium Tools... 💿<br>Download full versions without cost: <a href='softwares.html' class='bot-link'>Software Hub</a>.";
+            // 6. Reels Bundle
+            if (match(input, ["reel", "instagram", "viral", "video", "content"])) 
+                return "Boost your reach! 🚀<br>Get the Viral Reels Bundle: <a href='reels.html' class='bot-link'>Reels Bundle</a>.";
 
-            // 5. CHEATS & HACKS
-            if (match(input, ["cheat", "hack", "mod menu", "script", "config"])) 
-                return "⚠️ <b>Restricted Area Accessed</b> ⚠️<br>Get the ultimate advantage safely here: <a href='gamemagics.html' class='bot-link'>Game Magics</a>.";
+            // 7. Steam Accounts
+            if (match(input, ["steam", "account", "game key", "cheap game"])) 
+                return "Gaming on a budget? 🎮<br>Get Full Access Steam Accounts: <a href='steam.html' class='bot-link'>Steam Store</a>.";
 
-            // 6. SERVICES (WEB DEV / LOGO)
-            if (match(input, ["website", "developer", "design", "logo", "banner"])) 
-                return "Need a digital identity? 🎨<br>I can build Websites & Brands. <a href='contact.html' class='bot-link'>Hire Me Now</a>.";
+            // 8. Editing Assets
+            if (match(input, ["edit", "preset", "lut", "overlay", "premiere", "capcut", "after effect"])) 
+                return "Create cinematic masterpieces! 🎬<br>Download Assets: <a href='editing.html' class='bot-link'>Editing Hub</a>.";
 
-            // 7. CONTACT & OWNER
-            if (match(input, ["contact", "owner", "admin", "aditya", "help", "issue"])) 
-                return "Establishing secure line... 📡<br>Contact Admin directly on Telegram: <a href='https://t.me/nextgenadi4u' target='_blank' class='bot-link'>@nextgenadi4u</a>";
+            // 9. Courses
+            if (match(input, ["course", "learn", "study", "hacking", "coding", "python"])) 
+                return "Knowledge is power. 🧠<br>Start learning today: <a href='courses.html' class='bot-link'>Courses Library</a>.";
 
-            // 8. FALLBACK (SMART SEARCH)
-            return `Command '${input}' not recognized in core database. <br>Try clicking the <a href='#' onclick='toggleChat()' class='bot-link'>Menu</a> or ask for 'PC Games' or 'Softwares'.`;
+            // 10. Game Magics (Cheats)
+            if (match(input, ["cheat", "hack", "script", "magic", "mod menu"])) 
+                return "⚠️ <b>Restricted Area</b> ⚠️<br>Get the ultimate advantage: <a href='gamemagics.html' class='bot-link'>Game Magics</a>.";
+
+            // 11. Contact
+            if (match(input, ["contact", "owner", "admin", "aditya", "help"])) 
+                return "Establishing secure line... 📡<br>Contact Admin on Telegram: <a href='https://t.me/nextgenadi4u' target='_blank' class='bot-link'>@nextgenadi4u</a>";
+
+            // Fallback
+            return `Command '${input}' not recognized. <br>Try asking for 'PC Games', 'Softwares', or 'Courses'.`;
         }
 
-        // Helper function for multiple keyword matching
         function match(text, keywords) {
             return keywords.some(keyword => text.includes(keyword));
         }
     </script>
+</body>
+</html>
