@@ -11,15 +11,29 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* Page Specific Overrides */
+        /* --- Page Specific Styles --- */
         .market-price {
             text-decoration: line-through; color: #666; font-size: 0.9rem; margin-right: 10px;
         }
         .our-price {
-            color: #00ff88; font-weight: 800; font-size: 1.3rem; text-shadow: 0 0 10px rgba(0,255,136,0.3);
+            color: #00ff88; font-weight: 800; font-size: 1.2rem; text-shadow: 0 0 10px rgba(0,255,136,0.3);
         }
         
-        /* Modals */
+        /* Image Hover Effect for Direct Preview */
+        .card-img {
+            cursor: pointer; position: relative;
+        }
+        .card-img::after {
+            content: '\f06e'; /* FontAwesome Eye Icon Code */
+            font-family: 'Font Awesome 5 Free'; font-weight: 900;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+            font-size: 3rem; color: #fff; text-shadow: 0 0 20px #000;
+            transition: 0.3s; opacity: 0;
+        }
+        .card-img:hover::after { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        .card-img:hover img { filter: brightness(0.5); transform: scale(1.1); }
+
+        /* Modal (Preview & Buy) */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9); z-index: 2000; display: none;
@@ -48,7 +62,7 @@
         .ig-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 0 20px rgba(220, 39, 67, 0.4); }
         .dc-btn { background: #5865F2; box-shadow: 0 0 20px rgba(88, 101, 242, 0.4); }
 
-        /* Preview Image */
+        /* Preview Image Container */
         .preview-container { width: 100%; height: 300px; overflow-y: scroll; border-radius: 10px; margin-bottom: 20px; border: 1px solid #333; }
         .preview-img { width: 100%; display: block; }
         
@@ -90,8 +104,8 @@
     <div class="modal-overlay" id="buyModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('buyModal')">&times;</span>
-            <h2 style="color:var(--primary)">Select Platform</h2>
-            <p style="color:#aaa; margin-top:5px">Where should we send the file?</p>
+            <h2 style="color:var(--primary)">Send Requirement</h2>
+            <p style="color:#aaa; margin-top:5px">Select platform to contact Admin:</p>
             
             <div class="platform-grid">
                 <div class="plat-btn tg-btn" onclick="redirectTo('telegram')" title="Telegram"><i class="fab fa-telegram-plane"></i></div>
@@ -120,8 +134,8 @@
     <script>
         AOS.init();
 
-        // --- 1. THEME DATABASE (EDIT HERE) ---
-        // Mi Popular themes takle aahet. Tu Drive madhe check karun naav update kar.
+        // --- 1. THEME DATABASE ---
+        // Tuze themes ithe add kar
         const themes = [
             {
                 id: 1,
@@ -180,7 +194,7 @@
             }
         ];
 
-        // --- 2. RENDER LOGIC ---
+        // --- 2. RENDER LOGIC (Direct Preview on Image Click) ---
         const shopifyContainer = document.getElementById('shopify-container');
         const githubContainer = document.getElementById('github-container');
 
@@ -191,7 +205,7 @@
             themes.forEach(product => {
                 const cardHTML = `
                     <div class="shopify-card" data-aos="fade-up">
-                        <div class="card-img">
+                        <div class="card-img" onclick="openPreview(${product.id})" title="Click to Preview">
                             <img src="${product.image}" alt="${product.name}">
                         </div>
                         <div class="card-details">
@@ -252,7 +266,7 @@
             if(selectedProduct) initiateBuy(selectedProduct.id);
         }
 
-        // --- 5. BUY SYSTEM (AUTO MESSAGE) ---
+        // --- 5. BUY SYSTEM (UPDATED USERNAME & MESSAGE) ---
         function initiateBuy(id) {
             const product = themes.find(p => p.id === id);
             selectedProduct = product;
@@ -262,17 +276,18 @@
         function redirectTo(platform) {
             if(!selectedProduct) return;
             
-            // Auto Message Logic
-            const text = `Hello Aditya! 👋%0AI am interested in buying:%0A%0A📦 *${selectedProduct.name}*%0A💰 Offer Price: ${selectedProduct.ourPrice}%0A%0APlease share the payment QR Code.`;
+            // New "Requirement" Message Format
+            const text = `Hello Aditya! 👋%0AI have a requirement for:%0A%0A📦 *${selectedProduct.name}*%0A💰 Price: ${selectedProduct.ourPrice}%0A%0APlease share the payment details.`;
             
             let url = "";
             if(platform === 'telegram') {
-                url = `https://t.me/nextgenadi4u?text=${text}`;
+                // Updated Username: @nextgenadi_4u
+                url = `https://t.me/nextgenadi_4u?text=${text}`;
             } else if(platform === 'instagram') {
-                url = `https://instagram.com/aditya_shete_official`; // Web doesn't allow pre-fill easily
-                alert("Opening Instagram... Please type the theme name manually.");
+                url = `https://instagram.com/aditya_shete_official`; 
+                alert("Opening Instagram... DM manually.");
             } else if(platform === 'discord') {
-                url = `https://discord.gg/YOUR_CODE`; // Replace with your Discord link
+                url = `https://discord.gg/YOUR_CODE`; 
                 alert("Joining Discord Server...");
             }
 
@@ -284,7 +299,6 @@
             document.getElementById(modalId).style.display = 'none';
         }
         
-        // Close modal on outside click
         window.onclick = function(event) {
             if (event.target.className === 'modal-overlay') {
                 event.target.style.display = "none";
