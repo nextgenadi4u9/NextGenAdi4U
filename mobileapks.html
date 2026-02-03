@@ -3,23 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685"
-     crossorigin="anonymous"></script>
+    <meta name="theme-color" content="#00d2ff">
 
-    <title>Mobile APKs - NextGenAdi4U</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685" crossorigin="anonymous"></script>
+    
+    <title>Modded Mobile APKs - NextGenAdi4U</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
     <style>
-        /* --- NEW PARTICLE BACKGROUND CSS --- */
+        /* --- 1. GLOBAL VARIABLES & RESET --- */
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #007bb5;
+            --bg-dark: #050505;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Particle Background */
         #dustCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2; /* कंटेंटच्या मागे */
-            background: #050505; /* गडद काळा बॅकग्राउंड */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; background: radial-gradient(circle at center, #0f1520 0%, #000000 100%);
+        }
+
+        a { text-decoration: none; transition: 0.3s; }
+        
+        /* --- 2. HEADER SECTION --- */
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
+            padding: 15px 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .header-container {
+            display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto;
+        }
+
+        .logo { display: flex; align-items: center; gap: 15px; }
+        
+        .brand-text {
+            font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin: 0;
+        }
+        .brand-highlight { color: var(--primary-color); }
+
+        .back-btn {
+            color: var(--primary-color); font-size: 1.4rem; padding: 5px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .back-btn:hover { background: rgba(0, 210, 255, 0.1); transform: translateX(-5px); }
+
+        /* Search Bar */
+        .search-box {
+            position: relative; width: 300px;
+        }
+        .search-box input {
+            width: 100%; padding: 10px 45px 10px 20px;
+            border-radius: 50px; border: 1px solid #333;
+            background: rgba(255, 255, 255, 0.05); color: #fff;
+            outline: none; font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+            background: rgba(0,0,0,0.8);
+        }
+        .search-box button {
+            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+            background: none; border: none; color: var(--text-muted); cursor: pointer;
+        }
+        .search-box input:focus + button { color: var(--primary-color); }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .search-box { width: 100%; }
+            .social-nav { display: none; }
+        }
+
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            text-align: center; padding: 60px 20px 40px;
+        }
+        .hero h1 {
+            font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; color: transparent;
+        }
+        .hero p { color: var(--primary-color); font-size: 1.1rem; }
+
+        /* --- 4. GRID LAYOUT & CARDS --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 5% 80px;
+            max-width: 1400px; margin: 0 auto;
+        }
+
+        .software-card {
+            background: var(--card-bg);
+            border: var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .software-card:hover {
+            transform: translateY(-10px);
+            background: rgba(30, 30, 30, 0.85);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
+        }
+
+        .card-img-wrapper {
+            width: 100%; height: 140px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 15px; padding: 10px;
+        }
+        
+        .card-img-wrapper img {
+            max-height: 100%; max-width: 100%;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+            transition: 0.4s;
+        }
+        .software-card:hover .card-img-wrapper img { transform: scale(1.15) rotate(2deg); }
+
+        .software-card h3 {
+            font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; color: #fff; margin-bottom: 5px;
+        }
+        
+        .software-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+
+        .toggle-info-btn {
+            background: transparent; border: 1px solid #444; color: #ccc;
+            padding: 6px 15px; font-size: 0.8rem; border-radius: 20px; cursor: pointer;
+            margin-bottom: 15px; transition: 0.3s; display: flex; align-items: center; gap: 5px;
+        }
+        .toggle-info-btn:hover { background: #fff; color: #000; }
+
+        .download-btn {
+            margin-top: auto; width: 100%;
+            background: transparent; color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px; border-radius: 50px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .download-btn:hover {
+            background: var(--primary-color); color: #000;
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        .seo-box {
+            display: none; width: 100%;
+            background: rgba(0,0,0,0.4); border: 1px solid #333;
+            border-radius: 10px; padding: 15px; text-align: left;
+            margin-bottom: 20px; font-size: 0.85rem; color: #ddd;
+        }
+        .seo-box h4 { color: var(--primary-color); margin-bottom: 5px; }
+        .seo-box ul { padding-left: 20px; margin-top: 5px; }
+
+        /* --- 5. FOOTER --- */
+        footer {
+            border-top: var(--glass-border); padding: 30px; text-align: center;
+            color: #666; font-size: 0.9rem; background: #000;
         }
     </style>
 </head>
@@ -29,253 +200,404 @@
 
     <header>
         <div class="header-container">
-            
             <div class="logo">
-                <a href="index.html" class="back-btn">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-                
-                <a href="index.html" style="text-decoration: none;">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <a href="index.html">
                     <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
                 </a>
             </div>
 
-            <div class="social-nav">
-                <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/nextgen.adi4u?igsh=bGN5N3pkbWdkZjhl&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/nextgenadi4u" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="https://discord.gg/jG2fpvjwnk" target="_blank"><i class="fab fa-discord"></i></a>
+            <div class="social-nav" style="display: flex; gap: 15px;">
+                 <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank" style="color:#fff"><i class="fab fa-youtube"></i></a>
+                 <a href="https://www.instagram.com/nextgen.adi4u" target="_blank" style="color:#fff"><i class="fab fa-instagram"></i></a>
+                 <a href="https://t.me/nextgenadi4u" target="_blank" style="color:#fff"><i class="fab fa-telegram"></i></a>
+                 <a href="https://discord.gg/jG2fpvjwnk" target="_blank" style="color:#fff"><i class="fab fa-discord"></i></a>
             </div>
 
-            <div class="search-bar">
-                <input type="text" placeholder="Search APKs...">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search APKs...">
                 <button><i class="fas fa-search"></i></button>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero page-hero">
-            <h1 class="main-heading">Modded Mobile APKs</h1>
-            <p class="sub-text">Download Pro, Premium & Ad-Free Apps</p>
+        <section class="hero" data-aos="fade-down">
+            <h1>Modded Mobile APKs</h1>
+            <p>Pro • Premium • Ad-Free Apps</p>
         </section>
 
-        <section class="grid-container">
+        <section class="grid-container" id="apkGrid">
 
-            <div class="item-card">
-                <div class="card-img"><img src="M1.webp" alt="Smart Launcher"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M1.webp" alt="Smart Launcher"></div>
                 <h3>Smart Launcher 6</h3>
                 <p>Pro Version | Unlocked</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About App</h4>
+                    <p>Experience the most advanced Android launcher with premium features unlocked for free.</p>
+                </div>
                 <a href="https://www.mediafire.com/file/7il6b75024pl8xn/Smart+Launcher+6+v6.5+build+020+%5BFileCR%5D.zip/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M2.webp" alt="Canva"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M2.webp" alt="Canva"></div>
                 <h3>Canva Pro</h3>
                 <p>Premium Features Unlocked</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>About App</h4>
+                    <p>Design graphics with all pro templates, fonts, and elements unlocked.</p>
+                </div>
                 <a href="https://www.mediafire.com/file/u0vbse4zj45ivh3/Canva-v2.327.0-(Getmodsapk.com).xapk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M3.webp" alt="CapCut"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M3.webp" alt="CapCut"></div>
                 <h3>CapCut Pro</h3>
                 <p>No Watermark | Premium</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>No Watermark</li><li>Pro Effects Unlocked</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/2jjg4vfrrvdtphd/capcut_new.apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M4.webp" alt="SnapTube"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M4.webp" alt="SnapTube"></div>
                 <h3>SnapTube VIP</h3>
                 <p>Ad-Free | 4K Download</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>No Ads</li><li>4K Video Download</li><li>Batch Download</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/v2xv3slxesnhbkg/Snaptube+v7.42.0.74250110+(ViP).apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M5.webp" alt="ChatGPT"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M5.webp" alt="ChatGPT"></div>
                 <h3>ChatGPT Premium</h3>
                 <p>Plus Unlocked | GPT-4</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Plus Subscription Unlocked</li><li>Faster Response</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/uxl6u1yb1kdq9t2/Chatbot-v5.1.0.0-MOD-OTR-(Getmodsapk.com).apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M6.webp" alt="Photo Director"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M6.webp" alt="Photo Director"></div>
                 <h3>Photo Director</h3>
                 <p>Premium Unlocked</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>All Premium Tools</li><li>No Ads</li><li>AI Removal</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/pggb3wvt6blw7yz/PhotoDirector+v20.0.2+(Premium).apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M7.webp" alt="ES File Explorer"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M7.webp" alt="ES File Explorer"></div>
                 <h3>ES File Explorer</h3>
                 <p>VIP Version | No Ads</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>VIP Unlocked</li><li>Cloud Drive Sync</li><li>Real-time Monitor</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/4zbz9fin7xzebsl/ES+File+Explorer+v4.4.3.1+(ViP).apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M8.webp" alt="Toon App"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M8.webp" alt="Toon App"></div>
                 <h3>Toon App Pro</h3>
                 <p>All Filters Unlocked</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Pro Filters</li><li>No Watermark</li><li>HD Output</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/fysvd3ngcq4jdxm/ToonApp-v3.0.4-MOD-OTR-(Getmodsapk.com).apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M9.webp" alt="MX Player"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M9.webp" alt="MX Player"></div>
                 <h3>MX Player Gold</h3>
                 <p>No Ads | Pro Features</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Ad-Free Experience</li><li>Gold Features Unlocked</li><li>Background Play</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/j17j4osqhm30xa4/MX-Player-v1.97.1-MOD-GMA-%2528Getmodsapk.com%2529.apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M10.webp" alt="PicsArt"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M10.webp" alt="PicsArt"></div>
                 <h3>PicsArt Gold</h3>
                 <p>Premium Assets Unlocked</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Gold Unlocked</li><li>No Ads</li><li>Premium Stickers/Fonts</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/b2jrvknd1m1331q/Picsart+v28.1.6+(Premium).apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M11.webp" alt="TikTok"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M11.webp" alt="TikTok"></div>
                 <h3>TikTok Mod</h3>
                 <p>No Watermark | Region Free</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Download Without Watermark</li><li>Region Restrictions Removed</li><li>No Ads</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/wx1xzcc4cnor4km/TikTok-v40.5.3-MOD-GMA-(Getmodsapk.com).apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M12.webp" alt="Spotify"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M12.webp" alt="Spotify"></div>
                 <h3>Spotify Premium</h3>
                 <p>No Ads | Unlimited Skips</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Ad-Free Listening</li><li>Unlimited Skips</li><li>High Quality Audio</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/5rsy663tslhfw8g/Spotify-v9.0.56.549-MOD-OTR-(Getmodsapk.com).apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M13.webp" alt="Pocket FM"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M13.webp" alt="Pocket FM"></div>
                 <h3>Pocket FM VIP</h3>
                 <p>All Audiobooks Unlocked</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>VIP Membership Unlocked</li><li>Unlimited Audiobooks</li><li>No Coins Needed</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/f7bhmko5c6k9n7c/Pocket-FM-v8.3.3-MOD-OTR-(Getmodsapk.com).apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M14.webp" alt="Wink Video"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M14.webp" alt="Wink Video"></div>
                 <h3>Wink Video</h3>
                 <p>AI Enhancer | Pro</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>AI Restoration</li><li>Pro Tools Unlocked</li><li>HD Quality</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/3bxqwmj5iuxql1v/Wink+Video-2.15.0.apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M15.webp" alt="Ad Blocker"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M15.webp" alt="Ad Blocker"></div>
                 <h3>Popup Ad Blocker</h3>
                 <p>Block All Ads</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>App Features</h4>
+                    <ul><li>Blocks Popups</li><li>Blocks Video Ads</li><li>Saves Data</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/rfremeetuonsv9l/Popup+Ad+Blocker+-+Appwatch+v1.25.0+%5BFileCR%5D.apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M16.webp" alt="Snapchat"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M16.webp" alt="Snapchat"></div>
                 <h3>Snapchat Plus</h3>
                 <p>Mod Features</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Secret Screenshot</li><li>View Snaps Unlimited Time</li><li>Ghost Mode</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/hqeb7m9mkwviei1/Snapchat-v13.36.2.0-MOD-OTR-(Getmodsapk.com).apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M17.webp" alt="Speechify"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M17.webp" alt="Speechify"></div>
                 <h3>Speechify TTS</h3>
                 <p>Premium Voices Unlocked</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Premium AI Voices</li><li>High Speed Reading</li><li>Scan OCR</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/9l6ltbesbx4ucdv/Speechify+%E2%80%93+text+to+speech+tts+v5.1.1932+%5BFileCR%5D_2.apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M18.webp" alt="Jio Hotstar"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M18.webp" alt="Jio Hotstar"></div>
                 <h3>Jio Hotstar</h3>
                 <p>VIP Content Free</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>VIP/Premium Unlocked</li><li>Live Sports Free</li><li>No Ads</li></ul>
+                </div>
                 <a href="https://drive.google.com/file/d/10FEtAM8qxtG7H05wBQDMCAzBhpkXyeUx/view" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M19.png" alt="Bee TV"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M19.png" alt="Bee TV"></div>
                 <h3>Bee TV</h3>
                 <p>Free Movies & Shows</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>App Features</h4>
+                    <ul><li>Latest Movies Free</li><li>HD Streaming</li><li>Multi-Language</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/vase71e7s76n01p/BeeTV+v4.2.7+%5BFileCR%5D.zip/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M21.webp" alt="Prime Video"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M21.webp" alt="Prime Video"></div>
                 <h3>Prime Video Mod</h3>
                 <p>4K | No Ads</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>4K UHD Support</li><li>Ad-Free</li><li>Originals Unlocked</li></ul>
+                </div>
                 <a href="https://drive.google.com/file/d/12HtaI4wnHGSxrIp0ICgMfrpucVgOUnI-/view" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M22.png" alt="Kuku TV"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M22.png" alt="Kuku TV"></div>
                 <h3>Kuku TV</h3>
                 <p>Premium Unlocked</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Premium Shows</li><li>No Ads</li><li>Fast Streaming</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/28rbqyv96s911oa/Kuku-TV-v5.4.8-(Getmodsapk.com).xapk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M23.webp" alt="YouTube"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M23.webp" alt="YouTube"></div>
                 <h3>YouTube Premium</h3>
                 <p>No Ads | Background Play</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Ad-Blocking</li><li>Background Play</li><li>Dark Mode</li></ul>
+                </div>
                 <a href="https://drive.google.com/file/d/18ozOwTRlEWQEmNsc6OXj13HOVwOTTe_9/view" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M24.png" alt="Voot"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M24.png" alt="Voot"></div>
                 <h3>Voot Select</h3>
                 <p>Premium Content Free</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Select Content Unlocked</li><li>Live Channels</li><li>No Ads</li></ul>
+                </div>
                 <a href="https://drive.google.com/file/d/1XaO1vwahExuHNHPHEftx8qxYK7ZbxrjV/view" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M25.png" alt="Kuku FM"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M25.png" alt="Kuku FM"></div>
                 <h3>Kuku FM</h3>
                 <p>All Audiobooks Free</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Premium Unlocked</li><li>Regional Content</li><li>Offline Mode</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/otsmc6a0w34y8sl/Kuku-FM-v5.4.7.xapk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M26.webp" alt="Netflix"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M26.webp" alt="Netflix"></div>
                 <h3>Netflix Mod</h3>
                 <p>Premium | 4K HDR</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Premium Plan</li><li>4K HDR Support</li><li>No Account Needed</li></ul>
+                </div>
                 <a href="https://drive.google.com/file/d/1yROw0z88sZw4q-GrX26e-LimgM13gw_j/view" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M27.png" alt="Net Mirror"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M27.png" alt="Net Mirror"></div>
                 <h3>Net Mirror</h3>
                 <p>Screen Mirroring Pro</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>App Features</h4>
+                    <ul><li>High Quality Mirroring</li><li>Low Latency</li><li>Pro Unlocked</li></ul>
+                </div>
                 <a href="https://drive.google.com/file/d/1xs25xzxiVwoAweeD-IdixectkFVlSPsd/view" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M28.png" alt="Elements"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M28.png" alt="Elements"></div>
                 <h3>Elements KWGT</h3>
                 <p>Premium Widgets</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Paid App Free</li><li>All Widgets Unlocked</li><li>Regular Updates</li></ul>
+                </div>
                 <a href="https://www.mediafire.com/file/w62i5cvugblfkcj/Elements_KWGT_v11.6_P.apk/file" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M29.jpg" alt="KineMaster"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M29.jpg" alt="KineMaster"></div>
                 <h3>KineMaster Diamond</h3>
                 <p>Mod Version</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>No Watermark</li><li>Chroma Key</li><li>Asset Store Unlocked</li></ul>
+                </div>
                 <a href="#" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M30.png" alt="Alight Motion"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M30.png" alt="Alight Motion"></div>
                 <h3>Alight Motion</h3>
                 <p>Pro Presets</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>No Watermark</li><li>All Effects Unlocked</li><li>XML Support</li></ul>
+                </div>
                 <a href="#" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M31.png" alt="PixelLab"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M31.png" alt="PixelLab"></div>
                 <h3>PixelLab Pro</h3>
                 <p>Premium Fonts</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Dark Mode</li><li>Premium Fonts Added</li><li>No Ads</li></ul>
+                </div>
                 <a href="#" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
-            <div class="item-card">
-                <div class="card-img"><img src="M32.jpg" alt="LuluBox"></div>
+            <div class="software-card">
+                <div class="card-img-wrapper"><img src="M32.jpg" alt="LuluBox"></div>
                 <h3>LuluBox Pro</h3>
                 <p>Game Booster & Skins</p>
+                <button class="toggle-info-btn" onclick="toggleInfo(this)">Info <i class="fas fa-chevron-down"></i></button>
+                <div class="seo-box">
+                    <h4>Mod Features</h4>
+                    <ul><li>Free Skins</li><li>Game Speed Up</li><li>No Ban Risk</li></ul>
+                </div>
                 <a href="#" target="_blank" class="download-btn">Download <i class="fas fa-download"></i></a>
             </div>
 
@@ -283,95 +605,87 @@
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-bottom">
-                <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
-            </div>
-        </div>
+        <p>&copy; 2026 NextGenAdi4U. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // --- SEARCH LOGIC ---
-        document.addEventListener("DOMContentLoaded", function() {
-            const searchInput = document.querySelector('.search-bar input');
-            const cards = document.querySelectorAll('.item-card');
+        // Init Animations
+        AOS.init({ duration: 800, once: true, offset: 50 });
 
-            if (searchInput) {
-                searchInput.addEventListener('keyup', function(event) {
-                    const query = event.target.value.toLowerCase();
-                    cards.forEach(card => {
-                        const title = card.querySelector('h3').textContent.toLowerCase();
-                        const desc = card.querySelector('p').textContent.toLowerCase();
-
-                        if (title.includes(query) || desc.includes(query)) {
-                            card.style.display = "flex";
-                        } else {
-                            card.style.display = "none";
-                        }
-                    });
-                });
+        // Info Toggle (SEO Box)
+        function toggleInfo(btn) {
+            const box = btn.nextElementSibling;
+            if (box.style.display === "block") {
+                box.style.display = "none";
+                btn.innerHTML = 'Info <i class="fas fa-chevron-down"></i>';
+            } else {
+                box.style.display = "block";
+                btn.innerHTML = 'Close <i class="fas fa-chevron-up"></i>';
             }
+        }
+
+        // Search Logic
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.software-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+                if (title.includes(term) || desc.includes(term)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
         });
 
-        // --- FLOATING NEON DUST ANIMATION ---
+        // Particle Background Logic
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
-        
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        let particlesArray;
+        let particles = [];
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')';
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
             }
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+                this.x += this.speedX; this.y += this.speedY;
                 if (this.x > canvas.width) this.x = 0;
                 if (this.x < 0) this.x = canvas.width;
                 if (this.y > canvas.height) this.y = 0;
                 if (this.y < 0) this.y = canvas.height;
             }
             draw() {
-                ctx.fillStyle = this.color;
+                ctx.fillStyle = 'rgba(0, 210, 255, 0.4)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
 
-        function initParticles() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 15000;
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
+        function init() {
+            particles = [];
+            for (let i = 0; i < 80; i++) particles.push(new Particle());
         }
-
-        function animateParticles() {
+        function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
         }
-
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            initParticles();
+            init();
         });
-
-        initParticles();
-        animateParticles();
+        init(); animate();
     </script>
 
 </body>
