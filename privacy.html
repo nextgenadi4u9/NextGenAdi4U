@@ -13,8 +13,10 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <link rel="stylesheet" href="style.css">
+
     <style>
-        /* --- 1. GLOBAL VARIABLES & RESET --- */
+        /* --- PAGE SPECIFIC STYLES --- */
         :root {
             --primary-color: #00d2ff;
             --secondary-color: #007bb5;
@@ -25,14 +27,12 @@
             --text-muted: #b0b0b0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            display: flex; flex-direction: column; min-height: 100vh;
+            /* Anti-Theft: Prevent Text Selection */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         /* Particle Background */
@@ -41,51 +41,7 @@
             z-index: -2; background: radial-gradient(circle at center, #0f1520 0%, #000000 100%);
         }
 
-        a { text-decoration: none; transition: 0.3s; color: inherit; }
-        
-        /* --- 2. HEADER SECTION --- */
-        header {
-            position: sticky; top: 0; z-index: 1000;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: var(--glass-border);
-            padding: 15px 5%;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-        }
-
-        .header-container {
-            display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto;
-        }
-
-        .logo { display: flex; align-items: center; gap: 15px; }
-        
-        .brand-text {
-            font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin: 0;
-        }
-        .brand-highlight { color: var(--primary-color); }
-
-        .back-btn {
-            color: var(--primary-color); font-size: 1.4rem; padding: 5px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .back-btn:hover { background: rgba(0, 210, 255, 0.1); transform: translateX(-5px); }
-
-        .social-nav { display: flex; gap: 20px; }
-        .social-nav a { font-size: 1.2rem; color: var(--text-muted); }
-        .social-nav a:hover { color: var(--primary-color); transform: translateY(-3px); }
-
-        /* --- 3. HERO SECTION --- */
-        .hero {
-            text-align: center; padding: 60px 20px 40px;
-        }
-        .hero h1 {
-            font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
-            background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; color: transparent;
-        }
-        .hero p { color: var(--primary-color); font-size: 1.1rem; }
-
-        /* --- 4. POLICY CONTENT --- */
+        /* --- POLICY CONTENT --- */
         .policy-wrapper {
             max-width: 1000px; margin: 0 auto 60px; padding: 0 20px;
         }
@@ -124,14 +80,6 @@
 
         @media (max-width: 768px) {
             .policy-container { padding: 30px 20px; }
-            .hero h1 { font-size: 2.2rem; }
-            .social-nav { display: none; }
-        }
-
-        /* --- 5. FOOTER --- */
-        footer {
-            border-top: var(--glass-border); padding: 30px; text-align: center;
-            color: #666; font-size: 0.9rem; background: #000; margin-top: auto;
         }
     </style>
 </head>
@@ -249,6 +197,20 @@
             init();
         });
         init(); animate();
+
+        // --- SECURITY SCRIPT (Anti-Theft) ---
+        // 1. Disable Right Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Disable Keyboard Shortcuts (F12, Ctrl+U, etc.)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S
+        }
     </script>
 </body>
 </html>
