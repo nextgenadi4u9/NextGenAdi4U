@@ -3,22 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00d2ff">
 
-   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685" crossorigin="anonymous"></script>
+    
     <title>Premium Accounts - NextGenAdi4U</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
+
     <style>
-        /* --- NEW PARTICLE BACKGROUND CSS --- */
+        /* --- 1. GLOBAL VARIABLES & RESET --- */
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #007bb5;
+            --bg-dark: #050505;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            
+            /* Anti-Theft: Prevent Text Selection */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        /* Particle Background */
         #dustCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2; /* कंटेंटच्या मागे */
-            background: #050505; /* गडद काळा बॅकग्राउंड */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; background: radial-gradient(circle at center, #0f1520 0%, #000000 100%);
+        }
+
+        a { text-decoration: none; transition: 0.3s; }
+        
+        /* --- 2. HEADER SECTION --- */
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
+            padding: 15px 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .header-container {
+            display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto;
+        }
+
+        .logo { display: flex; align-items: center; gap: 15px; }
+        
+        .brand-text {
+            font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin: 0;
+        }
+        .brand-highlight { color: var(--primary-color); }
+
+        .back-btn {
+            color: var(--primary-color); font-size: 1.4rem; padding: 5px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .back-btn:hover { background: rgba(0, 210, 255, 0.1); transform: translateX(-5px); }
+
+        /* Search Bar */
+        .search-box {
+            position: relative; width: 300px;
+        }
+        .search-box input {
+            width: 100%; padding: 10px 45px 10px 20px;
+            border-radius: 50px; border: 1px solid #333;
+            background: rgba(255, 255, 255, 0.05); color: #fff;
+            outline: none; font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+            background: rgba(0,0,0,0.8);
+        }
+        .search-box button {
+            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+            background: none; border: none; color: var(--text-muted); cursor: pointer;
+        }
+        .search-box input:focus + button { color: var(--primary-color); }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .search-box { width: 100%; }
+            .social-nav { display: none; }
+        }
+
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            text-align: center; padding: 60px 20px 40px;
+        }
+        .hero h1 {
+            font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; color: transparent;
+        }
+        .hero p { color: var(--primary-color); font-size: 1.1rem; }
+
+        /* --- 4. GRID LAYOUT & CARDS --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 5% 80px;
+            max-width: 1400px; margin: 0 auto;
+        }
+
+        .account-card {
+            background: var(--card-bg);
+            border: var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .account-card:hover {
+            transform: translateY(-10px);
+            background: rgba(30, 30, 30, 0.85);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
+        }
+
+        /* --- IMAGE FIX: FULL VISIBILITY --- */
+        .card-img-wrapper {
+            width: 100%; height: 180px; /* Thoda height wadhavli */
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.3); /* Dark bg for contrast */
+            border-radius: 15px; padding: 10px;
+            overflow: hidden;
+        }
+        
+        .card-img-wrapper img {
+            width: 100%; height: 100%; 
+            object-fit: contain; /* Ensures FULL image is seen without cropping */
+            border-radius: 5px;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+            transition: 0.4s;
+        }
+        .account-card:hover .card-img-wrapper img { transform: scale(1.05); }
+
+        .account-card h3 {
+            font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; color: #fff; margin-bottom: 5px;
+        }
+        
+        .account-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+
+        .download-btn {
+            margin-top: auto; width: 100%;
+            background: transparent; color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px; border-radius: 50px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none;
+        }
+        .download-btn:hover {
+            background: var(--primary-color); color: #000;
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        /* --- 5. FOOTER --- */
+        footer {
+            border-top: var(--glass-border); padding: 30px; text-align: center;
+            color: #666; font-size: 0.9rem; background: #000;
         }
     </style>
 </head>
@@ -29,102 +198,90 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="index.html" class="back-btn">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-                
-                <a href="index.html" style="text-decoration: none;">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <a href="index.html">
                     <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
                 </a>
             </div>
 
-            <div class="social-nav">
-                <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/nextgen.adi4u?igsh=bGN5N3pkbWdkZjhl&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://t.me/nextgenadi4u" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="https://discord.gg/jG2fpvjwnk" target="_blank"><i class="fab fa-discord"></i></a>
+            <div class="social-nav" style="display: flex; gap: 15px;">
+                 <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank" style="color:#fff"><i class="fab fa-youtube"></i></a>
+                 <a href="https://www.instagram.com/nextgen.adi4u" target="_blank" style="color:#fff"><i class="fab fa-instagram"></i></a>
+                 <a href="https://t.me/nextgenadi4u" target="_blank" style="color:#fff"><i class="fab fa-telegram"></i></a>
+                 <a href="https://discord.gg/jG2fpvjwnk" target="_blank" style="color:#fff"><i class="fab fa-discord"></i></a>
             </div>
 
-            <div class="search-bar">
-                <input type="text" placeholder="Search Accounts...">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search Accounts...">
                 <button><i class="fas fa-search"></i></button>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero page-hero">
-            <h1 class="main-heading">Premium Accounts</h1>
-            <p class="sub-text">Exclusive Access & Lifetime Accounts</p>
+        <section class="hero" data-aos="fade-down">
+            <h1>Premium Accounts</h1>
+            <p>Exclusive Access & Lifetime Accounts</p>
         </section>
 
-        <section class="grid-container">
-            <div class="item-card">
-                <div class="card-img">
-                    <img src="STEAM1.jpg" alt="Steam Accounts">
-                </div>
+        <section class="grid-container" id="accountGrid">
+            
+            <div class="account-card">
+                <div class="card-img-wrapper"><img src="STEAM1.jpg" alt="Steam Accounts"></div>
                 <h3>Steam Accounts (Premium)</h3>
                 <p>Market Price ₹15,000 | Full Access 500+ Accounts</p>
                 <a href="https://drive.google.com/file/d/1rKYt2KJWkaQsAEhCPKJ47WxMMgbVonUB/view" target="_blank" class="download-btn">
                     Download <i class="fas fa-download"></i>
                 </a>
             </div>
+
         </section>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-bottom">
-                <p>&copy; 2026 NextGenAdi4U. All rights reserved.</p>
-            </div>
-        </div>
+        <p>&copy; 2026 NextGenAdi4U. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // --- SEARCH LOGIC ---
-        document.addEventListener("DOMContentLoaded", function() {
-            const searchInput = document.querySelector('.search-bar input');
-            const cards = document.querySelectorAll('.item-card');
+        // Init Animation
+        AOS.init({ duration: 800, once: true, offset: 50 });
 
-            if (searchInput) {
-                searchInput.addEventListener('keyup', function(event) {
-                    const query = event.target.value.toLowerCase();
-                    cards.forEach(card => {
-                        const title = card.querySelector('h3').textContent.toLowerCase();
-                        const desc = card.querySelector('p').textContent.toLowerCase();
-                        if (title.includes(query) || desc.includes(query)) {
-                            card.style.display = "flex";
-                        } else {
-                            card.style.display = "none";
-                        }
-                    });
-                });
-            }
+        // Search Logic
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.account-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+                if (title.includes(term) || desc.includes(term)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
         });
 
-        // --- FLOATING NEON DUST ANIMATION ---
+        // Particle Background Logic
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
-        
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        let particlesArray;
+        let particles = [];
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1; // कणांचा आकार
-                this.speedX = Math.random() * 1 - 0.5; // आडवा वेग
-                this.speedY = Math.random() * 1 - 0.5; // उभा वेग
-                this.color = 'rgba(0, 210, 255, ' + (Math.random() * 0.5 + 0.1) + ')'; // निळा रंग (पारदर्शक)
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = 'rgba(0, 210, 255, 0.4)';
             }
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-
-                // स्क्रीनच्या बाहेर गेले की परत आत आणणे
                 if (this.x > canvas.width) this.x = 0;
                 if (this.x < 0) this.x = canvas.width;
                 if (this.y > canvas.height) this.y = 0;
@@ -138,32 +295,40 @@
             }
         }
 
-        function initParticles() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 15000; // स्क्रीन साईज प्रमाणे कण
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
+        function init() {
+            particles = [];
+            for (let i = 0; i < 80; i++) particles.push(new Particle());
         }
-
-        function animateParticles() {
+        function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
         }
-
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            initParticles();
+            init();
         });
+        init(); animate();
 
-        initParticles();
-        animateParticles();
+        // --- SECURITY SCRIPT (Anti-Theft) ---
+        // 1. Disable Right Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Disable Keyboard Shortcuts (F12, Ctrl+U, etc.)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S
+        }
+
+        // 3. Disable Image Dragging
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('draggable', false);
+        });
     </script>
-
 </body>
 </html>
