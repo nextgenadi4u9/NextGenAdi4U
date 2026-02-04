@@ -4,49 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Next Gen AI Gen5.2 - Chat</title>
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <header>
         <div class="header-container">
-            <div class="logo">
-                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-                <a href="index.html" style="text-decoration: none; color: white;">NextGen<span>Adi4U</span></a>
+            <a href="index.html" class="logo">NextGen<span>Adi4U</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
             </div>
         </div>
     </header>
 
     <div class="chat-layout">
-        <div style="text-align:center; margin-bottom:10px;">
-            <h2 style="color:#fff; font-family:'Rajdhani';">AI Model <span style="color:#00d2ff;">Gen5.2</span></h2>
-            <p style="color:#666; font-size:0.9rem;">Advanced AI developed by Aditya Shete</p>
+        <div style="text-align:center; margin-bottom:20px;">
+            <h2 style="color:white; font-family:'Rajdhani'; font-size: 2rem;">AI Model <span style="color:#00d2ff;">Gen5.2</span></h2>
+            <p style="color:#888;">Advanced AI developed by Aditya Shete</p>
         </div>
 
         <div class="chat-window" id="chatWindow">
             <div class="message ai-message">
-                <span class="ai-name">Gen5.2</span>
-                Hello! I am Gen5.2, created by Aditya. Ask me anything! 🤖
+                <strong>Gen5.2:</strong> Hello! I am Gen5.2, created by Aditya. How can I help you? 🤖
             </div>
         </div>
 
-        <div class="typing" id="typingIndicator">Gen5.2 is thinking...</div>
-
         <div class="input-area">
-            <input type="text" id="userInput" placeholder="Ask Aditya's AI..." onkeypress="handleEnter(event)">
+            <input type="text" id="userInput" placeholder="Type a message..." onkeypress="handleEnter(event)">
             <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
+        <p id="loading" style="display:none; color:#00d2ff; text-align:center; margin-top:10px;">Thinking...</p>
     </div>
 
     <script>
-        /* 🔥 IMPORTANT: PUT YOUR NEW API KEY HERE 🔥 */
+        /* 🔥 IMPORTANT: ITHE TUZHI NAVIN API KEY TAK 🔥 */
         const API_KEY = "AIzaSyAJNrHENRgtl3rhyqkdQ27xH_iOsC8JwpQ"; 
-        
+
         const chatWindow = document.getElementById('chatWindow');
         const userInput = document.getElementById('userInput');
-        const typingIndicator = document.getElementById('typingIndicator');
+        const loading = document.getElementById('loading');
 
-        const systemInstruction = "You are 'Next Gen AI Model Gen5.2', created by Aditya Shete. You are helpful and smart.";
+        const systemInstruction = "You are 'Next Gen AI Model Gen5.2', a helpful AI assistant created by Aditya Shete. Always answer nicely.";
 
         function handleEnter(e) { if (e.key === 'Enter') sendMessage(); }
 
@@ -54,40 +53,57 @@
             const text = userInput.value.trim();
             if (!text) return;
 
+            // User msg display
             addMessage(text, 'user');
             userInput.value = '';
-            typingIndicator.style.display = 'block';
+            loading.style.display = 'block';
             chatWindow.scrollTop = chatWindow.scrollHeight;
 
             try {
-                // Using gemini-1.5-flash (Free & Fast)
+                // ✅ FIXED API URL: gemini-1.5-flash
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: systemInstruction + "\n\nUser: " + text }] }] })
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: systemInstruction + "\nUser: " + text }]
+                        }]
+                    })
                 });
 
                 const data = await response.json();
-                typingIndicator.style.display = 'none';
+                loading.style.display = 'none';
 
-                if (data.candidates && data.candidates[0].content) {
-                    addMessage(data.candidates[0].content.parts[0].text, 'ai');
+                if (data.error) {
+                    console.error("API Error:", data.error);
+                    addMessage(`Error: ${data.error.message}`, 'ai');
+                } else if (data.candidates && data.candidates[0].content) {
+                    const aiText = data.candidates[0].content.parts[0].text;
+                    addMessage(aiText, 'ai');
                 } else {
-                    addMessage("Error: AI Brain overloaded. Try again.", 'ai');
+                    addMessage("No response from AI.", 'ai');
                 }
+
             } catch (error) {
-                typingIndicator.style.display = 'none';
-                addMessage("Connection Error.", 'ai');
+                loading.style.display = 'none';
+                addMessage("Network Connection Error.", 'ai');
+                console.error(error);
             }
         }
 
         function addMessage(text, sender) {
             const div = document.createElement('div');
             div.classList.add('message', sender === 'user' ? 'user-message' : 'ai-message');
-            div.innerHTML = sender === 'ai' ? `<span class="ai-name">Gen5.2</span>${text.replace(/\n/g, '<br>')}` : text;
+            // Format Bold Text
+            let formatted = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+            
+            if(sender === 'ai') div.innerHTML = `<strong>Gen5.2:</strong> ${formatted}`;
+            else div.innerHTML = formatted;
+
             chatWindow.appendChild(div);
             chatWindow.scrollTop = chatWindow.scrollHeight;
         }
     </script>
+
 </body>
 </html>
