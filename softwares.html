@@ -13,6 +13,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <link rel="stylesheet" href="style.css">
+
     <style>
         /* --- 1. GLOBAL VARIABLES & RESET --- */
         :root {
@@ -32,6 +34,12 @@
             color: var(--text-main);
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
+            
+            /* Anti-Theft: Prevent Text Selection */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         /* Particle Background */
@@ -95,7 +103,7 @@
         @media (max-width: 768px) {
             .header-container { flex-direction: column; gap: 15px; }
             .search-box { width: 100%; }
-            .social-nav { display: none; } /* Hide social icons on mobile header to save space */
+            .social-nav { display: none; } 
         }
 
         /* --- 3. HERO SECTION --- */
@@ -112,7 +120,7 @@
         /* --- 4. GRID LAYOUT & CARDS --- */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Smart Responsive Columns */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
             padding: 20px 5% 80px;
             max-width: 1400px; margin: 0 auto;
@@ -131,7 +139,6 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Hover Effect */
         .software-card:hover {
             transform: translateY(-10px);
             background: rgba(30, 30, 30, 0.85);
@@ -145,10 +152,11 @@
             margin-bottom: 20px;
             background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
             border-radius: 15px; padding: 10px;
+            overflow: hidden;
         }
         
         .card-img-wrapper img {
-            max-width: 100%; max-height: 100%;
+            max-height: 100%; max-width: 100%; object-fit: contain;
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
             transition: 0.4s;
         }
@@ -160,7 +168,6 @@
         
         .software-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
 
-        /* Info & Buttons */
         .toggle-info-btn {
             background: transparent; border: 1px solid #444; color: #ccc;
             padding: 6px 15px; font-size: 0.8rem; border-radius: 20px; cursor: pointer;
@@ -175,13 +182,13 @@
             padding: 12px; border-radius: 50px;
             font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
             display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none;
         }
         .download-btn:hover {
             background: var(--primary-color); color: #000;
             box-shadow: 0 0 20px var(--primary-color);
         }
 
-        /* SEO Content Box */
         .seo-box {
             display: none; width: 100%;
             background: rgba(0,0,0,0.4); border: 1px solid #333;
@@ -196,7 +203,6 @@
             border-top: var(--glass-border); padding: 30px; text-align: center;
             color: #666; font-size: 0.9rem; background: #000;
         }
-        
     </style>
 </head>
 <body>
@@ -216,6 +222,7 @@
                  <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank" style="color:#fff"><i class="fab fa-youtube"></i></a>
                  <a href="https://www.instagram.com/nextgen.adi4u" target="_blank" style="color:#fff"><i class="fab fa-instagram"></i></a>
                  <a href="https://t.me/nextgenadi4u" target="_blank" style="color:#fff"><i class="fab fa-telegram"></i></a>
+                 <a href="https://discord.gg/jG2fpvjwnk" target="_blank" style="color:#fff"><i class="fab fa-discord"></i></a>
             </div>
 
             <div class="search-box">
@@ -859,6 +866,25 @@
             init();
         });
         init(); animate();
+
+        // --- SECURITY SCRIPT (Anti-Theft) ---
+        // 1. Disable Right Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Disable Keyboard Shortcuts (F12, Ctrl+U, etc.)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S
+        }
+
+        // 3. Disable Image Dragging
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('draggable', false);
+        });
     </script>
 </body>
 </html>
