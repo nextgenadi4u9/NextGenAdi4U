@@ -9,6 +9,35 @@
     <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- Advanced Page Styles --- */
+        .priority-group select {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #444;
+            color: #fff;
+        }
+        
+        /* System Info Box (Terminal Style) */
+        .system-info-box {
+            background: #000;
+            border: 1px solid #333;
+            border-left: 3px solid var(--primary);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            color: #00ff88;
+            opacity: 0.8;
+        }
+        .system-info-box h4 {
+            color: #fff; margin-bottom: 10px; font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
+        }
+        .sys-row { display: flex; justify-content: space-between; margin-bottom: 5px; border-bottom: 1px solid #222; padding-bottom: 2px; }
+        .sys-label { color: #888; }
+        .sys-val { color: #00ff88; }
+    </style>
 </head>
 <body>
 
@@ -24,18 +53,31 @@
 
     <section class="report-container">
         <div class="report-box" data-aos="zoom-in">
-            <h1 class="title"><i class="fas fa-bug"></i> Report Issue</h1>
-            <p class="subtitle">Found a broken link or a bug? Let us know immediately.</p>
+            <h1 class="title"><i class="fas fa-bug"></i> Advanced Report</h1>
+            <p class="subtitle">Found a bug? Our system will auto-detect your device info.</p>
 
             <form id="reportForm">
-                <div class="form-group">
-                    <label class="form-label">Issue Type</label>
-                    <select class="form-control" id="issueType">
-                        <option>Broken Link (Download Failed)</option>
-                        <option>Website Bug / Error</option>
-                        <option>Copyright Issue</option>
-                        <option>Other</option>
-                    </select>
+                
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Issue Type</label>
+                        <select class="form-control" id="issueType">
+                            <option>Broken Link (Download Failed)</option>
+                            <option>Website Bug / Error</option>
+                            <option>Copyright Issue</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group priority-group" style="flex: 1;">
+                        <label class="form-label">Priority Level</label>
+                        <select class="form-control" id="priorityLevel" style="border-color: #ff0055;">
+                            <option value="Low">🟢 Low (Minor)</option>
+                            <option value="Medium">🟡 Medium (Annoying)</option>
+                            <option value="High">🟠 High (Features Broken)</option>
+                            <option value="Critical">🔴 Critical (Site Down)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -45,9 +87,18 @@
 
                 <div class="form-group">
                     <label class="form-label">Describe the Problem</label>
-                    <textarea class="form-control" id="issueMsg" rows="5" placeholder="Please describe what happened..." required></textarea>
+                    <textarea class="form-control" id="issueMsg" rows="4" placeholder="Please describe exactly what happened..." required></textarea>
                 </div>
 
+                <div class="system-info-box">
+                    <h4><i class="fas fa-terminal"></i> Auto-Diagnostics</h4>
+                    <div class="sys-row"><span class="sys-label">Browser:</span> <span class="sys-val" id="sysBrowser">Detecting...</span></div>
+                    <div class="sys-row"><span class="sys-label">Platform:</span> <span class="sys-val" id="sysOS">Detecting...</span></div>
+                    <div class="sys-row"><span class="sys-label">Resolution:</span> <span class="sys-val" id="sysRes">Detecting...</span></div>
+                    <div class="sys-row"><span class="sys-label">Time:</span> <span class="sys-val" id="sysTime">...</span></div>
+                </div>
+
+                <br>
                 <button type="submit" class="submit-btn" onclick="sendToTelegram(event)">Submit Report</button>
             </form>
         </div>
@@ -56,6 +107,39 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+
+        // --- 1. AUTO DIAGNOSTICS LOGIC ---
+        function getSystemInfo() {
+            // Browser & OS
+            const userAgent = navigator.userAgent;
+            let browserName = "Unknown";
+            if(userAgent.includes("Chrome")) browserName = "Chrome";
+            else if(userAgent.includes("Firefox")) browserName = "Firefox";
+            else if(userAgent.includes("Safari")) browserName = "Safari";
+            else if(userAgent.includes("Edg")) browserName = "Edge";
+
+            let osName = "Unknown OS";
+            if (userAgent.indexOf("Win") != -1) osName = "Windows";
+            if (userAgent.indexOf("Mac") != -1) osName = "MacOS";
+            if (userAgent.indexOf("Linux") != -1) osName = "Linux";
+            if (userAgent.indexOf("Android") != -1) osName = "Android";
+            if (userAgent.indexOf("like Mac") != -1) osName = "iOS";
+
+            // Screen Resolution
+            const resolution = window.screen.width + " x " + window.screen.height;
+            const time = new Date().toLocaleString();
+
+            // UI Update
+            document.getElementById("sysBrowser").innerText = browserName;
+            document.getElementById("sysOS").innerText = osName;
+            document.getElementById("sysRes").innerText = resolution;
+            document.getElementById("sysTime").innerText = time;
+
+            return { browserName, osName, resolution, time };
+        }
+
+        // Run on Load
+        const sysInfo = getSystemInfo();
 
         // Particle System
         const canvas = document.getElementById('dustCanvas');
@@ -79,12 +163,13 @@
         function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw()}); requestAnimationFrame(animate); }
         animate();
 
-        // --- TELEGRAM BOT LOGIC (UPDATED WITH YOUR ID) ---
+        // --- TELEGRAM BOT LOGIC ---
         function sendToTelegram(e) {
-            e.preventDefault(); // Page reload thambvato
+            e.preventDefault();
 
             // 1. Data Ghene
             const type = document.getElementById("issueType").value;
+            const priority = document.getElementById("priorityLevel").value;
             const url = document.getElementById("issueUrl").value || "Not Provided";
             const msg = document.getElementById("issueMsg").value;
             const btn = document.querySelector(".submit-btn");
@@ -94,42 +179,48 @@
                 return;
             }
 
-            // Button Loading Effect
             const originalText = btn.innerText;
-            btn.innerText = "Sending...";
+            btn.innerText = "Analying & Sending...";
             btn.style.opacity = "0.7";
 
-            // 2. Settings (Tuzha Original Data Ithe Takla Aahe)
+            // 2. Settings
             const botToken = "8528071613:AAGsfjrIZjWIAycm8jFbFans-Gn_36U-_Go"; 
             const chatId = "8255824096"; 
 
-            // 3. Message Ready Karne
-            const text = `🚨 *New Issue Reported!*%0A%0A📌 *Type:* ${type}%0A🔗 *URL:* ${url}%0A📝 *Message:* ${msg}`;
+            // 3. Advanced Message Format
+            const text = `🚨 *ADVANCED ISSUE REPORT* 🚨%0A%0A📌 *Type:* ${type}%0A🔥 *Priority:* ${priority}%0A🔗 *URL:* ${url}%0A%0A📝 *Description:*%0A${msg}%0A%0A💻 *SYSTEM DIAGNOSTICS:*%0A---------------------%0A🌐 Browser: ${sysInfo.browserName}%0A🖥 OS: ${sysInfo.osName}%0A📏 Screen: ${sysInfo.resolution}%0A⏰ Time: ${sysInfo.time}`;
 
-            // 4. Telegram la Pathvne
+            // 4. Send
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${text}&parse_mode=Markdown`)
             .then(response => {
                 if(response.ok) {
-                    btn.innerText = "Sent Successfully! ✅";
-                    btn.style.background = "#00ff88"; // Green
-                    alert("Report Sent to Admin! We will fix it soon.");
-                    document.getElementById("reportForm").reset(); // Form clear kar
+                    btn.innerText = "Report Submitted! ✅";
+                    btn.style.background = "#00ff88"; 
+                    alert("Report with System Diagnostics sent to Admin!");
+                    document.getElementById("reportForm").reset(); 
                 } else {
-                    alert("Error Sending Report. Check Bot Token.");
+                    alert("Error Sending Report.");
                     btn.innerText = originalText;
                 }
             })
             .catch(error => {
-                alert("Internet Error. Please try again.");
+                alert("Internet Error.");
                 btn.innerText = originalText;
             });
 
-            // 3 second nantar button reset
             setTimeout(() => {
                 btn.innerText = originalText;
-                btn.style.background = "var(--primary)"; // Reset to red (via CSS variable)
+                btn.style.background = "var(--primary)"; 
                 btn.style.opacity = "1";
             }, 3000);
+        }
+
+        // --- SECURITY SCRIPT (Anti-Theft) ---
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; 
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; 
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; 
         }
     </script>
 </body>
