@@ -24,7 +24,7 @@
             --border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg);
@@ -33,6 +33,12 @@
             overflow-x: hidden;
             min-height: 100vh;
             display: flex; flex-direction: column;
+
+            /* Anti-Theft: Prevent Text Selection */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         #dustCanvas {
@@ -181,7 +187,7 @@
 
     <nav class="navbar">
         <div class="logo" onclick="goHome()" style="cursor: pointer;">NextGen<span>Adi4U</span></div>
-        <div class="home-btn" onclick="goHome()"><i class="fas fa-home"></i></div>
+        <a href="index.html" class="home-btn"><i class="fas fa-home"></i></a>
     </nav>
 
     <div class="menu-screen" id="menuScreen">
@@ -260,10 +266,7 @@
     </div>
 
     <script>
-        // --- 1. QUIZ DATABASE (Expanded to 25+ per language) ---
-        // Note: Adding all 1400 questions would make this file too large to load.
-        // You can copy the format { q: "...", o: [...], a: 0 }, and add more.
-        
+        // --- 1. QUIZ DATABASE ---
         const database = {
             html: [
                 { q: "What does HTML stand for?", o: ["Hyper Text Markup Language", "Hyperlink Text Mark Language", "Home Tool Markup Language", "Hyper Tool Multi Language"], a: 0 },
@@ -275,17 +278,7 @@
                 { q: "Which HTML attribute specifies an alternate text for an image?", o: ["alt", "title", "src", "longdesc"], a: 0 },
                 { q: "Which HTML element is defined by the <ul> tag?", o: ["Ordered list", "Unordered list", "Underline list", "Universal list"], a: 1 },
                 { q: "In HTML, which attribute is used to specify that an input field must be filled out?", o: ["validate", "required", "placeholder", "formvalidate"], a: 1 },
-                { q: "Which doctype is correct for HTML5?", o: ["<!DOCTYPE html>", "<!DOCTYPE HTML5>", "<!DOCTYPE html public>", "<html5>"], a: 0 },
-                { q: "Which HTML element defines the title of a document?", o: ["<meta>", "<title>", "<head>", "<header>"], a: 1 },
-                { q: "How can you open a link in a new tab/browser window?", o: ["<a href='url' target='new'>", "<a href='url' target='_blank'>", "<a href='url' new>", "<a href='url' target='window'>"], a: 1 },
-                { q: "Which tag is used to define a table row?", o: ["<td>", "<th>", "<tr>", "<table>"], a: 2 },
-                { q: "What is the correct HTML element for playing video files?", o: ["<media>", "<video>", "<movie>", "<play>"], a: 1 },
-                { q: "Which element is used to specify a header for a document or section?", o: ["<top>", "<head>", "<header>", "<section>"], a: 2 },
-                { q: "Which HTML tag is used to define an internal style sheet?", o: ["<css>", "<script>", "<style>", "<link>"], a: 2 },
-                { q: "Which HTML element defines navigation links?", o: ["<nav>", "<navigation>", "<navigate>", "<links>"], a: 0 },
-                { q: "Which input type defines a slider control?", o: ["slider", "range", "controls", "search"], a: 1 },
-                { q: "What is the correct HTML for adding a background color?", o: ["<body bg='yellow'>", "<body style='background-color:yellow;'>", "<background>yellow</background>", "<body color='yellow'>"], a: 1 },
-                { q: "Which tag is used to define a description list?", o: ["<dl>", "<dd>", "<dt>", "<list>"], a: 0 }
+                { q: "Which doctype is correct for HTML5?", o: ["<!DOCTYPE html>", "<!DOCTYPE HTML5>", "<!DOCTYPE html public>", "<html5>"], a: 0 }
             ],
             css: [
                 { q: "What does CSS stand for?", o: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"], a: 1 },
@@ -297,17 +290,7 @@
                 { q: "How do you select elements with class name 'test'?", o: ["#test", ".test", "test", "*test"], a: 1 },
                 { q: "Which property generates space around the content, inside the border?", o: ["margin", "spacing", "padding", "border-spacing"], a: 2 },
                 { q: "How do you display hyperlinks without an underline?", o: ["text-decoration: none", "underline: none", "decoration: no-underline", "text-style: no-underline"], a: 0 },
-                { q: "Which property specifies the stack order of an element?", o: ["z-index", "s-index", "stack-order", "position"], a: 0 },
-                { q: "Which CSS property controls the text color?", o: ["text-color", "font-color", "color", "text-style"], a: 2 },
-                { q: "What is the default value of the position property?", o: ["relative", "fixed", "absolute", "static"], a: 3 },
-                { q: "Which property is used to make a flexible box layout?", o: ["display: flex", "display: box", "display: grid", "float: left"], a: 0 },
-                { q: "How do you add a comment in a CSS file?", o: ["// this is a comment", "/* this is a comment */", "' this is a comment", ""], a: 1 },
-                { q: "Which property is used to change the left margin of an element?", o: ["padding-left", "margin-left", "indent", "text-indent"], a: 1 },
-                { q: "Which CSS unit is relative to the font-size of the root element?", o: ["em", "rem", "px", "%"], a: 1 },
-                { q: "How do you make a list that lists its items with squares?", o: ["list-style-type: square", "list-type: square", "list: square", "list-style: square"], a: 0 },
-                { q: "Which property allows you to set the opacity of an element?", o: ["transparent", "opacity", "filter", "visibility"], a: 1 },
-                { q: "Which property is used to create a small-caps effect?", o: ["font-variant", "text-transform", "font-style", "font-weight"], a: 0 },
-                { q: "Which property creates space between the element's border and adjacent elements?", o: ["padding", "margin", "border-spacing", "space"], a: 1 }
+                { q: "Which property specifies the stack order of an element?", o: ["z-index", "s-index", "stack-order", "position"], a: 0 }
             ],
             js: [
                 { q: "Inside which HTML element do we put the JavaScript?", o: ["<script>", "<js>", "<javascript>", "<scripting>"], a: 0 },
@@ -319,17 +302,7 @@
                 { q: "How to write an IF statement in JavaScript?", o: ["if i = 5 then", "if i == 5 then", "if (i == 5)", "if i = 5"], a: 2 },
                 { q: "How does a WHILE loop start?", o: ["while (i <= 10)", "while i = 1 to 10", "while (i <= 10; i++)", "while i <= 10"], a: 0 },
                 { q: "How can you add a comment in JavaScript?", o: ["'This is a comment", "", "//This is a comment", "*This is a comment"], a: 2 },
-                { q: "Which event occurs when the user clicks on an HTML element?", o: ["onmouseclick", "onchange", "onclick", "onmouseover"], a: 2 },
-                { q: "What is the correct way to write a JavaScript array?", o: ["var colors = (1:'red', 2:'green')", "var colors = ['red', 'green']", "var colors = 'red', 'green'", "var colors = 1 = ('red'), 2 = ('green')"], a: 1 },
-                { q: "How do you round the number 7.25, to the nearest integer?", o: ["Math.rnd(7.25)", "Math.round(7.25)", "round(7.25)", "Math.floor(7.25)"], a: 1 },
-                { q: "Which method converts a JSON string into a JavaScript object?", o: ["JSON.parse()", "JSON.stringify()", "JSON.object()", "JSON.toObj()"], a: 0 },
-                { q: "What will the following code return: Boolean(10 > 9)?", o: ["NaN", "false", "true", "undefined"], a: 2 },
-                { q: "Which operator is used to assign a value to a variable?", o: ["*", "-", "=", "x"], a: 2 },
-                { q: "What is the correct syntax for referring to an external script called 'xxx.js'?", o: ["<script href='xxx.js'>", "<script name='xxx.js'>", "<script src='xxx.js'>", "<script file='xxx.js'>"], a: 2 },
-                { q: "Which method adds a new element to the end of an array?", o: ["push()", "pop()", "shift()", "join()"], a: 0 },
-                { q: "Which keyword is used to define a constant variable?", o: ["var", "let", "const", "fixed"], a: 2 },
-                { q: "What is the output of '2' + 2 in JavaScript?", o: ["4", "22", "NaN", "Error"], a: 1 },
-                { q: "Which logical operator represents OR?", o: ["&&", "||", "!", "|"], a: 1 }
+                { q: "Which event occurs when the user clicks on an HTML element?", o: ["onmouseclick", "onchange", "onclick", "onmouseover"], a: 2 }
             ],
             java: [
                 { q: "Which data type is used to create a variable that should store text?", o: ["String", "txt", "string", "Text"], a: 0 },
@@ -341,17 +314,7 @@
                 { q: "Which operator is used to compare two values?", o: ["=", "<>", "==", "><"], a: 2 },
                 { q: "To declare an array in Java, define the variable type with:", o: ["()", "{}", "[]", "<>"], a: 2 },
                 { q: "Which keyword is used to import a package from the Java API library?", o: ["package", "getlib", "import", "lib"], a: 2 },
-                { q: "Which statement is used to stop a loop?", o: ["stop", "break", "return", "exit"], a: 1 },
-                { q: "Which keyword is used to access methods of a class?", o: [".", "->", "#", ":"], a: 0 },
-                { q: "What is the size of int variable?", o: ["8 bit", "16 bit", "32 bit", "64 bit"], a: 2 },
-                { q: "What is the default value of a boolean variable?", o: ["true", "false", "null", "0"], a: 1 },
-                { q: "Which of these is NOT a primitive data type?", o: ["int", "float", "boolean", "String"], a: 3 },
-                { q: "Which keyword is used to inherit a class?", o: ["implements", "extends", "inherits", "using"], a: 1 },
-                { q: "Method overloading involves two methods having the same name but different...", o: ["return types", "parameters", "access modifiers", "names"], a: 1 },
-                { q: "Which keyword is used to define an interface?", o: ["interface", "Intf", "inter", "class"], a: 0 },
-                { q: "Which exception is thrown when dividing by zero?", o: ["NullPointerException", "ArithmeticException", "NumberFormatException", "ArrayIndexOutOfBoundsException"], a: 1 },
-                { q: "What is the entry point of a Java program?", o: ["start()", "main()", "init()", "run()"], a: 1 },
-                { q: "Which keyword is used to refer to the current object?", o: ["this", "that", "self", "me"], a: 0 }
+                { q: "Which statement is used to stop a loop?", o: ["stop", "break", "return", "exit"], a: 1 }
             ],
             c: [
                 { q: "How do you insert COMMENTS in C code?", o: ["// Comment", "/* Comment */", "# Comment", "-- Comment"], a: 0 },
@@ -363,17 +326,7 @@
                 { q: "What is the correct syntax to include a header file?", o: ["#include <stdio.h>", "include <stdio.h>", "#import <stdio.h>", "import stdio.h"], a: 0 },
                 { q: "Which keyword is used to exit from a function?", o: ["break", "exit", "return", "stop"], a: 2 },
                 { q: "Array index starts from?", o: ["1", "0", "-1", "Depends on OS"], a: 1 },
-                { q: "What does 'void' return type mean?", o: ["Returns 0", "Returns null", "Returns nothing", "Returns 1"], a: 2 },
-                { q: "Which loop is guaranteed to execute at least once?", o: ["for", "while", "do-while", "foreach"], a: 2 },
-                { q: "What is the size of a char in C?", o: ["1 byte", "2 bytes", "4 bytes", "8 bytes"], a: 0 },
-                { q: "Which symbol terminates a C statement?", o: [".", ":", ";", ","], a: 2 },
-                { q: "How do you create a pointer to an integer?", o: ["int *ptr;", "int &ptr;", "int ptr;", "pointer int;"], a: 0 },
-                { q: "What is the outcome of 5 % 2?", o: ["2.5", "2", "1", "0"], a: 2 },
-                { q: "Which keyword is used to define a structure?", o: ["struct", "class", "structure", "object"], a: 0 },
-                { q: "Which library function is used to find string length?", o: ["length()", "strlen()", "strlength()", "len()"], a: 1 },
-                { q: "What is the escape sequence for a new line?", o: ["/n", "\\n", "\\l", "/l"], a: 1 },
-                { q: "Which conditional statement is used to test multiple conditions?", o: ["if-else", "switch", "for", "select"], a: 1 },
-                { q: "C language was developed by?", o: ["Dennis Ritchie", "Bjarne Stroustrup", "James Gosling", "Guido van Rossum"], a: 0 }
+                { q: "What does 'void' return type mean?", o: ["Returns 0", "Returns null", "Returns nothing", "Returns 1"], a: 2 }
             ],
             cpp: [
                 { q: "Which operator is used to output data in C++?", o: [">>", "<<", "print", "cout"], a: 1 },
@@ -385,17 +338,7 @@
                 { q: "Which access specifier makes members accessible only within the class?", o: ["public", "protected", "private", "hidden"], a: 2 },
                 { q: "How do you inherit a class in C++?", o: ["class B : public A", "class B extends A", "class B inherits A", "class B implements A"], a: 0 },
                 { q: "Which keyword is used for dynamic memory allocation?", o: ["malloc", "alloc", "new", "create"], a: 2 },
-                { q: "Which keyword is used to delete dynamically allocated memory?", o: ["remove", "free", "delete", "clear"], a: 2 },
-                { q: "What is the correct syntax for a single line comment?", o: ["/* comment */", "// comment", "# comment", "-- comment"], a: 1 },
-                { q: "Which operator is used to resolve the scope of a global variable?", o: ["::", ":", ".", "->"], a: 0 },
-                { q: "Which feature allows a function to behave differently based on inputs?", o: ["Polymorphism", "Encapsulation", "Inheritance", "Abstraction"], a: 0 },
-                { q: "Which data type is used to store true or false?", o: ["int", "bool", "boolean", "logic"], a: 1 },
-                { q: "What is a pure virtual function?", o: ["virtual void fun() = 0;", "virtual void fun() {}", "void fun() = 0;", "virtual fun();"], a: 0 },
-                { q: "Which keyword is used to handle exceptions?", o: ["try/catch", "do/catch", "try/except", "check/error"], a: 0 },
-                { q: "Which header is used for string manipulation?", o: ["<string>", "<text>", "<str>", "<cstring>"], a: 0 },
-                { q: "What is 'std' in 'std::cout'?", o: ["Class", "Object", "Namespace", "Function"], a: 2 },
-                { q: "Which loop checks condition at the end?", o: ["for", "while", "do-while", "foreach"], a: 2 },
-                { q: "Which operator cannot be overloaded?", o: ["+", "-", "::", "=="], a: 2 }
+                { q: "Which keyword is used to delete dynamically allocated memory?", o: ["remove", "free", "delete", "clear"], a: 2 }
             ],
             csharp: [
                 { q: "Which method is the entry point of a C# application?", o: ["Main", "Start", "Init", "Run"], a: 0 },
@@ -407,17 +350,7 @@
                 { q: "Which keyword is used to define a class?", o: ["class", "struct", "object", "type"], a: 0 },
                 { q: "In C#, string text must be enclosed in?", o: ["Single quotes", "Double quotes", "Brackets", "Parentheses"], a: 1 },
                 { q: "Which property is used to find the length of a string?", o: ["Length", "len", "getLength()", "size"], a: 0 },
-                { q: "Which keyword is used to inherit a class?", o: [":", "extends", "inherits", "implements"], a: 0 },
-                { q: "Which namespace is used for input and output?", o: ["System", "System.IO", "System.Text", "Console"], a: 0 },
-                { q: "How do you declare a constant variable?", o: ["const", "final", "static", "readonly"], a: 0 },
-                { q: "Which loop is best for iterating over arrays?", o: ["while", "for", "foreach", "do-while"], a: 2 },
-                { q: "What is the default value of an int?", o: ["null", "0", "1", "-1"], a: 1 },
-                { q: "Which keyword is used to return a value from a method?", o: ["return", "break", "continue", "yield"], a: 0 },
-                { q: "Array indexes start with:", o: ["1", "0", "-1", "A"], a: 1 },
-                { q: "Which type is a value type?", o: ["Class", "String", "Struct", "Interface"], a: 2 },
-                { q: "Which keyword is used for exception handling?", o: ["try", "check", "error", "test"], a: 0 },
-                { q: "What represents a nullable type?", o: ["int?", "int*", "int&", "null int"], a: 0 },
-                { q: "Which symbol allows string interpolation?", o: ["$", "@", "#", "%"], a: 0 }
+                { q: "Which keyword is used to inherit a class?", o: [":", "extends", "inherits", "implements"], a: 0 }
             ]
         };
 
@@ -428,7 +361,7 @@
         let score = 0;
         let timerInterval;
         let timeLeft = 15;
-        const totalQuestionsPerGame = 10; // Randomly selects 10 from the pool
+        const totalQuestionsPerGame = 10; 
 
         // --- 3. DOM ELEMENTS ---
         const menuScreen = document.getElementById('menuScreen');
@@ -454,19 +387,16 @@
         function startGame(lang) {
             currentLang = lang;
             
-            // Get random questions if database has enough
             let allQ = database[lang] || [];
             
             if(allQ.length === 0) { alert("Questions coming soon for this language!"); return; }
 
-            // Clone and Shuffle array
             let shuffled = [...allQ];
             for (let i = shuffled.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
             }
             
-            // Slice to get random set
             currentQuestions = shuffled.slice(0, Math.min(totalQuestionsPerGame, shuffled.length));
             
             currentQIndex = 0;
@@ -572,7 +502,6 @@
             const msg = document.getElementById('resultMsg');
             const circle = document.getElementById('finalCircle');
             
-            // rough max score calc (approx 17-18 pts max per question)
             const maxPossible = currentQuestions.length * 17; 
             const percentage = (score / maxPossible) * 100;
             
@@ -624,6 +553,13 @@
         });
         initParticles(); animateParticles();
 
+        // --- 6. SECURITY SCRIPT (Anti-Theft) ---
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; 
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; 
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; 
+        }
     </script>
 </body>
 </html>
