@@ -32,6 +32,12 @@
             color: var(--text-main);
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
+            
+            /* Anti-Theft: Prevent Text Selection */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         /* Particle Background */
@@ -172,6 +178,7 @@
             padding: 12px; border-radius: 50px;
             font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
             display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none;
         }
         .download-btn:hover {
             background: var(--primary-color); color: #000;
@@ -610,7 +617,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Init Animations
+        // Init Animation
         AOS.init({ duration: 800, once: true, offset: 50 });
 
         // Info Toggle (SEO Box)
@@ -686,7 +693,25 @@
             init();
         });
         init(); animate();
-    </script>
 
+        // --- SECURITY SCRIPT (Anti-Theft) ---
+        // 1. Disable Right Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Disable Keyboard Shortcuts (F12, Ctrl+U, etc.)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S
+        }
+
+        // 3. Disable Image Dragging
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('draggable', false);
+        });
+    </script>
 </body>
 </html>
