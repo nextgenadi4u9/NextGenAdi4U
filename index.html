@@ -3,399 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NextGenAdi4U - Premium Gaming Resources, Softwares, and Developer Tools.">
     <meta name="theme-color" content="#00d2ff">
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685" crossorigin="anonymous"></script>
 
-    <title>NextGenAdi4U | Premium Resources</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685" crossorigin="anonymous"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>NextGenAdi4U - Ultimate Hub</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <link rel="stylesheet" href="style.css">
+
     <style>
-        /* --- 1. CORE VARIABLES & RESET --- */
-        :root {
-            --bg-dark: #050505;
-            --glass-bg: rgba(20, 20, 20, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --primary-neon: #00f2ff;
-            --secondary-neon: #bd00ff;
-            --gold: #FFD700;
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --font-main: 'Poppins', sans-serif;
-            --font-tech: 'Rajdhani', sans-serif;
+        /* --- 1. EXISTING GLOBAL STYLES (From style.css) --- */
+        /* (The linked style.css handles most things, putting overrides here) */
+
+        /* --- 2. NEW AI SECTION STYLES (Unique Design) --- */
+        .ai-showcase-section {
+            margin: 80px auto;
+            max-width: 1300px;
+            padding: 0 5%;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: var(--font-main);
-            overflow-x: hidden;
-            position: relative;
-            
-            /* Anti-Theft: Prevent Text Selection */
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        /* Particle Canvas */
-        #dustCanvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at center, #0a1020 0%, #000000 100%);
-        }
-
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-
-        /* --- 2. HEADER (GLASSMORPHISM) --- */
-        header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 15px 5%;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
+        .ai-banner {
+            /* Unique Gradient Background for AI Section */
+            background: linear-gradient(135deg, #020024 0%, #090979 35%, #00d4ff 100%);
+            border: 2px solid rgba(0, 212, 255, 0.5);
+            border-radius: 30px;
+            padding: 60px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-        }
-
-        .logo a {
-            display: flex; align-items: center; gap: 12px;
-        }
-        
-        .brand-icon {
-            font-size: 1.8rem;
-            color: var(--primary-neon);
-            text-shadow: 0 0 15px var(--primary-neon);
-        }
-
-        .brand-text {
-            font-family: var(--font-tech);
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .brand-highlight {
-            color: transparent;
-            background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
-            -webkit-background-clip: text;
-        }
-
-        /* Social Icons Header */
-        .social-nav { display: flex; gap: 20px; }
-        .social-nav a {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-        }
-        .social-nav a:hover { color: var(--primary-neon); transform: translateY(-3px); text-shadow: 0 0 10px var(--primary-neon); }
-
-        /* Search Bar (Hidden on small mobile) */
-        .search-bar {
-            display: flex;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            padding: 5px 15px;
-            width: 250px;
-        }
-        .search-bar input {
-            background: transparent; border: none; outline: none; color: white; width: 100%; font-family: var(--font-main);
-        }
-        .search-bar button {
-            background: transparent; border: none; color: var(--primary-neon); cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .search-bar { display: none; }
-            .brand-text { font-size: 1.4rem; }
-            header { padding: 15px 20px; }
-        }
-
-        /* --- 3. HERO SECTION --- */
-        .hero {
-            text-align: center;
-            padding: 140px 20px 60px;
-            position: relative;
-        }
-
-        .main-heading {
-            font-family: var(--font-tech);
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            background: linear-gradient(to bottom, #fff, #aaa);
-            -webkit-background-clip: text;
-            color: transparent;
-            text-transform: uppercase;
-        }
-
-        .sub-text {
-            font-size: 1.2rem;
-            color: var(--primary-neon);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 768px) {
-            .main-heading { font-size: 2.5rem; }
-        }
-
-        /* --- 4. GRID LAYOUT & CARDS --- */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 100px;
-        }
-
-        .categories-container {
-            display: grid;
-            gap: 20px;
-        }
-
-        /* --- PREMIUM CARD (GOLD) --- */
-        .premium-container { margin-bottom: 30px; }
-        .premium-card {
-            background: linear-gradient(135deg, rgba(20,20,20,0.95), rgba(40,30,0,0.4));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            display: flex;
             justify-content: space-between;
-            align-items: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
-            transition: 0.4s;
-        }
-        
-        .premium-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255,215,0,0.1), transparent);
-            transform: translateX(-100%); transition: 0.6s;
-        }
-        .premium-card:hover::before { transform: translateX(100%); }
-        .premium-card:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(255, 215, 0, 0.15); border-color: var(--gold); }
-
-        .prem-content { display: flex; align-items: center; gap: 25px; z-index: 2; }
-        .prem-icon {
-            font-size: 3rem; color: var(--gold);
-            filter: drop-shadow(0 0 15px rgba(255,215,0,0.6));
-        }
-        .prem-text h3 { font-family: var(--font-tech); font-size: 2rem; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; }
-        .pro-badge {
-            position: absolute; top: 0; right: 0; background: var(--gold); color: #000; 
-            padding: 5px 20px; font-weight: bold; font-size: 0.8rem; border-bottom-left-radius: 15px;
-        }
-        
-        /* --- SPECIAL GAME CARD (NEON) --- */
-        .special-card {
-            background: linear-gradient(90deg, rgba(0,0,0,0.9), rgba(0,30,40,0.6));
-            border: 1px solid var(--primary-neon);
-            border-radius: 20px;
-            padding: 30px;
-            display: flex; justify-content: space-between; align-items: center;
-            position: relative; overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
-            margin-bottom: 40px;
-        }
-        .special-card:hover { box-shadow: 0 0 40px rgba(0, 242, 255, 0.3); transform: scale(1.01); }
-        .special-content { display: flex; align-items: center; gap: 20px; }
-        .special-icon { font-size: 2.5rem; color: var(--primary-neon); }
-        .special-text h3 { font-family: var(--font-tech); font-size: 1.8rem; text-transform: uppercase; color: #fff; }
-        .play-btn {
-            background: var(--primary-neon); color: #000; padding: 10px 30px; border-radius: 30px;
-            font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 10px;
-            transition: 0.3s;
-        }
-        .play-btn:hover { background: #fff; box-shadow: 0 0 20px var(--primary-neon); }
-
-        /* --- STANDARD CATEGORY CARDS --- */
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
+            box-shadow: 0 0 50px rgba(0, 80, 255, 0.3);
         }
 
-        .category-card {
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 25px;
-            display: flex; align-items: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-card:hover {
-            background: rgba(30, 30, 30, 0.8);
-            border-color: rgba(255,255,255,0.2);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        /* Hover Gradient Border Effect */
-        .category-card::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 3px;
-            background: var(--primary-neon); transition: 0.4s;
-        }
-        .category-card:hover::after { width: 100%; }
-
-        .cat-icon {
-            width: 60px; height: 60px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.8rem; color: var(--primary-neon);
-            margin-right: 20px;
-            transition: 0.4s;
-        }
-        .category-card:hover .cat-icon { background: var(--primary-neon); color: #000; transform: rotate(10deg); }
-
-        .cat-info h3 { font-family: var(--font-tech); font-size: 1.5rem; color: #fff; margin-bottom: 5px; }
-        .cat-info p { font-size: 0.9rem; color: var(--text-muted); }
-
-        .arrow {
-            margin-left: auto; width: 35px; height: 35px;
-            border: 1px solid var(--glass-border); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: #555; transition: 0.3s;
-        }
-        .category-card:hover .arrow { border-color: var(--primary-neon); color: var(--primary-neon); transform: rotate(-45deg); }
-
-        @media (max-width: 768px) {
-            .premium-card, .special-card { flex-direction: column; text-align: center; gap: 20px; padding: 30px 20px; }
-            .prem-content, .special-content { flex-direction: column; }
-            .play-btn { width: 100%; justify-content: center; }
-            .category-grid { grid-template-columns: 1fr; }
-        }
-
-        /* --- 5. HIRE ME SECTION --- */
-        .hire-section { margin-top: 80px; }
-        .hire-card {
-            background: linear-gradient(180deg, #0f172a, #000);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 60px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        /* Neon glow behind */
-        .hire-card::before {
+        /* Animated Glow Background */
+        .ai-banner::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(0,242,255,0.1) 0%, transparent 70%);
-            animation: rotateBg 10s linear infinite;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotateGlow 15s linear infinite; pointer-events: none;
         }
-        @keyframes rotateBg { 100% { transform: rotate(360deg); } }
+        @keyframes rotateGlow { 100% { transform: rotate(360deg); } }
 
-        .hire-content { position: relative; z-index: 2; }
-        .hire-title { font-family: var(--font-tech); font-size: 2.5rem; text-transform: uppercase; margin-bottom: 15px; }
-        .hire-desc { max-width: 600px; margin: 0 auto 30px; color: var(--text-muted); font-size: 1.1rem; }
-        
-        .hire-btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 15px 40px; background: transparent;
-            border: 2px solid var(--primary-neon); color: var(--primary-neon);
-            border-radius: 50px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.3s; cursor: pointer;
-        }
-        .hire-btn:hover { background: var(--primary-neon); color: #000; box-shadow: 0 0 30px var(--primary-neon); }
-
-        /* --- 6. FOOTER --- */
-        footer {
-            background: #000;
-            border-top: 1px solid var(--glass-border);
-            padding: 60px 20px 20px;
-            margin-top: 80px;
-            text-align: center;
-        }
-        .footer-content {
-            display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: 0 auto 40px; gap: 40px; text-align: left;
-        }
-        .footer-left h2 { font-family: var(--font-tech); font-size: 2rem; color: #fff; margin-bottom: 15px; }
-        .footer-links ul li { margin-bottom: 10px; }
-        .footer-links a:hover { color: var(--primary-neon); padding-left: 5px; }
-        
-        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
-        .social-icons a {
-            width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; transition: 0.3s;
-        }
-        .social-icons a:hover { background: var(--primary-neon); color: #000; transform: translateY(-3px); }
-
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.9rem; color: #666; }
-
-        @media (max-width: 768px) {
-            .footer-content { flex-direction: column; text-align: center; }
-            .social-icons { justify-content: center; }
+        .ai-text-content {
+            flex: 1;
+            z-index: 2;
+            max-width: 600px;
         }
 
-        /* --- 7. CHATBOT (HUD STYLE) --- */
-        .chat-toggle-btn {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 65px; height: 65px;
-            background: var(--primary-neon);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.8rem; color: #000;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(0,242,255,0.6);
-            z-index: 10000;
-            transition: 0.3s;
-            animation: pulseBot 2s infinite;
-        }
-        .chat-toggle-btn:hover { transform: scale(1.1) rotate(10deg); }
-        @keyframes pulseBot { 0% { box-shadow: 0 0 0 0 rgba(0,242,255,0.7); } 70% { box-shadow: 0 0 0 15px rgba(0,242,255,0); } 100% { box-shadow: 0 0 0 0 rgba(0,242,255,0); } }
-
-        .chat-container {
-            position: fixed; bottom: 110px; right: 30px;
-            width: 360px; max-width: 90vw; height: 500px;
-            background: rgba(5, 10, 20, 0.95);
-            border: 1px solid var(--primary-neon);
+        .ai-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 5px 15px;
             border-radius: 20px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
-            display: flex; flex-direction: column;
-            transform: scale(0); transform-origin: bottom right; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 9999;
-            backdrop-filter: blur(20px);
-            overflow: hidden;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
         }
-        .chat-container.active { transform: scale(1); }
 
-        .chat-header {
-            background: linear-gradient(90deg, #006eb3, #00d2ff);
-            padding: 15px; color: #fff; font-weight: bold; display: flex; justify-content: space-between; align-items: center;
+        .ai-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
         }
-        .chat-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; scrollbar-width: thin; }
-        
-        .message { padding: 10px 15px; border-radius: 12px; font-size: 0.9rem; max-width: 80%; line-height: 1.4; }
-        .bot-msg { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); align-self: flex-start; border-bottom-left-radius: 2px; }
-        .user-msg { background: var(--primary-neon); color: #000; align-self: flex-end; border-bottom-right-radius: 2px; font-weight: 600; }
-        
-        .chat-input-area { padding: 15px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 10px; background: rgba(0,0,0,0.3); }
-        .chat-input-area input { flex: 1; background: transparent; border: 1px solid #333; padding: 10px 15px; border-radius: 20px; color: #fff; outline: none; }
-        .chat-input-area input:focus { border-color: var(--primary-neon); }
-        .chat-input-area button { background: var(--primary-neon); border: none; width: 40px; height: 40px; border-radius: 50%; color: #000; cursor: pointer; }
-        
-        .bot-link { color: var(--primary-neon); text-decoration: underline; font-weight: bold; }
 
+        .ai-desc {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .typing-text {
+            color: #00d2ff;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            border-right: 2px solid #fff;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        .ai-btn-group {
+            display: flex; gap: 20px;
+        }
+
+        .ai-primary-btn {
+            background: #fff; color: #000839;
+            padding: 15px 35px; border-radius: 50px; font-weight: bold;
+            font-size: 1.1rem; text-transform: uppercase; cursor: pointer;
+            transition: 0.3s; display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+        .ai-primary-btn:hover {
+            transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+        }
+
+        /* --- AI Visual (Right Side) --- */
+        .ai-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brain-container {
+            width: 300px; height: 300px;
+            position: relative;
+            animation: floatBrain 4s ease-in-out infinite;
+        }
+        @keyframes floatBrain { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        .brain-circle {
+            position: absolute; border-radius: 50%;
+            border: 2px solid #00d2ff;
+            box-shadow: 0 0 20px #00d2ff;
+        }
+        .c1 { width: 100%; height: 100%; animation: spin 10s linear infinite; border-style: dashed; }
+        .c2 { width: 70%; height: 70%; top: 15%; left: 15%; animation: spinReverse 7s linear infinite; border-color: #bd00ff; box-shadow: 0 0 20px #bd00ff; }
+        .c3 { width: 40%; height: 40%; top: 30%; left: 30%; background: #fff; box-shadow: 0 0 50px #fff; }
+
+        .ai-icon-center {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 4rem; color: #000839; z-index: 5;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes spinReverse { 100% { transform: rotate(-360deg); } }
+
+        /* Responsive AI Section */
+        @media (max-width: 900px) {
+            .ai-banner { flex-direction: column; text-align: center; padding: 40px 20px; }
+            .ai-text-content { margin-bottom: 40px; }
+            .ai-btn-group { justify-content: center; }
+            .brain-container { width: 200px; height: 200px; }
+            .ai-title { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -403,154 +156,133 @@
     <canvas id="dustCanvas"></canvas>
 
     <header>
-        <div class="logo">
-            <a href="index.html">
-                <i class="fas fa-gamepad brand-icon"></i> 
-                <span class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></span>
-            </a>
-        </div>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: white; display: flex; align-items: center; gap: 10px;">
+                    NextGen<span>Adi4U</span>
+                </a>
+            </div>
+            
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact</a>
+                <a href="ai-chat.html" style="color: var(--primary);">Ask AI</a>
+            </div>
 
-        <div class="social-nav">
-            <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/nextgen.adi4u" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://t.me/nextgenadi4u" target="_blank"><i class="fab fa-telegram"></i></a>
-            <a href="https://discord.gg/jG2fpvjwnk" target="_blank"><i class="fab fa-discord"></i></a>
-        </div>
-
-        <div class="search-bar">
-            <input type="text" id="globalSearch" onkeyup="searchContent()" placeholder="Find cheats, tools...">
-            <button><i class="fas fa-search"></i></button>
+            <div class="social-nav">
+                 <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA" target="_blank"><i class="fab fa-youtube"></i></a>
+                 <a href="https://www.instagram.com/nextgen.adi4u" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
         </div>
     </header>
 
     <main>
         <section class="hero" data-aos="fade-down">
-            <h1 class="main-heading">Ultimate Gaming<br><span style="color: var(--primary-neon);">Resources</span></h1>
-            <p class="sub-text">Premium Scripts • Softwares • APKs</p>
+            <h1 class="main-heading">Welcome to NextGen</h1>
+            <p class="sub-text">Premium Resources for Creators & Gamers</p>
         </section>
 
-        <div class="premium-container" data-aos="zoom-in" data-tilt>
-            <div class="premium-card" style="cursor: not-allowed; opacity: 0.85;">
-                <div class="pro-badge" style="background: #444; color: #ccc;">Coming Soon</div>
-                
-                <div class="prem-content">
-                    <div class="prem-icon" style="filter: grayscale(100%);"><i class="fas fa-crown"></i></div>
-                    <div class="prem-text">
-                        <h3>Premium Templates</h3>
-                        <p>Exclusive Shopify & HTML Stores. <span style="color:#FFD700;">Launching Soon!</span></p>
-                    </div>
-                </div>
-                
-                <button class="buy-btn" style="background: transparent; border: 1px solid #FFD700; color: #FFD700; box-shadow: none; pointer-events: none; padding: 10px 20px; border-radius: 50px;">
-                    Stay Tuned <i class="fas fa-hourglass-half"></i>
-                </button>
-            </div>
-        </div>
-        
-        <a href="game.html" class="special-card" data-aos="fade-up">
-            <div class="new-badge" style="position: absolute; top:0; right:0; background: #ff0055; color:#fff; padding:5px 15px; font-weight:bold; font-size:0.7rem;">NEW</div>
-            <div class="special-content">
-                <div class="special-icon"><i class="fas fa-code"></i></div>
-                <div class="special-text">
-                    <h3>Code Master Quiz</h3>
-                    <p>Test your knowledge & win respect!</p>
-                </div>
-            </div>
-            <div class="play-btn">Play Now <i class="fas fa-play"></i></div>
-        </a>
-
-        <div class="category-grid">
+        <section class="grid-container">
             
-            <a href="softwares.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="100">
+            <a href="softwares.html" class="category-card" data-aos="fade-up">
                 <div class="cat-icon"><i class="fas fa-laptop-code"></i></div>
                 <div class="cat-info">
-                    <h3>Softwares</h3>
-                    <p>Cracked & Premium Tools</p>
+                    <h3>PC Softwares</h3>
+                    <p>Cracked & Pre-Activated</p>
                 </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="mobileapks.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="150">
+            <a href="mobileapks.html" class="category-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="cat-icon"><i class="fab fa-android"></i></div>
                 <div class="cat-info">
-                    <h3>Mobile APKs</h3>
-                    <p>Modded & Pro Apps</p>
+                    <h3>Modded APKs</h3>
+                    <p>Premium Apps Unlocked</p>
                 </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="pcgames.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="cat-icon"><i class="fas fa-ghost"></i></div>
+            <a href="pcgames.html" class="category-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="cat-icon"><i class="fas fa-gamepad"></i></div>
                 <div class="cat-info">
                     <h3>PC Games</h3>
-                    <p>High Graphics Gaming</p>
+                    <p>High Graphics Repacks</p>
                 </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="mobilegames.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="250">
-                <div class="cat-icon"><i class="fas fa-gamepad"></i></div>
+            <a href="mobilegames.html" class="category-card" data-aos="fade-up">
+                <div class="cat-icon"><i class="fas fa-mobile-alt"></i></div>
                 <div class="cat-info">
                     <h3>Mobile Games</h3>
                     <p>Trending Viral Games</p>
                 </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="reels.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="300">
+            <a href="reels.html" class="category-card" data-aos="fade-up">
                 <div class="cat-icon"><i class="fab fa-instagram"></i></div>
                 <div class="cat-info">
                     <h3>Reels Bundle</h3>
                     <p>Viral Content Pack</p>
                 </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="steam.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="350">
-                <div class="cat-icon"><i class="fab fa-steam-symbol"></i></div>
+            <a href="premium.html" class="category-card" data-aos="fade-up" style="border-color: #FFD700;">
+                <div class="cat-icon" style="color: #FFD700;"><i class="fas fa-crown"></i></div>
                 <div class="cat-info">
-                    <h3>Steam Accounts</h3>
-                    <p>Cheap & Full Access</p>
+                    <h3>Premium Accounts</h3>
+                    <p style="color: #FFD700;">Shared Access</p>
                 </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="editing.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="400">
-                <div class="cat-icon"><i class="fas fa-film"></i></div>
+            <a href="webtemplates.html" class="category-card" data-aos="fade-up" style="border-color: #00ff88;">
+                <div class="cat-icon" style="color: #00ff88;"><i class="fas fa-code"></i></div>
                 <div class="cat-info">
-                    <h3>Editing Assets</h3>
-                    <p>LUTs, Overlays & FX</p>
+                    <h3>Web Templates</h3>
+                    <p style="color: #00ff88;">Shopify & HTML Codes</p>
                 </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-            <a href="courses.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="450">
-                <div class="cat-icon"><i class="fas fa-graduation-cap"></i></div>
-                <div class="cat-info">
-                    <h3>Courses</h3>
-                    <p>Learn Coding & Hacking</p>
-                </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
-            </a>
-
-            <a href="gamemagics.html" class="category-card searchable-item" data-aos="fade-up" data-aos-delay="500">
+            <a href="gamemagics.html" class="category-card" data-aos="fade-up">
                 <div class="cat-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
                 <div class="cat-info">
                     <h3>Game Magics</h3>
-                    <p>Cheats, Tricks & Mods</p>
+                    <p>Cheats & Tricks</p>
                 </div>
-                <div class="arrow"><i class="fas fa-arrow-right"></i></div>
             </a>
 
-        </div>
+        </section>
 
-        <section class="hire-section" data-aos="flip-up">
-            <div class="hire-card" data-tilt>
+        <section class="ai-showcase-section" data-aos="zoom-in">
+            <div class="ai-banner">
+                <div class="ai-text-content">
+                    <span class="ai-badge">✨ Artificial Intelligence</span>
+                    <h2 class="ai-title">Meet <span style="color: #00d2ff;">Gen5.2</span></h2>
+                    <p class="ai-desc">
+                        Aditya's advanced AI assistant is here. Ask about <span class="typing-text" id="typewriter"></span>
+                    </p>
+                    <div class="ai-btn-group">
+                        <a href="ai-chat.html" class="ai-primary-btn">
+                            Talk to AI <i class="fas fa-comment-dots"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ai-visual">
+                    <div class="brain-container">
+                        <div class="brain-circle c1"></div>
+                        <div class="brain-circle c2"></div>
+                        <div class="brain-circle c3"></div>
+                        <div class="ai-icon-center"><i class="fas fa-robot"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hire-section" data-aos="flip-up" style="margin-top: 50px;">
+            <div class="hire-card" style="max-width: 1200px; margin: 0 auto;">
                 <div class="hire-content">
-                    <div style="color: var(--primary-neon); margin-bottom: 10px; font-weight: bold;">Freelance Service</div>
-                    <h2 class="hire-title">Need a <span style="color: var(--primary-neon);">Website</span> Like This?</h2>
-                    <p class="hire-desc">I build high-quality, futuristic, and responsive websites for gaming, business, and personal use. Let's create something insane together.</p>
-                    <a href="https://t.me/nextgenadi4u" target="_blank" class="hire-btn">
+                    <div style="color: var(--primary); margin-bottom: 10px; font-weight: bold;">Freelance Service</div>
+                    <h2 class="hire-title">Need a <span style="color: var(--primary);">Website</span> Like This?</h2>
+                    <p class="hire-desc">I build high-quality, futuristic, and responsive websites for gaming, business, and personal use.</p>
+                    <a href="https://t.me/nextgenadi4u" target="_blank" class="hire-btn" style="border: 1px solid var(--primary); color:var(--primary); padding: 10px 30px; border-radius: 30px;">
                         Get a Quote <i class="fab fa-telegram"></i>
                     </a>
                 </div>
@@ -560,39 +292,12 @@
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-left">
-                <h2>NextGenAdi4U</h2>
-                <p style="color: #aaa; max-width: 300px; line-height: 1.6;">Your #1 destination for premium gaming resources, development tools, and digital assets. Level up your digital life today.</p>
-                <div class="social-icons">
-                    <a href="https://www.youtube.com/channel/UCEkAwiNuddUI5aXCN4x3spA"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.instagram.com/nextgen.adi4u"><i class="fab fa-instagram"></i></a>
-                    <a href="https://t.me/nextgenadi4u"><i class="fab fa-telegram"></i></a>
-                    <a href="https://discord.com/invite/jG2fpvjwnk"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-links">
-                <h3 style="color: #fff; margin-bottom: 20px;">Quick Links</h3>
-                <ul>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="ADss.html">Advertising</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-links">
-                <h3 style="color: #fff; margin-bottom: 20px;">Support</h3>
-                <ul>
-                    <li><a href="Contact.html">Contact Us</a></li>
-                    <li><a href="Report.html">Report Link</a></li>
-                    <li><a href="FAQ.html">FAQ</a></li>
-                </ul>
-            </div>
+        <div class="footer-links">
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="report.html">Report Issue</a>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 NextGenAdi4U. Designed with <i class="fas fa-heart" style="color: red;"></i> by Aditya.</p>
-        </div>
+        <p style="margin-top: 15px;">&copy; 2026 NextGenAdi4U. All Rights Reserved.</p>
     </footer>
 
     <div class="chat-toggle-btn" onclick="toggleChat()">
@@ -606,191 +311,77 @@
         </div>
         <div class="chat-body" id="chatBody">
             <div class="message bot-msg">
-                Hello! I am your assistant. Ask me for Games, Softwares, or Help!
+                Hello! I am Gen5.2. How can I help you today?
             </div>
         </div>
         <div class="chat-input-area">
-            <input type="text" id="userInput" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+            <input type="text" id="userInput" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
             <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-
     <script>
-        // --- 1. INITIALIZATION ---
         AOS.init({ duration: 800, once: true });
         
-        // Tilt Effect
-        VanillaTilt.init(document.querySelectorAll(".category-card"), {
-            max: 5, speed: 400, glare: true, "max-glare": 0.1
-        });
-        VanillaTilt.init(document.querySelectorAll(".premium-card, .hire-card"), {
-            max: 10, speed: 400, glare: true, "max-glare": 0.2
-        });
+        // --- TYPEWRITER EFFECT FOR AI SECTION ---
+        const textElement = document.getElementById('typewriter');
+        const words = ["PC Games...", "Coding...", "Softwares...", "Editing..."];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
 
-        // --- 2. PARTICLE BACKGROUND ---
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                textElement.innerText = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textElement.innerText = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                setTimeout(type, 1500); // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(type, 300);
+            } else {
+                setTimeout(type, isDeleting ? 50 : 100);
+            }
+        }
+        type();
+
+        // --- PARTICLE BACKGROUND ---
         const canvas = document.getElementById('dustCanvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        let particlesArray;
-
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let particles = [];
         class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.color = Math.random() > 0.5 ? 'rgba(0, 210, 255, 0.6)' : 'rgba(255, 255, 255, 0.3)';
-            }
-            update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
-            }
-            draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+            constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2; this.speedX = Math.random()*0.5-0.25; this.speedY = Math.random()*0.5-0.25; }
+            update() { this.x+=this.speedX; this.y+=this.speedY; if(this.x>canvas.width)this.x=0; if(this.x<0)this.x=canvas.width; if(this.y>canvas.height)this.y=0; if(this.y<0)this.y=canvas.height; }
+            draw() { ctx.fillStyle='rgba(0,210,255,0.3)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
         }
+        for(let i=0; i<80; i++) particles.push(new Particle());
+        function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw()}); requestAnimationFrame(animate); }
+        animate();
 
-        function initParticles() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 9000;
-            for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); }
-        }
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); }
-            requestAnimationFrame(animateParticles);
-        }
-        window.addEventListener('resize', function() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initParticles(); });
-        initParticles(); animateParticles();
-
-        // --- 3. SEARCH LOGIC ---
-        function searchContent() {
-            let input = document.getElementById('globalSearch').value.toLowerCase();
-            let cards = document.getElementsByClassName('searchable-item');
-            for (let i = 0; i < cards.length; i++) { 
-                if (!cards[i].innerText.toLowerCase().includes(input)) { cards[i].style.display = "none"; } 
-                else { cards[i].style.display = "flex"; }
-            }
-        }
-
-        // --- 4. ADVANCED CHATBOT LOGIC ---
+        // --- CHAT TOGGLE ---
         function toggleChat() {
-            const chatBox = document.getElementById("chatBox");
-            chatBox.classList.toggle("active");
-            if(chatBox.classList.contains("active")){ setTimeout(() => document.getElementById("userInput").focus(), 300); }
+            document.getElementById("chatBox").classList.toggle("active");
         }
-
-        function handleKeyPress(e) { if (e.key === "Enter") sendMessage(); }
-
+        function handleKeyPress(e) { if(e.key === "Enter") sendMessage(); }
         function sendMessage() {
-            const inputField = document.getElementById("userInput");
-            const chatBody = document.getElementById("chatBody");
-            const userText = inputField.value.trim();
-            if (userText === "") return;
-
-            const userDiv = document.createElement("div");
-            userDiv.className = "message user-msg";
-            userDiv.innerText = userText;
-            chatBody.appendChild(userDiv);
-
-            inputField.value = "";
-            chatBody.scrollTop = chatBody.scrollHeight;
-
-            const loadingDiv = document.createElement("div");
-            loadingDiv.className = "message bot-msg";
-            loadingDiv.innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Analyzing...";
-            chatBody.appendChild(loadingDiv);
-            chatBody.scrollTop = chatBody.scrollHeight;
-
-            setTimeout(() => {
-                chatBody.removeChild(loadingDiv);
-                const botDiv = document.createElement("div");
-                botDiv.className = "message bot-msg";
-                botDiv.innerHTML = getAdvancedBotResponse(userText.toLowerCase());
-                chatBody.appendChild(botDiv);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }, 800);
+            let input = document.getElementById("userInput");
+            if(input.value.trim() === "") return;
+            // Simplified for Home page (Redirects to full chat logic or simple response)
+            window.location.href = "ai-chat.html"; 
         }
 
-        // --- THE BRAIN: EXPANDED CATEGORIES ---
-        function getAdvancedBotResponse(input) {
-            
-            // 1. Basic & Greetings
-            if (match(input, ["hi", "hello", "hey", "start", "good morning"])) 
-                return "Welcome, User! 🚀 <br>Systems operational. Ask for <b>Games</b>, <b>Software</b>, or <b>Contact</b>.";
-            if (match(input, ["who are you", "bot", "name"])) 
-                return "I am <b>NextGen AI</b>. A virtual assistant programmed by Aditya.";
-
-            // 2. PC Games
-            if (match(input, ["pc game", "computer", "gta", "rdr2", "cyberpunk", "windows game"])) 
-                return "High-Graphics PC Games detected! 🖥️<br>Check out: <a href='pcgames.html' class='bot-link'>PC Games Collection</a>.";
-
-            // 3. Mobile APKs
-            if (match(input, ["mobile apk", "android", "mod apk", "premium app", "cracked app"])) 
-                return "Unlocking Android Potential... 📱<br>Get Modded Apps here: <a href='mobileapks.html' class='bot-link'>Mobile APKs</a>.";
-
-            // 4. Mobile Games
-            if (match(input, ["mobile game", "pubg", "bgmi", "free fire", "minecraft", "cod"])) 
-                return "Mobile Gaming Zone Accessed! 🎮<br>Download trending games: <a href='mobilegames.html' class='bot-link'>Mobile Games</a>.";
-
-            // 5. Softwares
-            if (match(input, ["software", "tool", "utility", "adobe", "office", "window"])) 
-                return "Loading Premium Tools... 💿<br>Get Full Versions: <a href='softwares.html' class='bot-link'>Software Hub</a>.";
-
-            // 6. Reels Bundle
-            if (match(input, ["reel", "instagram", "viral", "video", "content"])) 
-                return "Boost your reach! 🚀<br>Get the Viral Reels Bundle: <a href='reels.html' class='bot-link'>Reels Bundle</a>.";
-
-            // 7. Steam Accounts
-            if (match(input, ["steam", "account", "game key", "cheap game"])) 
-                return "Gaming on a budget? 🎮<br>Get Full Access Steam Accounts: <a href='steam.html' class='bot-link'>Steam Store</a>.";
-
-            // 8. Editing Assets
-            if (match(input, ["edit", "preset", "lut", "overlay", "premiere", "capcut", "after effect"])) 
-                return "Create cinematic masterpieces! 🎬<br>Download Assets: <a href='editing.html' class='bot-link'>Editing Hub</a>.";
-
-            // 9. Courses
-            if (match(input, ["course", "learn", "study", "hacking", "coding", "python"])) 
-                return "Knowledge is power. 🧠<br>Start learning today: <a href='courses.html' class='bot-link'>Courses Library</a>.";
-
-            // 10. Game Magics (Cheats)
-            if (match(input, ["cheat", "hack", "script", "magic", "mod menu"])) 
-                return "⚠️ <b>Restricted Area</b> ⚠️<br>Get the ultimate advantage: <a href='gamemagics.html' class='bot-link'>Game Magics</a>.";
-
-            // 11. Contact
-            if (match(input, ["contact", "owner", "admin", "aditya", "help"])) 
-                return "Establishing secure line... 📡<br>Contact Admin on Telegram: <a href='https://t.me/nextgenadi4u' target='_blank' class='bot-link'>@nextgenadi4u</a>";
-
-            // Fallback
-            return `Command '${input}' not recognized. <br>Try asking for 'PC Games', 'Softwares', or 'Courses'.`;
-        }
-
-        function match(text, keywords) {
-            return keywords.some(keyword => text.includes(keyword));
-        }
-
-        // --- 5. SECURITY SCRIPT (Anti-Theft) ---
-        // Disable Right Click
+        // --- SECURITY ---
         document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // Disable F12, Ctrl+U, Ctrl+C etc.
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123) return false; // F12
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
-            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S
-        }
-        
-        // Prevent Dragging Images
-        document.querySelectorAll('img').forEach(img => {
-            img.setAttribute('draggable', false);
-        });
     </script>
 </body>
 </html>
