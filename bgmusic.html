@@ -7,7 +7,7 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6262033771925685" crossorigin="anonymous"></script>
     
-    <title>Background Music - NextGenAdi4U</title>
+    <title>Editing Assets - NextGenAdi4U</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -32,6 +32,12 @@
             color: var(--text-main);
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
+            
+            /* Anti-Theft: Prevent Text Selection */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         /* Particle Background */
@@ -212,8 +218,8 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="editing.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-                <a href="home.html">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+                <a href="index.html">
                     <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
                 </a>
             </div>
@@ -226,7 +232,7 @@
             </div>
 
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search Music...">
+                <input type="text" id="searchInput" placeholder="Search Assets...">
                 <button><i class="fas fa-search"></i></button>
             </div>
         </div>
@@ -234,8 +240,8 @@
 
     <main>
         <section class="hero" data-aos="fade-down">
-            <h1>Background Music</h1>
-            <p>Copyright Free Sounds & Beats</p>
+            <h1>Editing Assets</h1>
+            <p>Premium Sound Effects & Tools</p>
         </section>
 
         <section class="grid-container" id="musicGrid">
@@ -358,6 +364,25 @@
             init();
         });
         init(); animate();
+
+        // --- SECURITY SCRIPT (Anti-Theft) ---
+        // 1. Disable Right Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Disable Keyboard Shortcuts (F12, Ctrl+U, etc.)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S
+        }
+
+        // 3. Disable Image Dragging
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('draggable', false);
+        });
     </script>
 </body>
 </html>
