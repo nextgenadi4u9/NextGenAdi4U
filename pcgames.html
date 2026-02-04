@@ -32,6 +32,12 @@
             color: var(--text-main);
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
+            
+            /* Anti-Theft: Prevent Text Selection */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         /* Particle Background */
@@ -137,6 +143,7 @@
             box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
         }
 
+        /* --- IMAGE FIX: FULL VISIBILITY --- */
         .card-img-wrapper {
             width: 100%; height: 160px;
             display: flex; align-items: center; justify-content: center;
@@ -147,8 +154,10 @@
         }
         
         .card-img-wrapper img {
-            width: 100%; height: 100%; object-fit: cover; border-radius: 10px;
-            transition: 0.5s;
+            width: 100%; height: 100%; 
+            object-fit: cover; /* Ensures image fills the box nicely */
+            border-radius: 10px;
+            transition: 0.4s;
         }
         .software-card:hover .card-img-wrapper img { transform: scale(1.1); }
 
@@ -173,6 +182,7 @@
             padding: 12px; border-radius: 50px;
             font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
             display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none;
         }
         .download-btn:hover {
             background: var(--primary-color); color: #000;
@@ -186,7 +196,6 @@
             margin-bottom: 20px; font-size: 0.85rem; color: #ddd;
         }
         .seo-box h4 { color: var(--primary-color); margin-bottom: 5px; }
-        .seo-box ul { padding-left: 20px; margin-top: 5px; }
 
         /* --- 5. FOOTER --- */
         footer {
@@ -203,7 +212,7 @@
         <div class="header-container">
             <div class="logo">
                 <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-                <a href="home.html">
+                <a href="index.html">
                     <h2 class="brand-text">NextGen<span class="brand-highlight">Adi4U</span></h2>
                 </a>
             </div>
@@ -939,6 +948,25 @@
             init();
         });
         init(); animate();
+
+        // --- SECURITY SCRIPT (Anti-Theft) ---
+        // 1. Disable Right Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Disable Keyboard Shortcuts (F12, Ctrl+U, etc.)
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S
+        }
+
+        // 3. Disable Image Dragging
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('draggable', false);
+        });
     </script>
 </body>
 </html>
