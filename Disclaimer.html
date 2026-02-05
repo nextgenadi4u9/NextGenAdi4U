@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Copyright Disclaimer - NextGenAdi4U">
+    <meta name="theme-color" content="#00d2ff">
+
+    <title>Copyright Disclaimer - NextGenAdi4U</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        .copyright-container {
+            padding: 0 20px 80px;
+        }
+
+        .copyright-box {
+            background: rgba(20, 20, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.1);
+        }
+
+        .copyright-box h2 {
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .copyright-box h2:first-child { margin-top: 0; }
+
+        .copyright-box p, .copyright-box li {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .warning {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="dustCanvas"></canvas>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">NextGen<span>Adi4U</span></a>
+    <div class="nav-links">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<div class="hero page-hero">
+    <h1 class="main-heading" style="font-size: 3rem;">Copyright Disclaimer</h1>
+    <p class="sub-text">Important Legal Notice</p>
+</div>
+
+<section class="copyright-container" data-aos="fade-up">
+    <div class="copyright-box">
+
+        <p style="color: var(--primary); font-weight: bold;">Last Updated: January 2026</p>
+
+        <h2>Copyright & Content Disclaimer</h2>
+        <p>
+            All content available on <strong>NextGenAdi4U</strong>, including but not limited to
+            <strong>software, videos, music, images, files, links, and other digital materials</strong>,
+            is provided for informational and educational purposes only.
+        </p>
+
+        <h2>No Guarantee / No Warranty</h2>
+        <p class="warning">
+            We do <strong>NOT</strong> provide any guarantee, warranty, or assurance regarding the
+            accuracy, reliability, legality, performance, or safety of any software, videos,
+            music, or other content available on this website.
+        </p>
+
+        <p>
+            Any action you take upon the information or resources found on this website is
+            <strong>strictly at your own risk</strong>.
+        </p>
+
+        <h2>Third-Party Content</h2>
+        <p>
+            Some content on this website may belong to third-party owners.
+            All trademarks, copyrights, and intellectual property rights belong to their
+            respective owners.
+        </p>
+
+        <p>
+            We do not claim ownership of any third-party software, videos, or music and
+            shall not be held responsible for any loss, damage, or legal issues arising
+            from their use.
+        </p>
+
+        <h2>User Responsibility</h2>
+        <p>
+            Users are solely responsible for ensuring compliance with applicable
+            <strong>copyright laws, licenses, and legal permissions</strong>
+            before downloading, using, or sharing any content.
+        </p>
+
+        <h2>Copyright Infringement & Removal</h2>
+        <p>
+            If you believe that any content on this website infringes your copyright,
+            please contact us through our
+            <a href="contact.html" style="color: var(--primary); font-weight: bold;">Contact Page</a>
+            with valid proof of ownership.
+        </p>
+
+        <p class="warning">
+            Upon proper verification, the disputed content will be removed promptly.
+        </p>
+
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content" style="justify-content:center; text-align:center;">
+        <p>&copy; 2026 NextGenAdi4U. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true });
+
+    const canvas = document.getElementById('dustCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let particles = [];
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.speedY = Math.random() * 0.5 - 0.25;
+            this.color = 'rgba(0, 210, 255, 0.3)';
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0) this.y = canvas.height;
+        }
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < 60; i++) particles.push(new Particle());
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+
+    document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
+
+</body>
+</html>
