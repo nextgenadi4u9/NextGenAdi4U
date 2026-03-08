@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#00d2ff">
     
-   <script src="https://pl28872428.effectivegatecpm.com/3d/0c/70/3d0c702004a06d05d225793bc7f33f88.js"></script>
+    <script src="https://pl28872428.effectivegatecpm.com/3d/0c/70/3d0c702004a06d05d225793bc7f33f88.js"></script>
+    <script src="https://pl28873302.effectivegatecpm.com/4d/a9/37/4da93795f4917eb280964b9779b7c771.js"></script>
 
     <title>Code Master - Ultimate Quiz</title>
     
@@ -56,6 +57,29 @@
         .home-btn { color: #fff; font-size: 1.2rem; cursor: pointer; transition: 0.3s; }
         .home-btn:hover { color: var(--primary); transform: scale(1.1); }
 
+        /* --- ADSTERRA AD STYLES --- */
+        .ad-banner-container {
+            display: flex; justify-content: center; align-items: center;
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px; padding: 10px; margin: 0 auto;
+            max-width: fit-content; overflow: hidden;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3); backdrop-filter: blur(10px);
+        }
+        .reward-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 40px; background: transparent;
+            border: 2px solid var(--primary); color: var(--primary);
+            border-radius: 50px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s; cursor: pointer; text-decoration: none;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2); font-family: 'Rajdhani', sans-serif; font-size: 1.2rem;
+        }
+        .reward-btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 30px var(--primary); }
+
+        @media (max-width: 768px) {
+            .ad-banner-container { max-width: 100%; }
+        }
+
         /* --- MAIN MENU (LANGUAGE SELECTION) --- */
         .menu-screen {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -66,7 +90,7 @@
             font-family: 'Rajdhani', sans-serif; font-size: 3.5rem; margin-bottom: 10px;
             background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; color: transparent;
         }
-        .hero-sub { color: #aaa; margin-bottom: 50px; font-size: 1.1rem; }
+        .hero-sub { color: #aaa; margin-bottom: 30px; font-size: 1.1rem; }
 
         .lang-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -147,7 +171,7 @@
         /* --- RESULT SCREEN --- */
         .result-screen {
             display: none; flex-direction: column; align-items: center; justify-content: center;
-            height: 80vh; text-align: center; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 40px 20px; min-height: 80vh; text-align: center; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
@@ -194,6 +218,19 @@
         <h1 class="hero-title">Select Your Arena</h1>
         <p class="hero-sub">Choose a language to start the Hyper Quiz</p>
         
+        <div class="ad-banner-container" style="margin-bottom: 40px;">
+            <script>
+              atOptions = {
+                'key' : '5bf44fe7f239a488c862f9db62bf9e4b',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+              };
+            </script>
+            <script src="https://www.highperformanceformat.com/5bf44fe7f239a488c862f9db62bf9e4b/invoke.js"></script>
+        </div>
+
         <div class="lang-grid">
             <div class="lang-card" onclick="startGame('html')">
                 <i class="fab fa-html5 lang-icon" style="color: #e34f26;"></i>
@@ -231,6 +268,12 @@
                 <div class="lang-desc">Game Dev</div>
             </div>
         </div>
+
+        <div style="margin-top: 50px;">
+            <a href="https://www.effectivegatecpm.com/kh2ykimpz?key=b0a36551f5cd0fd3c85dece68933e592" target="_blank" class="reward-btn">
+                🎁 Claim Daily Free Reward <i class="fas fa-gift" style="margin-left: 5px;"></i>
+            </a>
+        </div>
     </div>
 
     <div class="game-screen" id="gameScreen">
@@ -259,9 +302,15 @@
             </div>
         </div>
         <h2 class="result-msg" id="resultMsg">Good Job!</h2>
-        <div style="display: flex; gap: 20px;">
+        
+        <div style="display: flex; gap: 20px; margin-bottom: 40px;">
             <button class="action-btn" onclick="goHome()">Main Menu</button>
             <button class="action-btn" onclick="restartCurrent()">Play Again</button>
+        </div>
+
+        <div class="ad-banner-container">
+            <script async="async" data-cfasync="false" src="https://pl28873307.effectivegatecpm.com/64c84a8364b34aadd7e5e55c257f6c2c/invoke.js"></script>
+            <div id="container-64c84a8364b34aadd7e5e55c257f6c2c"></div>
         </div>
     </div>
 
